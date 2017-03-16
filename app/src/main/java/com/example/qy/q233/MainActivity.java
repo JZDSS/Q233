@@ -1,5 +1,7 @@
 package com.example.qy.q233;
 
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,24 +14,24 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int UPDATE_TEXTVIWE = 0;
+
     private boolean sensorOn;
     private Accelerometer mAccelerometer;
     private Timer mTimer;
+    private Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mAccelerometer = new Accelerometer(this);
+
+        mHandler = new MyHandler();
         mTimer = new Timer();
-        TimerTask mTimerTask = new TimerTask() {
-            @Override
-            public void run() {
-                String x = String.valueOf(mAccelerometer.x);
-                refresh(R.id.val_x, x);
-            }
-        };
-        mTimer.schedule(mTimerTask,1000,5000);
+        TimerTask mTimerTask = new MyTimerTask();
+        mTimer.schedule(mTimerTask,1,5);
     }
 
     @Override
@@ -70,8 +72,35 @@ public class MainActivity extends AppCompatActivity {
         TextView mTextView = (TextView) findViewById(id);
         mTextView.setText(s);
     }
-//    private float norm(float x, float y, float z){
-//        return (float)Math.sqrt(x * x + y * y + z * z);
-//    }
+
+    public void sendMessage(int id){
+        if (mHandler != null) {
+            Message message = Message.obtain(mHandler, id);
+            mHandler.sendMessage(message);
+        }
+    }
+
+    private class MyTimerTask extends TimerTask{
+        @Override
+        public void run() {
+            sendMessage(UPDATE_TEXTVIWE);
+        }
+    }
+
+    private class MyHandler extends Handler{
+        @Override
+        public void handleMessage(Message msg){
+            switch (msg.what){
+                case UPDATE_TEXTVIWE:
+                    refresh(R.id.val_x, String.valueOf(mAccelerometer.x));
+                    refresh(R.id.val_y, String.valueOf(mAccelerometer.y));
+                    refresh(R.id.val_z, String.valueOf(mAccelerometer.z));
+                    refresh(R.id.val_norm, String.valueOf(mAccelerometer.norm));
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
 }
