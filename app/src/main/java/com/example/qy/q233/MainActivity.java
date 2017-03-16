@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean sensorOn;
     private Accelerometer mAccelerometer;
-    private Timer mTimer;
-    private Handler mHandler;
+    private Timer mTimer = new Timer();
+    private Handler mHandler = new MyHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         mAccelerometer = new Accelerometer(this);
 
-        mHandler = new MyHandler();
-        mTimer = new Timer();
         TimerTask mTimerTask = new MyTimerTask();
         mTimer.schedule(mTimerTask, 1, 5);
     }
@@ -37,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ((Button) findViewById(R.id.control)).setText(R.string.stop);
+        ((Button) findViewById(R.id.on_off)).setText(R.string.stop);
         sensorOn = true;
         mAccelerometer.resume();
     }
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        ((Button) findViewById(R.id.control)).setText(R.string.start);
+        ((Button) findViewById(R.id.on_off)).setText(R.string.start);
         sensorOn = false;
         mAccelerometer.pause();
     }
@@ -85,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             sendMessage(UPDATE_TEXTVIWE);
         }
     }
+
 
     private class MyHandler extends Handler {
         @Override
