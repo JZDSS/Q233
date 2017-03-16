@@ -11,6 +11,9 @@ import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Created by Qi Yao on 17-3-15.
+ */
 
 public class MainActivity extends AppCompatActivity {
 

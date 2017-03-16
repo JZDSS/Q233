@@ -8,7 +8,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
 /**
- * Created by qy on 17-3-15.
+ * Created by Qi Yao on 17-3-15.
  */
 
 public class Accelerometer extends Activity {
