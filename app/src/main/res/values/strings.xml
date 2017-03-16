@@ -6,4 +6,6 @@
     <string name="start">start</string>
     <string name="stop">stop</string>
     <string name="norm">norm</string>
+    <string name="export">export</string>
+    <string name="SD_card">SD</string>
 </resources>

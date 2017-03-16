@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public void clickButton(View view) {
+    public void sensorControl(View view) {
         if (sensorOn) {
             onPause();
         } else {
@@ -78,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
             Message message = Message.obtain(mHandler, id);
             mHandler.sendMessage(message);
         }
+    }
+
+    public void exportControl(View view) {
     }
 
     private class MyTimerTask extends TimerTask {
