@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         mHandler = new MyHandler();
         mTimer = new Timer();
         TimerTask mTimerTask = new MyTimerTask();
-        mTimer.schedule(mTimerTask,1,5);
+        mTimer.schedule(mTimerTask, 1, 5);
     }
 
     @Override
@@ -51,46 +51,45 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy () {
+    protected void onDestroy() {
         if (mTimer != null) {
-            mTimer.cancel( );
+            mTimer.cancel();
             mTimer = null;
         }
         super.onDestroy();
     }
 
-    public void clickButton(View view){
-        if(sensorOn){
+    public void clickButton(View view) {
+        if (sensorOn) {
             onPause();
-        }
-        else {
+        } else {
             onResume();
         }
     }
 
-    private void refresh(int id, String s){
+    private void refresh(int id, String s) {
         TextView mTextView = (TextView) findViewById(id);
         mTextView.setText(s);
     }
 
-    public void sendMessage(int id){
+    public void sendMessage(int id) {
         if (mHandler != null) {
             Message message = Message.obtain(mHandler, id);
             mHandler.sendMessage(message);
         }
     }
 
-    private class MyTimerTask extends TimerTask{
+    private class MyTimerTask extends TimerTask {
         @Override
         public void run() {
             sendMessage(UPDATE_TEXTVIWE);
         }
     }
 
-    private class MyHandler extends Handler{
+    private class MyHandler extends Handler {
         @Override
-        public void handleMessage(Message msg){
-            switch (msg.what){
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
                 case UPDATE_TEXTVIWE:
                     refresh(R.id.val_x, String.valueOf(mAccelerometer.x));
                     refresh(R.id.val_y, String.valueOf(mAccelerometer.y));

@@ -11,7 +11,7 @@ import android.hardware.SensorManager;
  * Created by qy on 17-3-15.
  */
 
-public class Accelerometer extends Activity{
+public class Accelerometer extends Activity {
 
     public SensorManager mSensorManager;
     private Sensor mSensor;
@@ -19,7 +19,7 @@ public class Accelerometer extends Activity{
     public float x, y, z, norm;
 
     public Accelerometer(Context mContext) {
-        mSensorManager = (SensorManager)mContext.getSystemService(SENSOR_SERVICE);
+        mSensorManager = (SensorManager) mContext.getSystemService(SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensorEventListener = new MySensorEventListener();
     }
@@ -32,11 +32,11 @@ public class Accelerometer extends Activity{
         mSensorManager.unregisterListener(mSensorEventListener);
     }
 
-    private float norm(float x, float y, float z){
-        return (float)Math.sqrt(x * x + y * y + z * z);
+    private float norm(float x, float y, float z) {
+        return (float) Math.sqrt(x * x + y * y + z * z);
     }
 
-    private class MySensorEventListener implements SensorEventListener{
+    private class MySensorEventListener implements SensorEventListener {
         @Override
         public void onSensorChanged(SensorEvent event) {
             x = event.values[0];

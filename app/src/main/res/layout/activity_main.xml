@@ -9,82 +9,92 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/x"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:layout_weight="1" />
+                android:text="@string/x" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/y"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:layout_weight="1" />
+                android:text="@string/y" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/z"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:layout_weight="1" />
+                android:text="@string/z" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/norm"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:layout_weight="1" />
+                android:text="@string/norm" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/val_x"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_weight="1"
                 android:background="@color/gray"
-                android:layout_weight="1" />
+                android:gravity="center" />
+
             <TextView
                 android:id="@+id/val_y"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_weight="1"
                 android:background="@color/gray"
-                android:layout_weight="1" />
+                android:gravity="center" />
+
             <TextView
                 android:id="@+id/val_z"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_weight="1"
                 android:background="@color/gray"
-                android:layout_weight="1" />
+                android:gravity="center" />
+
             <TextView
                 android:id="@+id/val_norm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_weight="1"
                 android:background="@color/gray"
-                android:layout_weight="1" />
+                android:gravity="center" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
+
             <Button
                 android:id="@+id/control"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/stop"
                 android:layout_weight="1"
-                android:onClick="clickButton"/>
+                android:onClick="clickButton"
+                android:text="@string/stop" />
         </LinearLayout>
 
 
