@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
             exporting = false;
             ((Button)findViewById(R.id.export)).setText(R.string.export);
-            mFileManager.save(cache, R.string.SD_card, true);
+            mFileManager.save(cache);
             cache = "";
 
         }else{
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                         cache += mAccelerometer.x + "," + mAccelerometer.y + "," +
                                 mAccelerometer.z + ";";
                         if (cache.length()>1024){
-                            mFileManager.save(cache,R.string.SD_card,true);
+                            mFileManager.save(cache);
                             cache = "";
                         }
                     }

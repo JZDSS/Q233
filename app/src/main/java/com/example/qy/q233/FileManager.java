@@ -14,59 +14,69 @@ import java.io.FileOutputStream;
 public class FileManager {
 
     private Context mContext;
-
     private String fileName;
 
     /**
+     * true for SD card, false for memory.
+     */
+    private boolean mode;
+
+    private boolean append;
+
+    /**
      * Initialize a FileManager.
+     *
      * @param context Context.
      */
-    FileManager (Context context){
+    FileManager(Context context) {
         mContext = context;
+        mode = true;
+        append = true;
     }
 
     /**
      * Set file name.
+     *
      * @param fileName File name string.
      */
-    public void setFileName(String fileName){
+    void setFileName(String fileName) {
         this.fileName = fileName;
     }
 
     /**
      * Save data.
+     *
      * @param content Data string;
-     * @param mode "SD_card": save to SD card, else: save to memory;
-     * @param append True: write in the end of the file,false: clear/create the file and write.
      */
-    public void save(String content, int mode, boolean append){
-        try{
-            if (mode==R.string.SD_card){
+    public void save(String content) {
+        try {
+            if (mode) {
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                     fileName = Environment.getExternalStorageDirectory().getCanonicalPath() + "/" + fileName;
                     FileOutputStream output = new FileOutputStream(fileName, append);
                     output.write(content.getBytes());
                     output.close();
-                } else Toast.makeText(mContext, "SD card isn't exist or can't be written!", Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(mContext, "SD card isn't exist or can't be written!", Toast.LENGTH_SHORT).show();
 
-            }else{
+            } else {
                 //Memory
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     /**
      * Read File
-     * @param mode SD card or memory.
+     *
      * @return File content.
      */
-    public String read(String mode){
+    public String read() {
 
         StringBuilder mStringBuilder = new StringBuilder("");
         try {
-            if (mode.equals(R.string.SD_card)){
+            if (mode) {
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
 
                     fileName = Environment.getExternalStorageDirectory().getCanonicalPath() + "/" + fileName;
@@ -80,11 +90,11 @@ public class FileManager {
 
                     input.close();
                 }
-            }else{
+            } else {
                 //Memory
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
