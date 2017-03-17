@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Environment;
 import android.widget.Toast;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
@@ -37,8 +36,8 @@ public class FileManager {
     /**
      * Save data.
      * @param content Data string;
-     * @param mode SD_card for saving into SD card, else for saving into memory;
-     * @param append Write in the end of the file or clear/create the file and write.
+     * @param mode "SD_card": save to SD card, else: save to memory;
+     * @param append True: write in the end of the file,false: clear/create the file and write.
      */
     public void save(String content, int mode, boolean append){
         try{
