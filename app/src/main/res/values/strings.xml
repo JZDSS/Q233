@@ -8,4 +8,5 @@
     <string name="norm">norm</string>
     <string name="export">export</string>
     <string name="SD_card">SD</string>
+    <string name="read">read</string>
 </resources>

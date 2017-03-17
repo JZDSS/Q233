@@ -61,6 +61,7 @@ public class FileManager {
 
             } else {
                 //Memory
+                mode = false;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -92,6 +93,7 @@ public class FileManager {
                 }
             } else {
                 //Memory
+                mode = false;
             }
 
         } catch (Exception e) {
