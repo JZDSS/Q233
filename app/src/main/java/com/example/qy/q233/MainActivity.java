@@ -20,8 +20,11 @@ public class MainActivity extends AppCompatActivity {
     private static final int UPDATE_TEXTVIWE = 0;
 
     private boolean sensorOn;
+    private boolean exporting;
     private Accelerometer mAccelerometer;
+    FileManager mFileManager;
     private Timer mTimer = new Timer();
+    String cache = "";
     private Handler mHandler = new MyHandler();
 
     @Override
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         mAccelerometer = new Accelerometer(this);
 
+        mFileManager = new FileManager(this);
+
         TimerTask mTimerTask = new MyTimerTask();
         mTimer.schedule(mTimerTask, 1, 5);
     }
@@ -38,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ((Button) findViewById(R.id.on_off)).setText(R.string.stop);
+        ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
         sensorOn = true;
         mAccelerometer.resume();
     }
@@ -46,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        ((Button) findViewById(R.id.on_off)).setText(R.string.start);
+        ((Button) findViewById(R.id.sensor_control)).setText(R.string.start);
         sensorOn = false;
         mAccelerometer.pause();
     }
@@ -81,6 +86,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void exportControl(View view) {
+        if (exporting){
+
+            exporting = false;
+            ((Button)findViewById(R.id.export)).setText(R.string.export);
+            mFileManager.save(cache, R.string.SD_card, true);
+            cache = "";
+
+        }else{
+            exporting = true;
+            if (!sensorOn){
+                sensorOn = true;
+                onResume();
+            }
+            ((Button)findViewById(R.id.export)).setText(R.string.stop);
+            String fileName = "a.txt";
+            mFileManager.setFileName(fileName);
+
+        }
     }
 
     private class MyTimerTask extends TimerTask {
@@ -100,6 +123,14 @@ public class MainActivity extends AppCompatActivity {
                     refresh(R.id.val_y, String.valueOf(mAccelerometer.y));
                     refresh(R.id.val_z, String.valueOf(mAccelerometer.z));
                     refresh(R.id.val_norm, String.valueOf(mAccelerometer.norm));
+                    if (exporting){
+                        cache += mAccelerometer.x + "," + mAccelerometer.y + "," +
+                                mAccelerometer.z + ";";
+                        if (cache.length()>1024){
+                            mFileManager.save(cache,R.string.SD_card,true);
+                            cache = "";
+                        }
+                    }
                     break;
                 default:
                     break;

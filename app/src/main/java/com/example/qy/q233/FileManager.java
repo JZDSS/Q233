@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
@@ -15,18 +16,37 @@ public class FileManager {
 
     private Context mContext;
 
+    private String fileName;
+
+    /**
+     * Initialize a FileManager.
+     * @param context Context.
+     */
     FileManager (Context context){
         mContext = context;
     }
 
-    public void Save(String fileName, String cache, String mode){
+    /**
+     * Set file name.
+     * @param fileName File name string.
+     */
+    public void setFileName(String fileName){
+        this.fileName = fileName;
+    }
+
+    /**
+     * Save data.
+     * @param content Data string;
+     * @param mode SD_card for saving into SD card, else for saving into memory;
+     * @param append Write in the end of the file or clear/create the file and write.
+     */
+    public void save(String content, int mode, boolean append){
         try{
-            if (mode.equals(R.string.SD_card)){
+            if (mode==R.string.SD_card){
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                     fileName = Environment.getExternalStorageDirectory().getCanonicalPath() + "/" + fileName;
-
-                    FileOutputStream output = new FileOutputStream(fileName);
-                    output.write(cache.getBytes());
+                    FileOutputStream output = new FileOutputStream(fileName, append);
+                    output.write(content.getBytes());
                     output.close();
                 } else Toast.makeText(mContext, "SD card isn't exist or can't be written!", Toast.LENGTH_SHORT).show();
 
@@ -38,7 +58,12 @@ public class FileManager {
         }
     }
 
-    public String Read(String fileName, String mode){
+    /**
+     * Read File
+     * @param mode SD card or memory.
+     * @return File content.
+     */
+    public String read(String mode){
 
         StringBuilder mStringBuilder = new StringBuilder("");
         try {
@@ -66,5 +91,4 @@ public class FileManager {
 
         return mStringBuilder.toString();
     }
-
 }
