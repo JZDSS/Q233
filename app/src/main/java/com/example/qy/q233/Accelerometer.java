@@ -1,6 +1,5 @@
 package com.example.qy.q233;
 
-import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -11,7 +10,7 @@ import android.hardware.SensorManager;
  * Created by Qi Yao on 17-3-15.
  */
 
-public class Accelerometer extends Activity {
+public class Accelerometer{
 
     public SensorManager mSensorManager;
     private Sensor mSensor;
@@ -25,7 +24,7 @@ public class Accelerometer extends Activity {
      *                 in order to call getSystemService.
      */
     public Accelerometer(Context mContext) {
-        mSensorManager = (SensorManager) mContext.getSystemService(SENSOR_SERVICE);
+        mSensorManager = (SensorManager) mContext.getSystemService(mContext.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensorEventListener = new MySensorEventListener();
     }

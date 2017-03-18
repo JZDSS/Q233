@@ -118,6 +118,11 @@
                 android:text="@string/read" />
         </LinearLayout>
 
+        <SurfaceView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
