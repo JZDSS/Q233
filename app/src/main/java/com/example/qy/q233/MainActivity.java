@@ -1,6 +1,7 @@
 package com.example.qy.q233;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.baidu.mapapi.SDKInitializer;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -28,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Timer mTimer = new Timer();
     String cache = "";
     private Handler mHandler = new MyHandler();
-
+    SDKReceiver mReceiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
         mAccelerometer = new Accelerometer(this);
 
         mFileManager = new FileManager(this);
+
+        IntentFilter iFilter = new IntentFilter();
+        iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR);
+        iFilter.addAction(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR);
+        mReceiver = new SDKReceiver();
+        registerReceiver(mReceiver, iFilter);
+
 
         TimerTask mTimerTask = new MyTimerTask();
         mTimer.schedule(mTimerTask, 1, 5);
