@@ -12,6 +12,13 @@ import com.baidu.location.Poi;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.MapView;
 
+//import com.baidu.location.BDLocation;
+//import com.baidu.location.BDLocationListener;
+//import com.baidu.location.LocationClient;
+//import com.baidu.location.LocationClientOption;
+//import com.baidu.location.BDNotifyListener;//假如用到位置提醒功能，需要import该类
+//import com.baidu.location.Poi;
+
 import java.util.List;
 
 /**
