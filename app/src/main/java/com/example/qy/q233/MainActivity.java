@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.baidu.mapapi.SDKInitializer;
 
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean sensorOn;
     private boolean exporting;
     private Accelerometer mAccelerometer;
+    //FileManager mFileManager;
     FileManager mFileManager;
     private Timer mTimer = new Timer();
     String cache = "";
@@ -39,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         mAccelerometer = new Accelerometer(this);
 
-        mFileManager = new FileManager(this);
-
+        //mFileManager = new FileManager(this);
+        mFileManager = new FileManager(getApplicationContext());
         IntentFilter iFilter = new IntentFilter();
         iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR);
         iFilter.addAction(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR);
@@ -78,9 +80,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void read(View view){
-        mFileManager.setFileName("a.txt");
-        String content = mFileManager.read();
-        Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
+        //mFileManager.setFileName("a.txt");
+        //String content = mFileManager.read();
+        try
+        {
+            String content = mFileManager.read("a.txt");
+            Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
+        }
+        catch(IOException e){e.printStackTrace();}
+
+
 
     }
     public void sensorControl(View view) {
@@ -108,7 +117,13 @@ public class MainActivity extends AppCompatActivity {
 
             exporting = false;
             ((Button)findViewById(R.id.export)).setText(R.string.export);
-            mFileManager.save(cache);
+            //mFileManager.save(cache);
+            try{
+                mFileManager.save("a.txt", cache, true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             cache = "";
 
         }else{
@@ -119,7 +134,11 @@ public class MainActivity extends AppCompatActivity {
             }
             ((Button)findViewById(R.id.export)).setText(R.string.stop);
             String fileName = "a.txt";
-            mFileManager.setFileName(fileName);
+            try{
+                mFileManager.save(fileName, "", false);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
         }
     }
@@ -154,7 +173,11 @@ public class MainActivity extends AppCompatActivity {
                         cache += mAccelerometer.x + "," + mAccelerometer.y + "," +
                                 mAccelerometer.z + ";";
                         if (cache.length()>1024){
-                            mFileManager.save(cache);
+                            try {
+                                mFileManager.save("a.txt", cache, true);
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
                             cache = "";
                         }
                     }
