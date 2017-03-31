@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private boolean sensorOn;
     private boolean exporting;
     private Accelerometer mAccelerometer;
-    //FileManager mFileManager;
     FileManager mFileManager;
     private Timer mTimer = new Timer();
     String cache = "";
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(mReceiver, iFilter);
 
 
-        TimerTask mTimerTask = new MyTimerTask();
+        TimerTask mTimerTask = new MyTimerTask(mHandler);
         mTimer.schedule(mTimerTask, 1, 5);
     }
 
@@ -105,12 +104,12 @@ public class MainActivity extends AppCompatActivity {
         mTextView.setText(s);
     }
 
-    public void sendMessage(int id) {
-        if (mHandler != null) {
-            Message message = Message.obtain(mHandler, id);
-            mHandler.sendMessage(message);
-        }
-    }
+//    public void sendMessage(int id) {
+//        if (mHandler != null) {
+//            Message message = Message.obtain(mHandler, id);
+//            mHandler.sendMessage(message);
+//        }
+//    }
 
     public void exportControl(View view) {
         if (exporting){
@@ -152,12 +151,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private class MyTimerTask extends TimerTask {
-        @Override
-        public void run() {
-            sendMessage(UPDATE_TEXTVIWE);
-        }
-    }
+//    private class MyTimerTask extends TimerTask {
+//        @Override
+//        public void run() {
+//            sendMessage(UPDATE_TEXTVIWE);
+//        }
+//    }
 
 
     private class MyHandler extends Handler {
