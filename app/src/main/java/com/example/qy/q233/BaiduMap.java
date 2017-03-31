@@ -1,6 +1,8 @@
 package com.example.qy.q233;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
@@ -27,19 +29,23 @@ import com.baidu.mapapi.model.LatLng;
 import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 /**
  * Created by Qi Yao on 17-3-19.
  */
 
 public class BaiduMap extends AppCompatActivity {
-
+    private static final int UPDATE_RESULT = 1;
     MapView mMapView = null;
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
     private double[] latitude, longitude;
     private boolean start = false;
     private int n = 0;
+    private String s = "";
+    Handler mHandler = new MyHandler();
+    Timer mTimer = new Timer();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +58,20 @@ public class BaiduMap extends AppCompatActivity {
 
 
         mLocationClient = new LocationClient(getApplicationContext());
+        initLocation();
         //声明LocationClient类
         mLocationClient.registerLocationListener(myListener);
         //注册监听函数
         mLocationClient.start();
+
         latitude = new double[2];
         longitude = new double[2];
+
+
+
+        MyTimerTask mTimerTask = new MyTimerTask(mHandler);
+        mTimerTask.setMsg(UPDATE_RESULT);
+        mTimer.schedule(mTimerTask, 1, 500);
     }
 
     private void initLocation(){
@@ -236,13 +250,28 @@ public class BaiduMap extends AppCompatActivity {
                     sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
                 }
             }
-            ((TextView) findViewById(R.id.lat)).setText(sb);
+            //((TextView) findViewById(R.id.lat)).setText(sb.toString());
+            s = sb.toString();
             Log.i("BaiduLocationApiDem", sb.toString());
         }
 
         @Override
         public void onConnectHotSpotMessage(String s, int i) {
 
+        }
+    }
+
+    class MyHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case UPDATE_RESULT:
+
+                    ((TextView) findViewById(R.id.lat)).setText(s);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(mReceiver, iFilter);
 
 
-        TimerTask mTimerTask = new MyTimerTask(mHandler);
+        MyTimerTask mTimerTask = new MyTimerTask(mHandler);
+        mTimerTask.setMsg(UPDATE_TEXTVIWE);
         mTimer.schedule(mTimerTask, 1, 5);
     }
 
@@ -159,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
-    private class MyHandler extends Handler {
+    class MyHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {

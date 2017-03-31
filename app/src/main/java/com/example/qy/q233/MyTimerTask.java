@@ -11,11 +11,16 @@ import java.util.TimerTask;
 
 public class MyTimerTask extends TimerTask {
     Handler mHandler;
+    int flag;
     MyTimerTask (Handler mHandler)
     {
         this.mHandler = mHandler;
     }
-    public void sendMessage(Handler mHandler, int id) {
+    public void setMsg(int id)
+    {
+        flag = id;
+    }
+    private void sendMessage(Handler mHandler, int id) {
         if (mHandler != null) {
             Message message = Message.obtain(mHandler, id);
             mHandler.sendMessage(message);
@@ -23,6 +28,6 @@ public class MyTimerTask extends TimerTask {
     }
     @Override
     public void run() {
-        sendMessage(mHandler, 0);
+        sendMessage(mHandler, flag);
     }
 }
