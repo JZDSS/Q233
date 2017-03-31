@@ -1,8 +1,11 @@
 package com.example.qy.q233;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -10,7 +13,11 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
 import com.baidu.mapapi.SDKInitializer;
+import com.baidu.mapapi.map.BitmapDescriptor;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.PolylineOptions;
+import com.baidu.mapapi.model.LatLng;
 
 //import com.baidu.location.BDLocation;
 //import com.baidu.location.BDLocationListener;
@@ -19,18 +26,26 @@ import com.baidu.mapapi.map.MapView;
 //import com.baidu.location.BDNotifyListener;//假如用到位置提醒功能，需要import该类
 //import com.baidu.location.Poi;
 
+import java.security.PrivateKey;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 /**
  * Created by Qi Yao on 17-3-19.
  */
 
 public class BaiduMap extends AppCompatActivity {
-
+    private static final int UPDATE_RESULT = 1;
     MapView mMapView = null;
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
-
+    private double[] latitude, longitude;
+    private boolean start = false;
+    private int n = 0;
+    private String s = "";
+    Handler mHandler = new MyHandler();
+    Timer mTimer = new Timer();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +58,20 @@ public class BaiduMap extends AppCompatActivity {
 
 
         mLocationClient = new LocationClient(getApplicationContext());
+        initLocation();
         //声明LocationClient类
         mLocationClient.registerLocationListener(myListener);
         //注册监听函数
         mLocationClient.start();
+
+        latitude = new double[2];
+        longitude = new double[2];
+
+
+
+        MyTimerTask mTimerTask = new MyTimerTask(mHandler);
+        mTimerTask.setMsg(UPDATE_RESULT);
+        mTimer.schedule(mTimerTask, 1, 500);
     }
 
     private void initLocation(){
@@ -113,7 +138,32 @@ public class BaiduMap extends AppCompatActivity {
 
         @Override
         public void onReceiveLocation(BDLocation location) {
-
+//            if (!start) {
+//                latitude[0] = location.getLatitude();
+//                longitude[0] = location.getLongitude();
+//                start = true;
+//                n = 1;
+//            } else
+//            {
+//                latitude[n%2] = location.getLatitude();
+//                longitude[n%2] = location.getLongitude();
+//
+//
+//                LatLng pt1 = new LatLng(39.93923, 116.357428);
+//                LatLng pt2 = new LatLng(39.91923, 116.327428);
+//
+//                List<LatLng> points = new ArrayList<LatLng>();
+//                List<Integer> index = new ArrayList<Integer>();
+//                points.add(pt1);//点元素
+//                //index.add(0);//设置该点的纹理索引
+//                points.add(pt2);//点元素
+//                //index.add(0);//设置该点的纹理索引
+//
+//                PolylineOptions ooPolyline = new PolylineOptions().width(15).color(0xAAFF0000).points(points);//.customTextureList(customList).textureIndex(index);
+////添加到地图
+//                mMapView.getMap().addOverlay(ooPolyline);
+//                n = (n+1)%2;
+//            }
             //获取定位结果
             StringBuffer sb = new StringBuffer(256);
 
@@ -200,13 +250,28 @@ public class BaiduMap extends AppCompatActivity {
                     sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
                 }
             }
-
+            //((TextView) findViewById(R.id.lat)).setText(sb.toString());
+            s = sb.toString();
             Log.i("BaiduLocationApiDem", sb.toString());
         }
 
         @Override
         public void onConnectHotSpotMessage(String s, int i) {
 
+        }
+    }
+
+    class MyHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case UPDATE_RESULT:
+
+                    ((TextView) findViewById(R.id.lat)).setText(s);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
