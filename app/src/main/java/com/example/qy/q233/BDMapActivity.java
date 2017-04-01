@@ -35,7 +35,7 @@ import java.util.Timer;
  * Created by Qi Yao on 17-3-19.
  */
 
-public class BaiduMap extends AppCompatActivity {
+public class BDMapActivity extends AppCompatActivity {
     private static final int UPDATE_RESULT = 1;
     MapView mMapView = null;
     public LocationClient mLocationClient = null;
@@ -59,8 +59,10 @@ public class BaiduMap extends AppCompatActivity {
 
         mLocationClient = new LocationClient(getApplicationContext());
         initLocation();
+
         //声明LocationClient类
         mLocationClient.registerLocationListener(myListener);
+
         //注册监听函数
         mLocationClient.start();
 
