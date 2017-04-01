@@ -174,7 +174,24 @@ public class BDMapActivity extends AppCompatActivity {
                         .newLatLng(new LatLng(currentLatitude, currentLongitude)));
 
 
-
+//                latitude[n%2] = location.getLatitude();
+//                longitude[n%2] = location.getLongitude();
+//
+//
+                LatLng pt1 = new LatLng(lastLatitude, lastLongitude);
+                LatLng pt2 = new LatLng(currentLatitude, currentLongitude);
+//
+                List<LatLng> points = new ArrayList<LatLng>();
+//                List<Integer> index = new ArrayList<Integer>();
+                points.add(pt1);//点元素
+//                //index.add(0);//设置该点的纹理索引
+                points.add(pt2);//点元素
+//                //index.add(0);//设置该点的纹理索引
+//
+                PolylineOptions ooPolyline = new PolylineOptions().width(15).color(0xAAFF0000).points(points);//.customTextureList(customList).textureIndex(index);
+////添加到地图
+                mMapView.getMap().addOverlay(ooPolyline);
+//                n = (n+1)%2;
 
 
 
@@ -182,25 +199,7 @@ public class BDMapActivity extends AppCompatActivity {
                 lastLongitude = currentLongitude;
 
             }
-//                latitude[n%2] = location.getLatitude();
-//                longitude[n%2] = location.getLongitude();
-//
-//
-//                LatLng pt1 = new LatLng(39.93923, 116.357428);
-//                LatLng pt2 = new LatLng(39.91923, 116.327428);
-//
-//                List<LatLng> points = new ArrayList<LatLng>();
-//                List<Integer> index = new ArrayList<Integer>();
-//                points.add(pt1);//点元素
-//                //index.add(0);//设置该点的纹理索引
-//                points.add(pt2);//点元素
-//                //index.add(0);//设置该点的纹理索引
-//
-//                PolylineOptions ooPolyline = new PolylineOptions().width(15).color(0xAAFF0000).points(points);//.customTextureList(customList).textureIndex(index);
-////添加到地图
-//                mMapView.getMap().addOverlay(ooPolyline);
-//                n = (n+1)%2;
-//            }
+
 
 
 
