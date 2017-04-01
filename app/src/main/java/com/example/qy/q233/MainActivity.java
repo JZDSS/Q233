@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         //setClass函数的第一个参数是一个Context对象
         //Context是一个类,Activity是Context类的子类,也就是说,所有的Activity对象都可以向上转型为Context对象
         //setClass函数的第二个参数是Class对象,在当前场景下,应该传入需要被启动的Activity的class对象
-        intent.setClass(MainActivity.this, BaiduMap.class);
+        intent.setClass(MainActivity.this, BDMapActivity.class);
         startActivity(intent);
     }
 
