@@ -41,7 +41,10 @@
         <activity android:name=".BaiduMap" />
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="MSTWCXXj6AW7Y27uCiVoQm5Gnce0yX0f" />
+        android:value="wdYBTwkGAptDttMiGRNhj4ltFMzDANRN" />
+        <!--QY "MSTWCXXj6AW7Y27uCiVoQm5Gnce0yX0f" -->
+        <!--BB "wdYBTwkGAptDttMiGRNhj4ltFMzDANRN"-->
+        <!--ZZ ""-->
         <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
         </service>
     </application>
