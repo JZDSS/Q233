@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         mAccelerometer = new Accelerometer(this);
 
         //mFileManager = new FileManager(this);
@@ -152,6 +153,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void jump2(View view){
+        Intent intent=new Intent();
+        //setClass函数的第一个参数是一个Context对象
+        //Context是一个类,Activity是Context类的子类,也就是说,所有的Activity对象都可以向上转型为Context对象
+        //setClass函数的第二个参数是Class对象,在当前场景下,应该传入需要被启动的Activity的class对象
+        intent.setClass(MainActivity.this, AccelerometerActivity.class);
+        startActivity(intent);
+    }
 //    private class MyTimerTask extends TimerTask {
 //        @Override
 //        public void run() {

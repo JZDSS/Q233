@@ -123,12 +123,20 @@
                 android:onClick="read"
                 android:text="@string/read" />
             <Button
-                android:id="@+id/jump"
+            android:id="@+id/jump"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="jump"
+            android:onClick="jump"/>
+
+            <Button
+                android:id="@+id/jump2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="jump"
-                android:onClick="jump"/>
+                android:text="jump2"
+                android:onClick="jump2"/>
         </LinearLayout>
 
         <!--<SurfaceView-->

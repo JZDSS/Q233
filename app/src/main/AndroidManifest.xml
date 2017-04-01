@@ -39,6 +39,7 @@
         </activity>
 
         <activity android:name=".BDMapActivity" />
+        <activity android:name=".AccelerometerActivity" />
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="MSTWCXXj6AW7Y27uCiVoQm5Gnce0yX0f" />
