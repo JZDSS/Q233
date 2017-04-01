@@ -41,7 +41,7 @@
         <activity android:name=".BDMapActivity" />
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="wdYBTwkGAptDttMiGRNhj4ltFMzDANRN" />
+            android:value="MSTWCXXj6AW7Y27uCiVoQm5Gnce0yX0f" />
         <!--QY "MSTWCXXj6AW7Y27uCiVoQm5Gnce0yX0f" -->
         <!--BB "wdYBTwkGAptDttMiGRNhj4ltFMzDANRN"-->
         <!--ZZ ""-->
