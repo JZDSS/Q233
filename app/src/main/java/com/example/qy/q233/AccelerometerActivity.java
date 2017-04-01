@@ -174,7 +174,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                 case UPDATE_TEXTVIWE:
                     refresh(R.id.val_x, String.format("%.3f", mAccelerometer.x));
                     refresh(R.id.val_y, String.format("%.3f", mAccelerometer.y));
-                    refresh(R.id.val_z, String.format("%.2f", mAccelerometer.z));
+                    refresh(R.id.val_z, String.format("%.3f", mAccelerometer.z));
                     //refresh(R.id.val_norm, String.valueOf(mAccelerometer.norm));
                     if (exporting){
                         cache += mAccelerometer.x + "," + mAccelerometer.y + "," +
