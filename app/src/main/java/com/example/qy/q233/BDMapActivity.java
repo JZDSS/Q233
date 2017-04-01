@@ -13,6 +13,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
 import com.baidu.mapapi.SDKInitializer;
+import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapView;
@@ -38,6 +39,7 @@ import java.util.Timer;
 public class BDMapActivity extends AppCompatActivity {
     private static final int UPDATE_RESULT = 1;
     MapView mMapView = null;
+    BaiduMap mBaiduMap;
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
     private double[] latitude, longitude;
@@ -55,8 +57,8 @@ public class BDMapActivity extends AppCompatActivity {
         setContentView(R.layout.baidu_map);
         //获取地图控件引用
         mMapView = (MapView) findViewById(R.id.bmapView);
-
-
+        //mBaiduMap = mMapView.getMap();
+        //mBaiduMap.setMyLocationEnabled(true);
         mLocationClient = new LocationClient(getApplicationContext());
         initLocation();
 
