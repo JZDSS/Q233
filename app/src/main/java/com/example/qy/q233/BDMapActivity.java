@@ -17,6 +17,8 @@ import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.MyLocationConfiguration;
+import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.model.LatLng;
 
@@ -40,6 +42,8 @@ public class BDMapActivity extends AppCompatActivity {
     private static final int UPDATE_RESULT = 1;
     MapView mMapView = null;
     BaiduMap mBaiduMap;
+    private MyLocationConfiguration.LocationMode mCurrentMode;
+    BitmapDescriptor mCurrentMarker;
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
     private double[] latitude, longitude;
@@ -57,8 +61,11 @@ public class BDMapActivity extends AppCompatActivity {
         setContentView(R.layout.baidu_map);
         //获取地图控件引用
         mMapView = (MapView) findViewById(R.id.bmapView);
-        //mBaiduMap = mMapView.getMap();
-        //mBaiduMap.setMyLocationEnabled(true);
+        mBaiduMap = mMapView.getMap();
+        mBaiduMap.setMyLocationEnabled(true);
+
+        mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
+        mCurrentMarker = BitmapDescriptorFactory.fromResource(R.drawable.icon_geo);
         mLocationClient = new LocationClient(getApplicationContext());
         initLocation();
 
@@ -168,6 +175,21 @@ public class BDMapActivity extends AppCompatActivity {
 //                mMapView.getMap().addOverlay(ooPolyline);
 //                n = (n+1)%2;
 //            }
+
+
+            MyLocationData locData = new MyLocationData.Builder()
+                    .accuracy(location.getRadius())
+                    // 此处设置开发者获取到的方向信息，顺时针0-360
+                    .direction(100).latitude(location.getLatitude())
+                    .longitude(location.getLongitude()).build();
+// 设置定位数据
+            mBaiduMap.setMyLocationData(locData);
+// 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
+
+            MyLocationConfiguration config = new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker);
+            mBaiduMap.setMyLocationConfigeration(config);
+
+
             //获取定位结果
             StringBuffer sb = new StringBuffer(256);
 
