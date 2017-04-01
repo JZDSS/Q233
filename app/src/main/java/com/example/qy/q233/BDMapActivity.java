@@ -16,6 +16,7 @@ import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationConfiguration;
@@ -41,15 +42,15 @@ import java.util.Timer;
 
 public class BDMapActivity extends AppCompatActivity {
     private static final int UPDATE_RESULT = 1;
-    MapView mMapView = null;
-    BaiduMap mBaiduMap;
+    private MapView mMapView = null;
+    private BaiduMap mBaiduMap;
     private MyLocationConfiguration.LocationMode mCurrentMode;
-    BitmapDescriptor mCurrentMarker;
-    public LocationClient mLocationClient = null;
-    public BDLocationListener myListener = new MyLocationListener();
-    private double[] latitude, longitude;
+    private BitmapDescriptor mCurrentMarker;
+    private LocationClient mLocationClient = null;
+    private BDLocationListener myListener = new MyLocationListener();
+    private MapStatusUpdate mStatusUpdate;
+    private double lastLatitude, currentLatitude, currentLongitude, lastLongitude;
     private boolean start = false;
-    private int n = 0;
     private String s = "";
     Handler mHandler = new MyHandler();
     Timer mTimer = new Timer();
@@ -60,13 +61,18 @@ public class BDMapActivity extends AppCompatActivity {
         //注意该方法要再setContentView方法之前实现
         SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.baidu_map);
+
+        mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
+        mCurrentMarker = BitmapDescriptorFactory.fromResource(R.drawable.icon_geo);
+        MyLocationConfiguration config = new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker);
+
         //获取地图控件引用
         mMapView = (MapView) findViewById(R.id.bmapView);
         mBaiduMap = mMapView.getMap();
         mBaiduMap.setMyLocationEnabled(true);
-
-        mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
-        mCurrentMarker = BitmapDescriptorFactory.fromResource(R.drawable.icon_geo);
+        mBaiduMap.setMyLocationConfigeration(config);
+        mStatusUpdate = MapStatusUpdateFactory.zoomTo(19);
+        mBaiduMap.setMapStatus(mStatusUpdate);
         mLocationClient = new LocationClient(getApplicationContext());
         initLocation();
 
@@ -75,11 +81,6 @@ public class BDMapActivity extends AppCompatActivity {
 
         //注册监听函数
         mLocationClient.start();
-
-        latitude = new double[2];
-        longitude = new double[2];
-
-
 
         MyTimerTask mTimerTask = new MyTimerTask(mHandler);
         mTimerTask.setMsg(UPDATE_RESULT);
@@ -150,13 +151,37 @@ public class BDMapActivity extends AppCompatActivity {
 
         @Override
         public void onReceiveLocation(BDLocation location) {
-//            if (!start) {
-//                latitude[0] = location.getLatitude();
-//                longitude[0] = location.getLongitude();
-//                start = true;
-//                n = 1;
-//            } else
-//            {
+            if (!start) {
+                lastLatitude = location.getLatitude();
+                lastLongitude = location.getLongitude();
+                start = true;
+            } else
+            {
+                currentLatitude = location.getLatitude();
+                currentLongitude = location.getLongitude();
+
+                MyLocationData locData = new MyLocationData.Builder()
+                        .accuracy(location.getRadius())
+                        // 此处设置开发者获取到的方向信息，顺时针0-360
+                        .direction(100).latitude(currentLatitude)
+                        .longitude(currentLongitude).build();
+                // 设置定位数据
+                mBaiduMap.setMyLocationData(locData);
+                // 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
+
+
+                mBaiduMap.setMapStatus(MapStatusUpdateFactory
+                        .newLatLng(new LatLng(currentLatitude, currentLongitude)));
+
+
+
+
+
+
+                lastLatitude = currentLatitude;
+                lastLongitude = currentLongitude;
+
+            }
 //                latitude[n%2] = location.getLatitude();
 //                longitude[n%2] = location.getLongitude();
 //
@@ -178,18 +203,6 @@ public class BDMapActivity extends AppCompatActivity {
 //            }
 
 
-            MyLocationData locData = new MyLocationData.Builder()
-                    .accuracy(location.getRadius())
-                    // 此处设置开发者获取到的方向信息，顺时针0-360
-                    .direction(100).latitude(location.getLatitude())
-                    .longitude(location.getLongitude()).build();
-// 设置定位数据
-            mBaiduMap.setMyLocationData(locData);
-// 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
-
-            MyLocationConfiguration config = new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker);
-            mBaiduMap.setMyLocationConfigeration(config);
-            mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
 
             //获取定位结果
             StringBuffer sb = new StringBuffer(256);
