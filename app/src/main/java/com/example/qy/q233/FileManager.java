@@ -16,9 +16,6 @@ public class FileManager {
 
     private Context context;
 
-    public FileManager() {
-    }
-
     public FileManager(Context context) {
         super();
         this.context = context;
