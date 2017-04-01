@@ -1,149 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.qy.q233.MainActivity">
 
-    <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp">
+    <!--<LinearLayout-->
+        <!--android:layout_width="368dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--tools:layout_editor_absoluteX="8dp"-->
+        <!--tools:layout_editor_absoluteY="0dp">-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/x" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/y" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/z" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/norm" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/val_x"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/gray"
-                android:gravity="center"
-                android:maxLines="1" />
-
-            <TextView
-                android:id="@+id/val_y"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/gray"
-                android:gravity="center"
-                android:maxLines="1" />
-
-            <TextView
-                android:id="@+id/val_z"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/gray"
-                android:gravity="center"
-                android:maxLines="1" />
-
-            <TextView
-                android:id="@+id/val_norm"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/gray"
-                android:gravity="center"
-                android:maxLines="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/sensor_control"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="sensorControl"
-                android:text="@string/stop" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/export"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:onClick="exportControl"
-                android:text="@string/export" />
-            <Button
-                android:id="@+id/read"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:onClick="read"
-                android:text="@string/read" />
-            <Button
-            android:id="@+id/jump"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="jump"
-            android:onClick="jump"/>
-
-            <Button
-                android:id="@+id/jump2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="jump2"
-                android:onClick="jump2"/>
-        </LinearLayout>
-
-        <!--<SurfaceView-->
+        <!--<Button-->
+            <!--android:id="@+id/sensor_control"-->
             <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_gravity="bottom" />-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:onClick="sensorControl"-->
+            <!--android:text="@string/stop" />-->
 
-    </LinearLayout>
+        <!--<Button-->
+            <!--android:id="@+id/export"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:onClick="exportControl"-->
+            <!--android:text="@string/export" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/read"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:onClick="read"-->
+            <!--android:text="@string/read" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/jump"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:onClick="jump"-->
+            <!--android:text="jump" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/jump2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:onClick="jump2"-->
+            <!--android:text="jump2" />-->
+    <!--</LinearLayout>-->
+
+    <!--<SurfaceView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_gravity="bottom" />-->
+
 
 </android.support.constraint.ConstraintLayout>

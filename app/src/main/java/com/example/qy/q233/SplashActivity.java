@@ -30,7 +30,7 @@ public class SplashActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 Intent mainIntent = new Intent(SplashActivity.this,
-                        MainActivity.class);
+                        AccelerometerActivity.class);
                 SplashActivity.this.startActivity(mainIntent);
                 SplashActivity.this.finish();
             }

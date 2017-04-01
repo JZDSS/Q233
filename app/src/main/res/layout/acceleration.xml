@@ -46,8 +46,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="x"
-                        android:textSize="40dp"
+                        android:text="@string/x"
+                        android:textSize="40sp"
                         android:textStyle="italic"
                         android:typeface="serif"/>
                 </RelativeLayout>
@@ -59,8 +59,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="y"
-                        android:textSize="40dp"
+                        android:text="@string/y"
+                        android:textSize="40sp"
                         android:textStyle="italic"
                         android:typeface="serif"/>
                 </RelativeLayout>
@@ -72,8 +72,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="z"
-                        android:textSize="40dp"
+                        android:text="@string/z"
+                        android:textSize="40sp"
                         android:textStyle="italic"
                         android:typeface="serif"/>
                 </RelativeLayout>
@@ -94,10 +94,12 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
                     <TextView
+                        android:id="@+id/val_x"
+                        android:maxLines="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="italic"
                         android:typeface="serif"/>
                 </RelativeLayout>
@@ -106,10 +108,12 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
                     <TextView
+                        android:id="@+id/val_y"
+                        android:maxLines="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="italic"
                         android:typeface="serif"/>
                 </RelativeLayout>
@@ -118,10 +122,12 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
                     <TextView
+                        android:id="@+id/val_z"
+                        android:maxLines="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="italic"
                         android:typeface="serif"/>
                 </RelativeLayout>
@@ -175,10 +181,51 @@
 
         </RelativeLayout>
     </LinearLayout>
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
-        android:text="hello world"/>
+        android:layout_weight="4">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/sensor_control"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:onClick="sensorControl"
+                android:text="@string/stop" />
+
+            <Button
+                android:id="@+id/export"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:onClick="exportControl"
+                android:text="@string/export" />
+
+            <Button
+                android:id="@+id/read"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:onClick="read"
+                android:text="@string/read" />
+
+            <Button
+                android:id="@+id/jump"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:onClick="jump"
+                android:text="jump" />
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
 </LinearLayout>
