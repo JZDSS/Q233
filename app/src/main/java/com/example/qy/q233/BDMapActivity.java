@@ -16,6 +16,7 @@ import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
@@ -188,7 +189,7 @@ public class BDMapActivity extends AppCompatActivity {
 
             MyLocationConfiguration config = new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker);
             mBaiduMap.setMyLocationConfigeration(config);
-
+            mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
 
             //获取定位结果
             StringBuffer sb = new StringBuffer(256);
