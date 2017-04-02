@@ -78,9 +78,6 @@ public class AccelerometerActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         ((Button) findViewById(R.id.sensor_control)).setText(R.string.start);
-//        xBarView.Thread_run = false;
-//        yBarView.Thread_run = false;
-//        zBarView.Thread_run = false;
         sensorOn = false;
         mAccelerometer.pause();
     }
@@ -110,6 +107,19 @@ public class AccelerometerActivity extends AppCompatActivity {
     public void sensorControl(View view) {
         if (sensorOn) {
             onPause();
+            if (exporting)
+            {
+                exporting = false;
+                ((Button)findViewById(R.id.export)).setText(R.string.export);
+                //mFileManager.save(cache);
+                try{
+                    mFileManager.save("a.txt", cache, true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                cache = "";
+            }
         } else {
             onResume();
         }
