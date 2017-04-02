@@ -46,7 +46,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="@string/x"
+                        android:text=" x "
                         android:textSize="40sp"
                         android:textStyle="italic"
                         android:typeface="serif"/>
@@ -59,7 +59,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="@string/y"
+                        android:text=" y "
                         android:textSize="40sp"
                         android:textStyle="italic"
                         android:typeface="serif"/>
@@ -72,7 +72,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="@string/z"
+                        android:text=" z "
                         android:textSize="40sp"
                         android:textStyle="italic"
                         android:typeface="serif"/>
@@ -150,7 +150,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-                    <com.example.qy.q233.MySurfaceView
+                    <com.example.qy.q233.BarView
+                        android:id="@+id/sv1"
                         android:layout_width="20dp"
                         android:layout_height="160dp"
                         android:layout_centerInParent="true" />
@@ -161,7 +162,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-                    <com.example.qy.q233.MySurfaceView
+                    <com.example.qy.q233.BarView
+                        android:id="@+id/sv2"
                         android:layout_width="20dp"
                         android:layout_height="160dp"
                         android:layout_centerInParent="true" />
@@ -172,7 +174,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-                    <com.example.qy.q233.MySurfaceView
+                    <com.example.qy.q233.BarView
+                        android:id="@+id/sv3"
                         android:layout_width="20dp"
                         android:layout_height="160dp"
                         android:layout_centerInParent="true" />
