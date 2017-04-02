@@ -50,6 +50,7 @@ public class BDMapActivity extends AppCompatActivity {
     private BDLocationListener myListener = new MyLocationListener();
     private MapStatusUpdate mStatusUpdate;
     private double lastLatitude, currentLatitude, currentLongitude, lastLongitude;
+    private double centerLatitude, centerLongitude;
     private boolean start = false;
     private String s = "";
     Handler mHandler = new MyHandler();
