@@ -19,7 +19,8 @@ public class BarView extends SurfaceView implements SurfaceHolder.Callback {
     int mtop, mbottom;
     float value;
     SurfaceHolder mholder;
-    Thread t;
+    MyThread t;
+    boolean closed = false;
 
     public BarView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -34,7 +35,7 @@ public class BarView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        t = new Thread(new MyThread());
+        t = new MyThread();
         t.start();
     }
 
@@ -48,12 +49,11 @@ public class BarView extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-
-    class MyThread implements Runnable{
+    public class MyThread extends Thread implements Runnable{
 
         @Override
         public void run() {
-            while(true) {
+            while(!closed) {
                 if (value > 0) {
                     mtop = (int) (240 - (240 * value) / 12);
                     mbottom = 240;

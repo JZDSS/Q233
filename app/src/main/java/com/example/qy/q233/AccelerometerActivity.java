@@ -60,6 +60,14 @@ public class AccelerometerActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+
+
+        xBarView.closed = false;
+
+
+        yBarView.closed = false;
+
+        zBarView.closed = false;
         super.onResume();
         ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
         sensorOn = true;
@@ -151,6 +159,10 @@ public class AccelerometerActivity extends AppCompatActivity {
     }
 
     public void jump(View view){
+        xBarView.closed = true;
+        yBarView.closed = true;
+        zBarView.closed = true;
+
         Intent intent=new Intent();
         //setClass函数的第一个参数是一个Context对象
         //Context是一个类,Activity是Context类的子类,也就是说,所有的Activity对象都可以向上转型为Context对象
