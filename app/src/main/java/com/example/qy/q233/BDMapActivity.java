@@ -69,11 +69,13 @@ public class BDMapActivity extends AppCompatActivity {
 
         //获取地图控件引用
         mMapView = (MapView) findViewById(R.id.bmapView);
+
         mBaiduMap = mMapView.getMap();
         mBaiduMap.setMyLocationEnabled(true);
         mBaiduMap.setMyLocationConfigeration(config);
         mStatusUpdate = MapStatusUpdateFactory.zoomTo(19);
         mBaiduMap.setMapStatus(mStatusUpdate);
+
         mLocationClient = new LocationClient(getApplicationContext());
         initLocation();
 

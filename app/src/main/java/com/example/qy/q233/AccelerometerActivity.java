@@ -2,9 +2,11 @@ package com.example.qy.q233;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +17,7 @@ import com.baidu.mapapi.SDKInitializer;
 
 import java.io.IOException;
 import java.util.Timer;
+import android.Manifest;
 
 /**
  * Created by Xu Yining on 2017/4/1.
@@ -25,17 +28,21 @@ public class AccelerometerActivity extends AppCompatActivity {
     private boolean sensorOn;
     private boolean exporting;
     private Accelerometer mAccelerometer;
-    FileManager mFileManager;
+    private FileManager mFileManager;
     private Timer mTimer = new Timer();
-    String cache = "";
+    private String cache = "";
     private Handler mHandler = new MyHandler();
-    SDKReceiver mReceiver;
-    BarView xBarView, yBarView, zBarView;
-
+    private SDKReceiver mReceiver;
+    private BarView xBarView, yBarView, zBarView;
+    private boolean storageAllowed = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acceleration);
+
+
+
+        requestPermissions(Permission.allPermissions, 0);
 
         mAccelerometer = new Accelerometer(this);
 
@@ -43,7 +50,6 @@ public class AccelerometerActivity extends AppCompatActivity {
         yBarView = (BarView) findViewById(R.id.sv2);
         zBarView = (BarView) findViewById(R.id.sv3);
 
-        //mFileManager = new FileManager(this);
         mFileManager = new FileManager(getApplicationContext());
 
         IntentFilter iFilter = new IntentFilter();
@@ -60,14 +66,10 @@ public class AccelerometerActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-
-
         xBarView.closed = false;
-
-
         yBarView.closed = false;
-
         zBarView.closed = false;
+
         super.onResume();
         ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
         sensorOn = true;
@@ -91,7 +93,23 @@ public class AccelerometerActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] reantResults){
+        switch (requestCode){
+            case Permission.CODE_ACCESS_FINE_LOCATION:
+                Toast.makeText(getApplicationContext(), "WRITE/READ STORAGE PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+            case Permission.CODE_WRITE_EXTERNAL_STORAGE:
+                Toast.makeText(getApplicationContext(), "GET LOCATION PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+            default:
+                break;
+        }
+    }
+
     public void read(View view){
+        if (!storageAllowed){
+            requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+            return;
+        }
         //mFileManager.setFileName("a.txt");
         //String content = mFileManager.read();
         try
@@ -99,7 +117,10 @@ public class AccelerometerActivity extends AppCompatActivity {
             String content = mFileManager.read("a.txt");
             Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
         }
-        catch(IOException e){e.printStackTrace();}
+        catch(IOException e){
+            e.printStackTrace();
+            requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+        }
 
 
 
@@ -107,7 +128,7 @@ public class AccelerometerActivity extends AppCompatActivity {
     public void sensorControl(View view) {
         if (sensorOn) {
             onPause();
-            if (exporting)
+            if (exporting && storageAllowed)
             {
                 exporting = false;
                 ((Button)findViewById(R.id.export)).setText(R.string.export);
@@ -116,6 +137,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                     mFileManager.save("a.txt", cache, true);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
                 }
 
                 cache = "";
@@ -138,6 +160,10 @@ public class AccelerometerActivity extends AppCompatActivity {
 //    }
 
     public void exportControl(View view) {
+        if (!storageAllowed){
+            requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+            return;
+        }
         if (exporting){
 
             exporting = false;
@@ -147,6 +173,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                 mFileManager.save("a.txt", cache, true);
             } catch (Exception e) {
                 e.printStackTrace();
+                requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
             }
 
             cache = "";
@@ -163,6 +190,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                 mFileManager.save(fileName, "", false);
             }catch (Exception e){
                 e.printStackTrace();
+                requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
             }
 
         }
@@ -234,7 +262,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                     }
 
                     //refresh(R.id.val_norm, String.valueOf(mAccelerometer.norm));
-                    if (exporting){
+                    if (exporting && storageAllowed){
                         cache += mAccelerometer.x + "," + mAccelerometer.y + "," +
                                 mAccelerometer.z + ";";
                         if (cache.length()>1024){
@@ -242,6 +270,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                                 mFileManager.save("a.txt", cache, true);
                             }catch (Exception e){
                                 e.printStackTrace();
+                                requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
                             }
                             cache = "";
                         }

@@ -1,5 +1,6 @@
 package com.example.qy.q233;
 
+import android.Manifest;
 import android.content.Context;
 
 /**
@@ -8,15 +9,46 @@ import android.content.Context;
 
 public class Permission {
 
-    Context mContext;
-
-    /**
-     * Initialize.
-     *
-     * @param mContext Context.
-     */
-    Permission(Context mContext) {
-        this.mContext = mContext;
-    }
+    static String[] allPermissions = {
+//            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+//            Manifest.permission.ACCESS_NETWORK_STATE,
+//            Manifest.permission.ACCESS_WIFI_STATE,
+//            Manifest.permission.CHANGE_WIFI_STATE,
+//            Manifest.permission.READ_PHONE_STATE,
+//            Manifest.permission.INTERNET,
+//            Manifest.permission.WAKE_LOCK,
+//            Manifest.permission.ACCESS_WIFI_STATE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//            Manifest.permission.WRITE_SETTINGS,
+//            Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS,
+    };
+    static int[] Codes = {
+//            0,
+            1,
+//            2,
+//            3,
+//            4,
+//            5,
+//            6,
+//            7,
+//            8,
+            9,
+//            10,
+//            11
+    };
+    static final int
+//            CODE_ACCESS_COARSE_LOCATION = 0,
+            CODE_ACCESS_FINE_LOCATION = 1,
+//            CODE_ACCESS_NETWORK_STATE = 2,
+//            CODE_ACCESS_WIFI_STATE = 3,
+//            CODE_CHANGE_WIFI_STATE = 4,
+//            CODE_READ_PHONE_STATE = 5,
+//            CODE_INTERNET = 6,
+//            CODE_WAKE_LOCK = 7,
+//            CODE_ACCESS_WIFI_STATE = 8,
+            CODE_WRITE_EXTERNAL_STORAGE = 9;
+//            CODE_WRITE_SETTINGS = 10,
+//            CODE_MOUNT_UNMOUNT_FILESYSTEMS = 11
 
 }
