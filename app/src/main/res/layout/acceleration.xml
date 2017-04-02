@@ -46,7 +46,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text=" x "
+                        android:text="@string/x"
                         android:textSize="40sp"
                         android:textStyle="italic"
                         android:typeface="serif"/>
@@ -59,7 +59,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text=" y "
+                        android:text="@string/y"
                         android:textSize="40sp"
                         android:textStyle="italic"
                         android:typeface="serif"/>
@@ -72,7 +72,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text=" z "
+                        android:text="@string/z"
                         android:textSize="40sp"
                         android:textStyle="italic"
                         android:typeface="serif"/>

@@ -10,7 +10,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
 /**
- * Created by JZBB on 2017/3/27.
+ * Created by Xu Yining on 2017/3/27.
  */
 
 public class SplashActivity extends Activity {

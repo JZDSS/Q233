@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Timer;
 
 /**
- * Created by JZBB on 2017/4/1.
+ * Created by Xu Yining on 2017/4/1.
  */
 
 public class AccelerometerActivity extends AppCompatActivity {

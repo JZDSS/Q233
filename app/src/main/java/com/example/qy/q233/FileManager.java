@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * Created by qy on 17-3-17.
+ * Created by Qi Yao on 17-3-17.
  */
 
 public class FileManager {
