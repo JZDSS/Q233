@@ -22,7 +22,6 @@ import java.util.Timer;
 
 public class AccelerometerActivity extends AppCompatActivity {
     private static final int UPDATE_TEXTVIWE = 0;
-
     private boolean sensorOn;
     private boolean exporting;
     private Accelerometer mAccelerometer;
@@ -31,6 +30,8 @@ public class AccelerometerActivity extends AppCompatActivity {
     String cache = "";
     private Handler mHandler = new MyHandler();
     SDKReceiver mReceiver;
+    BarView xBarView, yBarView, zBarView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,14 +39,18 @@ public class AccelerometerActivity extends AppCompatActivity {
 
         mAccelerometer = new Accelerometer(this);
 
+        xBarView = (BarView) findViewById(R.id.sv1);
+        yBarView = (BarView) findViewById(R.id.sv2);
+        zBarView = (BarView) findViewById(R.id.sv3);
+
         //mFileManager = new FileManager(this);
         mFileManager = new FileManager(getApplicationContext());
+
         IntentFilter iFilter = new IntentFilter();
         iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR);
         iFilter.addAction(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR);
         mReceiver = new SDKReceiver();
         registerReceiver(mReceiver, iFilter);
-
 
         MyTimerTask mTimerTask = new MyTimerTask(mHandler);
         mTimerTask.setMsg(UPDATE_TEXTVIWE);
@@ -65,6 +70,9 @@ public class AccelerometerActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         ((Button) findViewById(R.id.sensor_control)).setText(R.string.start);
+//        xBarView.Thread_run = false;
+//        yBarView.Thread_run = false;
+//        zBarView.Thread_run = false;
         sensorOn = false;
         mAccelerometer.pause();
     }
@@ -175,6 +183,34 @@ public class AccelerometerActivity extends AppCompatActivity {
                     refresh(R.id.val_x, String.format("%.3f", mAccelerometer.x));
                     refresh(R.id.val_y, String.format("%.3f", mAccelerometer.y));
                     refresh(R.id.val_z, String.format("%.3f", mAccelerometer.z));
+                    if (mAccelerometer.x - xBarView.value > 0.1)
+                    {
+                        xBarView.value += 0.1;
+                    }else if (mAccelerometer.x - xBarView.value < -0.1)
+                    {
+                        xBarView.value -= 0.1;
+                    }else {
+                        xBarView.value = mAccelerometer.x;
+                    }
+                    if (mAccelerometer.y - yBarView.value > 0.1)
+                    {
+                        yBarView.value += 0.1;
+                    }else if (mAccelerometer.y - yBarView.value < -0.1)
+                    {
+                        yBarView.value -= 0.1;
+                    }else {
+                        yBarView.value = mAccelerometer.y;
+                    }
+                    if (mAccelerometer.z - zBarView.value > 0.1)
+                    {
+                        zBarView.value += 0.1;
+                    }else if (mAccelerometer.z - zBarView.value < -0.1)
+                    {
+                        zBarView.value -= 0.1;
+                    }else {
+                        zBarView.value = mAccelerometer.z;
+                    }
+
                     //refresh(R.id.val_norm, String.valueOf(mAccelerometer.norm));
                     if (exporting){
                         cache += mAccelerometer.x + "," + mAccelerometer.y + "," +
