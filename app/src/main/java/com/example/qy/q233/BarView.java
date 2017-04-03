@@ -11,7 +11,7 @@ import android.view.SurfaceView;
 import android.view.View;
 
 /**
- * Created by JZBB on 2017/4/1.
+ * Created by Xu Yining on 2017/4/1.
  */
 
 public class BarView extends SurfaceView implements SurfaceHolder.Callback {

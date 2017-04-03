@@ -2,6 +2,12 @@ package com.example.qy.q233;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SyncContext;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,12 +18,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Timer;
 
 /**
- * Created by JZBB on 2017/4/1.
+ * Created by Xu Yining on 2017/4/1.
  */
 
 public class AccelerometerActivity extends AppCompatActivity {
@@ -31,6 +40,12 @@ public class AccelerometerActivity extends AppCompatActivity {
     private Handler mHandler = new MyHandler();
     SDKReceiver mReceiver;
     BarView xBarView, yBarView, zBarView;
+    LineChart mLinechart;
+    DrawLinechart mDrawLineChart;
+    public static Typeface tf;
+    public boolean isChart = false;
+    public static float savedTime;
+    ArrayList<Entry> yVals = new ArrayList<Entry>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +57,13 @@ public class AccelerometerActivity extends AppCompatActivity {
         xBarView = (BarView) findViewById(R.id.sv1);
         yBarView = (BarView) findViewById(R.id.sv2);
         zBarView = (BarView) findViewById(R.id.sv3);
-
+        mDrawLineChart = new DrawLinechart();
+        mLinechart = (LineChart) findViewById(R.id.linechart);
+        yVals.add(new Entry(0,0));
+        if (!isChart){
+            mDrawLineChart.initChart(mLinechart, savedTime, yVals);
+            isChart = true;
+        }
         //mFileManager = new FileManager(this);
         mFileManager = new FileManager(getApplicationContext());
 
@@ -54,19 +75,13 @@ public class AccelerometerActivity extends AppCompatActivity {
 
         MyTimerTask mTimerTask = new MyTimerTask(mHandler);
         mTimerTask.setMsg(UPDATE_TEXTVIWE);
-        mTimer.schedule(mTimerTask, 1, 5);
-
+        mTimer.schedule(mTimerTask, 1, 50);
     }
 
     @Override
     protected void onResume() {
-
-
         xBarView.closed = false;
-
-
         yBarView.closed = false;
-
         zBarView.closed = false;
         super.onResume();
         ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
@@ -79,6 +94,7 @@ public class AccelerometerActivity extends AppCompatActivity {
         super.onPause();
         ((Button) findViewById(R.id.sensor_control)).setText(R.string.start);
         sensorOn = false;
+        isChart = false;
         mAccelerometer.pause();
     }
 
@@ -100,8 +116,6 @@ public class AccelerometerActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
         }
         catch(IOException e){e.printStackTrace();}
-
-
 
     }
     public void sensorControl(View view) {
@@ -232,6 +246,17 @@ public class AccelerometerActivity extends AppCompatActivity {
                     }else {
                         zBarView.value = mAccelerometer.z;
                     }
+                    yVals.add(new Entry(savedTime, mAccelerometer.norm));
+                    savedTime += 0.002;
+                    mDrawLineChart.updateData(mLinechart, mAccelerometer.norm, yVals, savedTime);
+                //    Object a = new Object();
+//                    synchronized (a){
+//                        try {
+//                            a.wait(100);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
 
                     //refresh(R.id.val_norm, String.valueOf(mAccelerometer.norm));
                     if (exporting){
@@ -253,4 +278,17 @@ public class AccelerometerActivity extends AppCompatActivity {
         }
     }
 
+    boolean closed = false;
+    public class MyThread extends Thread implements Runnable{
+
+        @Override
+        public void run() {
+            while(!closed) {
+
+
+            }
+
+        }
+
+    }
 }
