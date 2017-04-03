@@ -32,12 +32,14 @@ import java.util.Timer;
  */
 
 public class AccelerometerActivity extends AppCompatActivity {
-    private static final int UPDATE_TEXTVIWE = 0;
+    private static final int UPDATE_BAR_AND_TEXTVIWE = 0;
+    private static final int UPDATE_CHART = 1;
     private boolean sensorOn;
     private boolean exporting;
     private Accelerometer mAccelerometer;
     private FileManager mFileManager;
-    private Timer mTimer = new Timer();
+    private Timer barTimer = new Timer();
+    private Timer chartTimer = new Timer();
     private String cache = "";
     private Handler mHandler = new MyHandler();
     SDKReceiver mReceiver;
@@ -79,9 +81,13 @@ public class AccelerometerActivity extends AppCompatActivity {
         SDKReceiver mReceiver = new SDKReceiver();
         registerReceiver(mReceiver, iFilter);
 
-        MyTimerTask mTimerTask = new MyTimerTask(mHandler);
-        mTimerTask.setMsg(UPDATE_TEXTVIWE);
-        mTimer.schedule(mTimerTask, 1, 50);
+        MyTimerTask barTimerTask = new MyTimerTask(mHandler);
+        barTimerTask.setMsg(UPDATE_BAR_AND_TEXTVIWE);
+        barTimer.schedule(barTimerTask, 1, 5);
+
+        MyTimerTask chartTask = new MyTimerTask(mHandler);
+        chartTask.setMsg(UPDATE_CHART);
+        chartTimer.schedule(chartTask, 1, 50);
     }
 
     @Override
@@ -112,9 +118,9 @@ public class AccelerometerActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        if (mTimer != null) {
-            mTimer.cancel();
-            mTimer = null;
+        if (barTimer != null) {
+            barTimer.cancel();
+            barTimer = null;
         }
         super.onDestroy();
     }
@@ -272,7 +278,7 @@ public class AccelerometerActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case UPDATE_TEXTVIWE:
+                case UPDATE_BAR_AND_TEXTVIWE:
                     refresh(R.id.val_x, String.format("%.3f", mAccelerometer.x));
                     refresh(R.id.val_y, String.format("%.3f", mAccelerometer.y));
                     refresh(R.id.val_z, String.format("%.3f", mAccelerometer.z));
@@ -297,9 +303,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                     }else {
                         zBarView.value = mAccelerometer.z;
                     }
-                    yVals.add(new Entry(savedTime, mAccelerometer.norm));
-                    savedTime += 0.002;
-                    mDrawLineChart.updateData(mLinechart, mAccelerometer.norm, yVals, savedTime);
+
                 //    Object a = new Object();
 //                    synchronized (a){
 //                        try {
@@ -327,6 +331,10 @@ public class AccelerometerActivity extends AppCompatActivity {
                         }
                     }
                     break;
+                case UPDATE_CHART:
+                    yVals.add(new Entry(savedTime, mAccelerometer.norm));
+                    savedTime += 0.002;
+                    mDrawLineChart.updateData(mLinechart, mAccelerometer.norm, yVals, savedTime);
                 default:
                     break;
             }

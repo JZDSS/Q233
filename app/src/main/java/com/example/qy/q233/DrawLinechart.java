@@ -81,15 +81,15 @@ public class DrawLinechart {
             set1.setHighLightColor(Color.rgb(244, 117, 117));
             set1.setColor(Color.BLUE);
             set1.setFillColor(Color.BLUE);
-            set1.setFillAlpha(100);
+            set1.setFillAlpha(0);
             set1.setDrawHorizontalHighlightIndicator(false);
 
-//            set1.setFillFormatter(new IFillFormatter() {
-//                @Override
-//                public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
-//                    return 100;
-//                }
-//            });
+            set1.setFillFormatter(new IFillFormatter() {
+                @Override
+                public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
+                    return -1000;
+                }
+            });
             LineData data;
             if (mLineChart.getData() != null && mLineChart.getData().getDataSetCount() > 0) {
                 data = mLineChart.getLineData();

@@ -28,6 +28,6 @@ public class MyTimerTask extends TimerTask {
     }
     @Override
     public void run() {
-        sendMessage(mHandler, flag);
+            sendMessage(mHandler, flag);
     }
 }
