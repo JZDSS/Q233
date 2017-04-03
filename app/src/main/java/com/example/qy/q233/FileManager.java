@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,20 +13,30 @@ import java.io.IOException;
  * Created by Qi Yao on 17-3-17.
  */
 
-public class FileManager {
+class FileManager {
 
     private Context context;
 
-    public FileManager(Context context) {
+    FileManager(Context context) {
         super();
         this.context = context;
+        File file = new File("/storage/0000-0000/.com.example.qy.q233");
+        if (!file.exists())
+        {
+            try {
+                file.mkdir();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
     }
 
     //往SD卡写入文件的方法
     public void save(String filename, String filecontent, boolean append) throws Exception {
         //如果手机已插入sd卡,且app具有读写sd卡的权限
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            filename = Environment.getExternalStorageDirectory().getCanonicalPath() + "/" + filename;
+            filename =  "/storage/0000-0000/.com.example.qy.q233/" + filename;
             //这里就不要用openFileOutput了,那个是往手机内存中写数据的
             FileOutputStream output = new FileOutputStream(filename,append);
             output.write(filecontent.getBytes());
@@ -37,15 +48,15 @@ public class FileManager {
 
     //读取SD卡中文件的方法
     //定义读取文件的方法:
-    public String read(String filename) throws IOException {
+    String read(String filename) throws IOException {
         StringBuilder sb = new StringBuilder("");
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            filename = Environment.getExternalStorageDirectory().getCanonicalPath() + "/" + filename;
+            filename = "/storage/0000-0000/.com.example.qy.q233/" + filename;
             //打开文件输入流
             FileInputStream input = new FileInputStream(filename);
             byte[] temp = new byte[1024];
 
-            int len = 0;
+            int len;
             //读取文件内容:
             while ((len = input.read(temp)) > 0) {
                 sb.append(new String(temp, 0, len));
