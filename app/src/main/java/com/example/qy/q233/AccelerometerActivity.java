@@ -3,6 +3,7 @@ package com.example.qy.q233;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SyncContext;
+import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,6 +12,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -34,12 +36,13 @@ public class AccelerometerActivity extends AppCompatActivity {
     private boolean sensorOn;
     private boolean exporting;
     private Accelerometer mAccelerometer;
-    FileManager mFileManager;
+    private FileManager mFileManager;
     private Timer mTimer = new Timer();
-    String cache = "";
+    private String cache = "";
     private Handler mHandler = new MyHandler();
     SDKReceiver mReceiver;
-    BarView xBarView, yBarView, zBarView;
+    private BarView xBarView, yBarView, zBarView;
+    private boolean storageAllowed = true;
     LineChart mLinechart;
     DrawLinechart mDrawLineChart;
     public static Typeface tf;
@@ -52,6 +55,10 @@ public class AccelerometerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acceleration);
 
+
+        if (SplashActivity.apiVersion >=23) {
+            requestPermissions(Permission.allPermissions, 0);
+        }
         mAccelerometer = new Accelerometer(this);
 
         xBarView = (BarView) findViewById(R.id.sv1);
@@ -64,13 +71,12 @@ public class AccelerometerActivity extends AppCompatActivity {
             mDrawLineChart.initChart(mLinechart, savedTime, yVals);
             isChart = true;
         }
-        //mFileManager = new FileManager(this);
         mFileManager = new FileManager(getApplicationContext());
 
         IntentFilter iFilter = new IntentFilter();
         iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR);
         iFilter.addAction(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR);
-        mReceiver = new SDKReceiver();
+        SDKReceiver mReceiver = new SDKReceiver();
         registerReceiver(mReceiver, iFilter);
 
         MyTimerTask mTimerTask = new MyTimerTask(mHandler);
@@ -79,12 +85,19 @@ public class AccelerometerActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart(){
+        super.onStart();
+    }
+
+    @Override
     protected void onResume() {
+
+        super.onResume();
         xBarView.closed = false;
+
         yBarView.closed = false;
         zBarView.closed = false;
-        super.onResume();
-        ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
+
         sensorOn = true;
         mAccelerometer.resume();
     }
@@ -92,7 +105,6 @@ public class AccelerometerActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        ((Button) findViewById(R.id.sensor_control)).setText(R.string.start);
         sensorOn = false;
         isChart = false;
         mAccelerometer.pause();
@@ -107,35 +119,68 @@ public class AccelerometerActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+        switch (requestCode){
+            case Permission.CODE_ACCESS_FINE_LOCATION:
+                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                    Toast.makeText(getApplicationContext(), "GET LOCATION PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED);
+            case Permission.CODE_WRITE_EXTERNAL_STORAGE:
+                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                    Toast.makeText(getApplicationContext(), "WRITE/READ STORAGE PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+                    storageAllowed = false;
+                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    storageAllowed = true;
+            default:
+                break;
+        }
+    }
+
     public void read(View view){
+        if (!storageAllowed && SplashActivity.apiVersion >=23){
+            requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+            return;
+        }
         //mFileManager.setFileName("a.txt");
         //String content = mFileManager.read();
         try
         {
             String content = mFileManager.read("a.txt");
             Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
+        } catch(IOException e){
+            e.printStackTrace();
+            if (SplashActivity.apiVersion >=23){
+                requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+            }
         }
-        catch(IOException e){e.printStackTrace();}
+
 
     }
     public void sensorControl(View view) {
         if (sensorOn) {
             onPause();
-            if (exporting)
+            ((Button) findViewById(R.id.sensor_control)).setText(R.string.start);
+            if (exporting && storageAllowed)
             {
                 exporting = false;
-                ((Button)findViewById(R.id.export)).setText(R.string.export);
                 //mFileManager.save(cache);
                 try{
                     mFileManager.save("a.txt", cache, true);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    if (SplashActivity.apiVersion >=23){
+                        requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                    }
+                    return;
                 }
-
                 cache = "";
+                ((Button)findViewById(R.id.export)).setText(R.string.export);
             }
         } else {
             onResume();
+            ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
+
         }
     }
 
@@ -152,33 +197,45 @@ public class AccelerometerActivity extends AppCompatActivity {
 //    }
 
     public void exportControl(View view) {
+        if (!storageAllowed && SplashActivity.apiVersion >=23){
+            requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+            return;
+        }
         if (exporting){
-
-            exporting = false;
-            ((Button)findViewById(R.id.export)).setText(R.string.export);
             //mFileManager.save(cache);
             try{
                 mFileManager.save("a.txt", cache, true);
             } catch (Exception e) {
                 e.printStackTrace();
+                if (SplashActivity.apiVersion >=23) {
+                    requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                }
+                return;
             }
-
             cache = "";
+            ((Button)findViewById(R.id.export)).setText(R.string.export);
+            exporting = false;
+        } else {
 
-        }else{
-            exporting = true;
             if (!sensorOn){
-                sensorOn = true;
+
                 onResume();
+                ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
+                sensorOn = true;
             }
-            ((Button)findViewById(R.id.export)).setText(R.string.stop);
+
             String fileName = "a.txt";
             try{
                 mFileManager.save(fileName, "", false);
             }catch (Exception e){
                 e.printStackTrace();
+                if (SplashActivity.apiVersion >=23) {
+                    requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                }
+                return;
             }
-
+            ((Button)findViewById(R.id.export)).setText(R.string.stop);
+            exporting = true;
         }
     }
 
@@ -219,29 +276,23 @@ public class AccelerometerActivity extends AppCompatActivity {
                     refresh(R.id.val_x, String.format("%.3f", mAccelerometer.x));
                     refresh(R.id.val_y, String.format("%.3f", mAccelerometer.y));
                     refresh(R.id.val_z, String.format("%.3f", mAccelerometer.z));
-                    if (mAccelerometer.x - xBarView.value > 0.1)
-                    {
+                    if (mAccelerometer.x - xBarView.value > 0.1) {
                         xBarView.value += 0.1;
-                    }else if (mAccelerometer.x - xBarView.value < -0.1)
-                    {
+                    }else if (mAccelerometer.x - xBarView.value < -0.1) {
                         xBarView.value -= 0.1;
                     }else {
                         xBarView.value = mAccelerometer.x;
                     }
-                    if (mAccelerometer.y - yBarView.value > 0.1)
-                    {
+                    if (mAccelerometer.y - yBarView.value > 0.1) {
                         yBarView.value += 0.1;
-                    }else if (mAccelerometer.y - yBarView.value < -0.1)
-                    {
+                    }else if (mAccelerometer.y - yBarView.value < -0.1) {
                         yBarView.value -= 0.1;
                     }else {
                         yBarView.value = mAccelerometer.y;
                     }
-                    if (mAccelerometer.z - zBarView.value > 0.1)
-                    {
+                    if (mAccelerometer.z - zBarView.value > 0.1) {
                         zBarView.value += 0.1;
-                    }else if (mAccelerometer.z - zBarView.value < -0.1)
-                    {
+                    }else if (mAccelerometer.z - zBarView.value < -0.1) {
                         zBarView.value -= 0.1;
                     }else {
                         zBarView.value = mAccelerometer.z;
@@ -259,7 +310,7 @@ public class AccelerometerActivity extends AppCompatActivity {
 //                    }
 
                     //refresh(R.id.val_norm, String.valueOf(mAccelerometer.norm));
-                    if (exporting){
+                    if (exporting && storageAllowed){
                         cache += mAccelerometer.x + "," + mAccelerometer.y + "," +
                                 mAccelerometer.z + ";";
                         if (cache.length()>1024){
@@ -267,6 +318,10 @@ public class AccelerometerActivity extends AppCompatActivity {
                                 mFileManager.save("a.txt", cache, true);
                             }catch (Exception e){
                                 e.printStackTrace();
+                                if (SplashActivity.apiVersion >=23) {
+                                    requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                                }
+                                return;
                             }
                             cache = "";
                         }

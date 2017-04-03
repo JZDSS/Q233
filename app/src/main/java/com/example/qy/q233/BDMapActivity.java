@@ -1,11 +1,14 @@
 package com.example.qy.q233;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -69,11 +72,13 @@ public class BDMapActivity extends AppCompatActivity {
 
         //获取地图控件引用
         mMapView = (MapView) findViewById(R.id.bmapView);
+
         mBaiduMap = mMapView.getMap();
         mBaiduMap.setMyLocationEnabled(true);
         mBaiduMap.setMyLocationConfigeration(config);
         mStatusUpdate = MapStatusUpdateFactory.zoomTo(19);
         mBaiduMap.setMapStatus(mStatusUpdate);
+
         mLocationClient = new LocationClient(getApplicationContext());
         initLocation();
 
@@ -148,10 +153,33 @@ public class BDMapActivity extends AppCompatActivity {
         mMapView.onPause();
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+        switch (requestCode){
+            case Permission.CODE_ACCESS_FINE_LOCATION:
+                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                    Toast.makeText(getApplicationContext(), "GET LOCATION PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED);
+            case Permission.CODE_WRITE_EXTERNAL_STORAGE:
+                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                    Toast.makeText(getApplicationContext(), "WRITE/READ STORAGE PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED);
+            default:
+                break;
+        }
+    }
+
     private class MyLocationListener implements BDLocationListener {
 
         @Override
         public void onReceiveLocation(BDLocation location) {
+            if (location.getLocType() == 167)
+            {
+                if (SplashActivity.apiVersion >=23) {
+                    requestPermissions(new String[]{Permission.allPermissions[0]}, Permission.Codes[0]);
+                }
+                return;
+            }
             if (!start) {
                 lastLatitude = location.getLatitude();
                 lastLongitude = location.getLongitude();

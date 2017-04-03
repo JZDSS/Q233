@@ -61,17 +61,22 @@ public class BarView extends SurfaceView implements SurfaceHolder.Callback {
                     mtop = 240;
                     mbottom = (int) (240 - (240 * value) / 12);
                 }
-                Canvas canvas = mholder.lockCanvas(null);//获取画布
-                canvas.drawColor(Color.WHITE);
-                Paint mPaint = new Paint();
-                RectF r1 = new RectF(0, 0, 60, 480);//300dp = 900 hhh~
-                RectF r2 = new RectF(0, mtop, 60, mbottom);
-                mPaint.setAntiAlias(true);// 设置画笔的锯齿效果
-                mPaint.setARGB(128, 128, 128, 255);
-                canvas.drawRect(r1, mPaint);
-                mPaint.setColor(Color.BLUE);
-                canvas.drawRoundRect(r2, 30, 30, mPaint);
-                mholder.unlockCanvasAndPost(canvas);//解锁画布，提交画好的图像
+                try {
+                    Canvas canvas = mholder.lockCanvas(null);//获取画布
+                    canvas.drawColor(Color.WHITE);
+                    Paint mPaint = new Paint();
+                    RectF r1 = new RectF(0, 0, 60, 480);//300dp = 900 hhh~
+                    RectF r2 = new RectF(0, mtop, 60, mbottom);
+                    mPaint.setAntiAlias(true);// 设置画笔的锯齿效果
+                    mPaint.setARGB(128, 128, 128, 255);
+                    canvas.drawRect(r1, mPaint);
+                    mPaint.setColor(Color.BLUE);
+                    canvas.drawRoundRect(r2, 30, 30, mPaint);
+                    mholder.unlockCanvasAndPost(canvas);//解锁画布，提交画好的图像
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
             }
         }
 
