@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +17,6 @@ import com.baidu.mapapi.SDKInitializer;
 
 import java.io.IOException;
 import java.util.Timer;
-import android.Manifest;
 
 /**
  * Created by Xu Yining on 2017/4/1.
@@ -32,7 +31,6 @@ public class AccelerometerActivity extends AppCompatActivity {
     private Timer mTimer = new Timer();
     private String cache = "";
     private Handler mHandler = new MyHandler();
-    private SDKReceiver mReceiver;
     private BarView xBarView, yBarView, zBarView;
     private boolean storageAllowed = true;
     @Override
@@ -55,7 +53,7 @@ public class AccelerometerActivity extends AppCompatActivity {
         IntentFilter iFilter = new IntentFilter();
         iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR);
         iFilter.addAction(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR);
-        mReceiver = new SDKReceiver();
+        SDKReceiver mReceiver = new SDKReceiver();
         registerReceiver(mReceiver, iFilter);
 
         MyTimerTask mTimerTask = new MyTimerTask(mHandler);
@@ -65,13 +63,16 @@ public class AccelerometerActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart(){
+        super.onStart();
+    }
+
+    @Override
     protected void onResume() {
+        super.onResume();
         xBarView.closed = false;
         yBarView.closed = false;
         zBarView.closed = false;
-
-        super.onResume();
-        ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
         sensorOn = true;
         mAccelerometer.resume();
     }
@@ -79,7 +80,6 @@ public class AccelerometerActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        ((Button) findViewById(R.id.sensor_control)).setText(R.string.start);
         sensorOn = false;
         mAccelerometer.pause();
     }
@@ -94,12 +94,18 @@ public class AccelerometerActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] reantResults){
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
         switch (requestCode){
             case Permission.CODE_ACCESS_FINE_LOCATION:
-                Toast.makeText(getApplicationContext(), "WRITE/READ STORAGE PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                    Toast.makeText(getApplicationContext(), "WRITE/READ STORAGE PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED);
             case Permission.CODE_WRITE_EXTERNAL_STORAGE:
-                Toast.makeText(getApplicationContext(), "GET LOCATION PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                    Toast.makeText(getApplicationContext(), "GET LOCATION PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+                    storageAllowed = false;
+                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    storageAllowed = true;
             default:
                 break;
         }
@@ -116,8 +122,7 @@ public class AccelerometerActivity extends AppCompatActivity {
         {
             String content = mFileManager.read("a.txt");
             Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
-        }
-        catch(IOException e){
+        } catch(IOException e){
             e.printStackTrace();
             requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
         }
@@ -128,22 +133,25 @@ public class AccelerometerActivity extends AppCompatActivity {
     public void sensorControl(View view) {
         if (sensorOn) {
             onPause();
+            ((Button) findViewById(R.id.sensor_control)).setText(R.string.start);
             if (exporting && storageAllowed)
             {
                 exporting = false;
-                ((Button)findViewById(R.id.export)).setText(R.string.export);
                 //mFileManager.save(cache);
                 try{
                     mFileManager.save("a.txt", cache, true);
                 } catch (Exception e) {
                     e.printStackTrace();
                     requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                    return;
                 }
-
                 cache = "";
+                ((Button)findViewById(R.id.export)).setText(R.string.export);
             }
         } else {
             onResume();
+            ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
+
         }
     }
 
@@ -165,34 +173,36 @@ public class AccelerometerActivity extends AppCompatActivity {
             return;
         }
         if (exporting){
-
-            exporting = false;
-            ((Button)findViewById(R.id.export)).setText(R.string.export);
             //mFileManager.save(cache);
             try{
                 mFileManager.save("a.txt", cache, true);
             } catch (Exception e) {
                 e.printStackTrace();
                 requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                return;
             }
-
             cache = "";
+            ((Button)findViewById(R.id.export)).setText(R.string.export);
+            exporting = false;
+        } else {
 
-        }else{
-            exporting = true;
             if (!sensorOn){
-                sensorOn = true;
+
                 onResume();
+                ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
+                sensorOn = true;
             }
-            ((Button)findViewById(R.id.export)).setText(R.string.stop);
+
             String fileName = "a.txt";
             try{
                 mFileManager.save(fileName, "", false);
             }catch (Exception e){
                 e.printStackTrace();
                 requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                return;
             }
-
+            ((Button)findViewById(R.id.export)).setText(R.string.stop);
+            exporting = true;
         }
     }
 
@@ -233,29 +243,23 @@ public class AccelerometerActivity extends AppCompatActivity {
                     refresh(R.id.val_x, String.format("%.3f", mAccelerometer.x));
                     refresh(R.id.val_y, String.format("%.3f", mAccelerometer.y));
                     refresh(R.id.val_z, String.format("%.3f", mAccelerometer.z));
-                    if (mAccelerometer.x - xBarView.value > 0.1)
-                    {
+                    if (mAccelerometer.x - xBarView.value > 0.1) {
                         xBarView.value += 0.1;
-                    }else if (mAccelerometer.x - xBarView.value < -0.1)
-                    {
+                    }else if (mAccelerometer.x - xBarView.value < -0.1) {
                         xBarView.value -= 0.1;
                     }else {
                         xBarView.value = mAccelerometer.x;
                     }
-                    if (mAccelerometer.y - yBarView.value > 0.1)
-                    {
+                    if (mAccelerometer.y - yBarView.value > 0.1) {
                         yBarView.value += 0.1;
-                    }else if (mAccelerometer.y - yBarView.value < -0.1)
-                    {
+                    }else if (mAccelerometer.y - yBarView.value < -0.1) {
                         yBarView.value -= 0.1;
                     }else {
                         yBarView.value = mAccelerometer.y;
                     }
-                    if (mAccelerometer.z - zBarView.value > 0.1)
-                    {
+                    if (mAccelerometer.z - zBarView.value > 0.1) {
                         zBarView.value += 0.1;
-                    }else if (mAccelerometer.z - zBarView.value < -0.1)
-                    {
+                    }else if (mAccelerometer.z - zBarView.value < -0.1) {
                         zBarView.value -= 0.1;
                     }else {
                         zBarView.value = mAccelerometer.z;
@@ -271,6 +275,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                             }catch (Exception e){
                                 e.printStackTrace();
                                 requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                                return;
                             }
                             cache = "";
                         }

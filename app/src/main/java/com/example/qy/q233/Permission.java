@@ -24,18 +24,18 @@ public class Permission {
 //            Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS,
     };
     static int[] Codes = {
-//            0,
-            1,
-//            2,
+//            1,
+            2,
 //            3,
 //            4,
 //            5,
 //            6,
 //            7,
 //            8,
-            9,
-//            10,
+//            9,
+            10,
 //            11
+//            12
     };
     static final int
 //            CODE_ACCESS_COARSE_LOCATION = 0,
