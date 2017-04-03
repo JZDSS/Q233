@@ -33,15 +33,16 @@ public class AccelerometerActivity extends AppCompatActivity {
     private Handler mHandler = new MyHandler();
     private BarView xBarView, yBarView, zBarView;
     private boolean storageAllowed = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acceleration);
 
 
-
-        requestPermissions(Permission.allPermissions, 0);
-
+        if (SplashActivity.apiVersion >=23) {
+            requestPermissions(Permission.allPermissions, 0);
+        }
         mAccelerometer = new Accelerometer(this);
 
         xBarView = (BarView) findViewById(R.id.sv1);
@@ -112,7 +113,7 @@ public class AccelerometerActivity extends AppCompatActivity {
     }
 
     public void read(View view){
-        if (!storageAllowed){
+        if (!storageAllowed && SplashActivity.apiVersion >=23){
             requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
             return;
         }
@@ -124,7 +125,9 @@ public class AccelerometerActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
         } catch(IOException e){
             e.printStackTrace();
-            requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+            if (SplashActivity.apiVersion >=23){
+                requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+            }
         }
 
 
@@ -142,7 +145,9 @@ public class AccelerometerActivity extends AppCompatActivity {
                     mFileManager.save("a.txt", cache, true);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                    if (SplashActivity.apiVersion >=23){
+                        requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                    }
                     return;
                 }
                 cache = "";
@@ -168,7 +173,7 @@ public class AccelerometerActivity extends AppCompatActivity {
 //    }
 
     public void exportControl(View view) {
-        if (!storageAllowed){
+        if (!storageAllowed && SplashActivity.apiVersion >=23){
             requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
             return;
         }
@@ -178,7 +183,9 @@ public class AccelerometerActivity extends AppCompatActivity {
                 mFileManager.save("a.txt", cache, true);
             } catch (Exception e) {
                 e.printStackTrace();
-                requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                if (SplashActivity.apiVersion >=23) {
+                    requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                }
                 return;
             }
             cache = "";
@@ -198,7 +205,9 @@ public class AccelerometerActivity extends AppCompatActivity {
                 mFileManager.save(fileName, "", false);
             }catch (Exception e){
                 e.printStackTrace();
-                requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                if (SplashActivity.apiVersion >=23) {
+                    requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                }
                 return;
             }
             ((Button)findViewById(R.id.export)).setText(R.string.stop);
@@ -274,7 +283,9 @@ public class AccelerometerActivity extends AppCompatActivity {
                                 mFileManager.save("a.txt", cache, true);
                             }catch (Exception e){
                                 e.printStackTrace();
-                                requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                                if (SplashActivity.apiVersion >=23) {
+                                    requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                                }
                                 return;
                             }
                             cache = "";
