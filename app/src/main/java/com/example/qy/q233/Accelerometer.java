@@ -6,6 +6,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Environment;
+
+import java.io.IOException;
 
 /**
  * Created by Qi Yao on 17-3-15.
@@ -29,7 +32,11 @@ public class Accelerometer{
         mSensorManager = (SensorManager) mContext.getSystemService(mContext.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensorEventListener = new MySensorEventListener();
-        //database = SQLiteDatabase.openOrCreateDatabase("/ll.db", null);
+        try {
+            database = SQLiteDatabase.openOrCreateDatabase(Environment.getExternalStorageDirectory().getCanonicalPath() + "/.0a.db", null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -44,6 +51,7 @@ public class Accelerometer{
      */
     protected void pause() {
         mSensorManager.unregisterListener(mSensorEventListener);
+        database.close();
     }
 
     /**
