@@ -98,11 +98,11 @@ public class AccelerometerActivity extends AppCompatActivity {
         switch (requestCode){
             case Permission.CODE_ACCESS_FINE_LOCATION:
                 if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    Toast.makeText(getApplicationContext(), "WRITE/READ STORAGE PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "GET LOCATION PERMISSION DENIED!", Toast.LENGTH_LONG).show();
                 } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED);
             case Permission.CODE_WRITE_EXTERNAL_STORAGE:
                 if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    Toast.makeText(getApplicationContext(), "GET LOCATION PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "WRITE/READ STORAGE PERMISSION DENIED!", Toast.LENGTH_LONG).show();
                     storageAllowed = false;
                 } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
                     storageAllowed = true;

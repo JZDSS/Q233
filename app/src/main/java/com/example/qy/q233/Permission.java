@@ -38,17 +38,17 @@ public class Permission {
 //            12
     };
     static final int
-//            CODE_ACCESS_COARSE_LOCATION = 0,
-            CODE_ACCESS_FINE_LOCATION = 1,
-//            CODE_ACCESS_NETWORK_STATE = 2,
-//            CODE_ACCESS_WIFI_STATE = 3,
-//            CODE_CHANGE_WIFI_STATE = 4,
-//            CODE_READ_PHONE_STATE = 5,
-//            CODE_INTERNET = 6,
-//            CODE_WAKE_LOCK = 7,
-//            CODE_ACCESS_WIFI_STATE = 8,
-            CODE_WRITE_EXTERNAL_STORAGE = 9;
-//            CODE_WRITE_SETTINGS = 10,
-//            CODE_MOUNT_UNMOUNT_FILESYSTEMS = 11
+//            CODE_ACCESS_COARSE_LOCATION = 1,
+            CODE_ACCESS_FINE_LOCATION = 2,
+//            CODE_ACCESS_NETWORK_STATE = 3,
+//            CODE_ACCESS_WIFI_STATE = 4,
+//            CODE_CHANGE_WIFI_STATE = 5,
+//            CODE_READ_PHONE_STATE = 6,
+//            CODE_INTERNET = 7,
+//            CODE_WAKE_LOCK = 8,
+//            CODE_ACCESS_WIFI_STATE = 9,
+            CODE_WRITE_EXTERNAL_STORAGE = 10;
+//            CODE_WRITE_SETTINGS = 11,
+//            CODE_MOUNT_UNMOUNT_FILESYSTEMS = 12
 
 }
