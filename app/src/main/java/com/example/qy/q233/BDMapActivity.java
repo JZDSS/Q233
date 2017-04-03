@@ -175,7 +175,9 @@ public class BDMapActivity extends AppCompatActivity {
         public void onReceiveLocation(BDLocation location) {
             if (location.getLocType() == 167)
             {
-                requestPermissions(new String[]{Permission.allPermissions[0]}, Permission.Codes[0]);
+                if (SplashActivity.apiVersion >=23) {
+                    requestPermissions(new String[]{Permission.allPermissions[0]}, Permission.Codes[0]);
+                }
                 return;
             }
             if (!start) {

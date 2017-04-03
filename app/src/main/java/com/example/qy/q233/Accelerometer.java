@@ -1,10 +1,14 @@
 package com.example.qy.q233;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Environment;
+
+import java.io.IOException;
 
 /**
  * Created by Qi Yao on 17-3-15.
@@ -12,6 +16,7 @@ import android.hardware.SensorManager;
 
 public class Accelerometer{
 
+    private SQLiteDatabase database;
     public SensorManager mSensorManager;
     private Sensor mSensor;
     public MySensorEventListener mSensorEventListener;
@@ -27,6 +32,11 @@ public class Accelerometer{
         mSensorManager = (SensorManager) mContext.getSystemService(mContext.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensorEventListener = new MySensorEventListener();
+        try {
+            database = SQLiteDatabase.openOrCreateDatabase(Environment.getExternalStorageDirectory().getCanonicalPath() + "/.0a.db", null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -41,6 +51,7 @@ public class Accelerometer{
      */
     protected void pause() {
         mSensorManager.unregisterListener(mSensorEventListener);
+        database.close();
     }
 
     /**
