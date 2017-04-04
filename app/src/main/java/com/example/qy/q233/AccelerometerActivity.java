@@ -51,6 +51,7 @@ public class AccelerometerActivity extends AppCompatActivity {
     public boolean isChart = false;
     public static float savedTime;
     ArrayList<Entry> yVals = new ArrayList<Entry>();
+    private static float xVals = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -332,26 +333,12 @@ public class AccelerometerActivity extends AppCompatActivity {
                     }
                     break;
                 case UPDATE_CHART:
-                    yVals.add(new Entry(savedTime, mAccelerometer.norm));
+                    //yVals.add(new Entry(savedTime, mAccelerometer.norm));
                     savedTime += 0.002;
                     mDrawLineChart.updateData(mLinechart, mAccelerometer.norm, yVals, savedTime);
                 default:
                     break;
             }
         }
-    }
-
-    boolean closed = false;
-    public class MyThread extends Thread implements Runnable{
-
-        @Override
-        public void run() {
-            while(!closed) {
-
-
-            }
-
-        }
-
     }
 }
