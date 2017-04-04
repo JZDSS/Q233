@@ -16,6 +16,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,8 @@ import java.util.Timer;
  */
 
 public class AccelerometerActivity extends AppCompatActivity {
+
+    private String fileName;
     private static final int UPDATE_BAR_AND_TEXTVIWE = 0;
     private static final int UPDATE_CHART = 1;
     private boolean sensorOn;
@@ -148,11 +151,10 @@ public class AccelerometerActivity extends AppCompatActivity {
             requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
             return;
         }
-        //mFileManager.setFileName("a.txt");
-        //String content = mFileManager.read();
+        fileName = ((EditText) findViewById(R.id.file_name)).getText().toString();
         try
         {
-            String content = mFileManager.read("a.txt");
+            String content = mFileManager.read(fileName);
             Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
         } catch(IOException e){
             e.printStackTrace();
@@ -172,7 +174,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                 exporting = false;
                 //mFileManager.save(cache);
                 try{
-                    mFileManager.save("a.txt", cache, true);
+                    mFileManager.save(fileName, cache, true);
                 } catch (Exception e) {
                     e.printStackTrace();
                     if (SplashActivity.apiVersion >=23){
@@ -210,7 +212,7 @@ public class AccelerometerActivity extends AppCompatActivity {
         if (exporting){
             //mFileManager.save(cache);
             try{
-                mFileManager.save("a.txt", cache, true);
+                mFileManager.save(fileName, cache, true);
             } catch (Exception e) {
                 e.printStackTrace();
                 if (SplashActivity.apiVersion >=23) {
@@ -230,7 +232,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                 sensorOn = true;
             }
 
-            String fileName = "a.txt";
+            fileName = ((EditText) findViewById(R.id.file_name)).getText().toString();
             try{
                 mFileManager.save(fileName, "", false);
             }catch (Exception e){
@@ -316,10 +318,10 @@ public class AccelerometerActivity extends AppCompatActivity {
                     //refresh(R.id.val_norm, String.valueOf(mAccelerometer.norm));
                     if (exporting && storageAllowed){
                         cache += mAccelerometer.x + "," + mAccelerometer.y + "," +
-                                mAccelerometer.z + ";";
+                                mAccelerometer.z + "\n";
                         if (cache.length()>1024){
                             try {
-                                mFileManager.save("a.txt", cache, true);
+                                mFileManager.save(fileName, cache, true);
                             }catch (Exception e){
                                 e.printStackTrace();
                                 if (SplashActivity.apiVersion >=23) {

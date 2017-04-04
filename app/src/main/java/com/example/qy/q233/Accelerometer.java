@@ -14,13 +14,17 @@ import java.io.IOException;
  * Created by Qi Yao on 17-3-15.
  */
 
-public class Accelerometer{
+class Accelerometer{
+
+    static {
+        System.loadLibrary("native-lib");
+    }
 
     private SQLiteDatabase database;
-    public SensorManager mSensorManager;
+    private SensorManager mSensorManager;
     private Sensor mSensor;
-    public MySensorEventListener mSensorEventListener;
-    public float x, y, z, norm;
+    private MySensorEventListener mSensorEventListener;
+    float x, y, z, norm;
 
     /**
      * Initialize an Accelerometer variable.
@@ -28,8 +32,8 @@ public class Accelerometer{
      * @param mContext Accelerometer is not an Activity Class, it need a Context
      *                 in order to call getSystemService.
      */
-    public Accelerometer(Context mContext) {
-        mSensorManager = (SensorManager) mContext.getSystemService(mContext.SENSOR_SERVICE);
+    Accelerometer(Context mContext) {
+        mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensorEventListener = new MySensorEventListener();
         try {
@@ -42,14 +46,14 @@ public class Accelerometer{
     /**
      * Restart to collect data form the sensor.
      */
-    protected void resume() {
+    void resume() {
         mSensorManager.registerListener(mSensorEventListener, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     /**
      * Stop collecting data from the sensor.
      */
-    protected void pause() {
+    void pause() {
         mSensorManager.unregisterListener(mSensorEventListener);
         database.close();
     }
@@ -66,6 +70,7 @@ public class Accelerometer{
         return (float) Math.sqrt(x * x + y * y + z * z);
     }
 
+    private native int maxFromJNI(int[] arr);
 
     private class MySensorEventListener implements SensorEventListener {
         /**
