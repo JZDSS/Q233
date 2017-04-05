@@ -24,7 +24,7 @@ class FileManager {
         if (!file.exists())
         {
             try {
-                file.mkdir();
+                file.mkdirs();
             }catch (Exception e){
                 e.printStackTrace();
             }
