@@ -91,7 +91,7 @@ public class AccelerometerActivity extends AppCompatActivity {
 
         MyTimerTask chartTask = new MyTimerTask(mHandler);
         chartTask.setMsg(UPDATE_CHART);
-        chartTimer.schedule(chartTask, 1, 50);
+        chartTimer.schedule(chartTask, 1, 125);
     }
 
     @Override
@@ -260,21 +260,6 @@ public class AccelerometerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public void jump2(View view){
-//        Intent intent=new Intent();
-//        //setClass函数的第一个参数是一个Context对象
-//        //Context是一个类,Activity是Context类的子类,也就是说,所有的Activity对象都可以向上转型为Context对象
-//        //setClass函数的第二个参数是Class对象,在当前场景下,应该传入需要被启动的Activity的class对象
-//        intent.setClass(MainActivity.this, AccelerometerActivity.class);
-//        startActivity(intent);
-//    }
-//    private class MyTimerTask extends TimerTask {
-//        @Override
-//        public void run() {
-//            sendMessage(UPDATE_TEXTVIWE);
-//        }
-//    }
-
 
     class MyHandler extends Handler {
         @Override
@@ -306,16 +291,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                         zBarView.value = mAccelerometer.z;
                     }
 
-                //    Object a = new Object();
-//                    synchronized (a){
-//                        try {
-//                            a.wait(100);
-//                        } catch (InterruptedException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
 
-                    //refresh(R.id.val_norm, String.valueOf(mAccelerometer.norm));
                     if (exporting && storageAllowed){
                         cache += mAccelerometer.x + "," + mAccelerometer.y + "," +
                                 mAccelerometer.z + "\n";
@@ -336,7 +312,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                 case UPDATE_CHART:
                     if (isChart) {
                         //yVals.add(new Entry(savedTime, mAccelerometer.norm));
-                        savedTime += 0.002;
+                        savedTime += 0.125;
                         mDrawLineChart.updateData(mLinechart, mAccelerometer.norm, yVals, savedTime);
                     }
                 default:

@@ -1,8 +1,6 @@
 package com.example.qy.q233;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -42,7 +40,9 @@ public class DrawLinechart {
             currentTime = new Date().getTime();
             mLineChart.setViewPortOffsets(50, 20, 5, 60);
             // no description text
-            mLineChart.setDescription(new Description());
+            Description xlabel = new Description();
+            xlabel.setText("time/s");
+            mLineChart.setDescription(xlabel);
             // enable touch gestures
             mLineChart.setTouchEnabled(true);
             // enable scaling and dragging
@@ -115,17 +115,16 @@ public class DrawLinechart {
         }
         if (mLineChart.getData() != null && mLineChart.getData().getDataSetCount() > 0) {
             LineDataSet set1 = (LineDataSet) mLineChart.getData().getDataSetByIndex(0);
-            set1.setValues(yVals);
+            //set1.setValues(yVals);
             Entry entry = new Entry(savedTime, val);
             set1.addEntry(entry);
-            if (set1.getEntryCount() > 200) {
+            if (set1.getEntryCount() > 80) {
                 set1.removeFirst();
                 set1.setDrawFilled(false);
             }
             mLineChart.getData().notifyDataChanged();
             mLineChart.notifyDataSetChanged();
             mLineChart.invalidate();
-            savedTime += 0.002;
         }
     }
 }
