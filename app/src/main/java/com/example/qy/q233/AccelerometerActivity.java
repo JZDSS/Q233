@@ -45,16 +45,13 @@ public class AccelerometerActivity extends AppCompatActivity {
     private Timer chartTimer = new Timer();
     private String cache = "";
     private Handler mHandler = new MyHandler();
-    SDKReceiver mReceiver;
     private BarView xBarView, yBarView, zBarView;
     private boolean storageAllowed = true;
     LineChart mLinechart;
     DrawLinechart mDrawLineChart;
-    public static Typeface tf;
     public boolean isChart = false;
     public static float savedTime;
-    ArrayList<Entry> yVals = new ArrayList<Entry>();
-    private static float xVals = 0;
+    ArrayList<Entry> yVals = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,12 +195,6 @@ public class AccelerometerActivity extends AppCompatActivity {
         mTextView.setText(s);
     }
 
-//    public void sendMessage(int id) {
-//        if (mHandler != null) {
-//            Message message = Message.obtain(mHandler, id);
-//            mHandler.sendMessage(message);
-//        }
-//    }
 
     public void exportControl(View view) {
         if (!storageAllowed && SplashActivity.apiVersion >=23){
@@ -294,7 +285,7 @@ public class AccelerometerActivity extends AppCompatActivity {
 
 
                     if (exporting && storageAllowed){
-                        cache += mAccelerometer.x + "," + mAccelerometer.y + "," +
+                        cache += System.currentTimeMillis() + "," + mAccelerometer.x + "," + mAccelerometer.y + "," +
                                 mAccelerometer.z + "\n";
                         if (cache.length()>1024){
                             try {
