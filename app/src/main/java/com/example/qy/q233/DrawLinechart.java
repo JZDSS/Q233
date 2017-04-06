@@ -67,7 +67,7 @@ public class DrawLinechart {
             y.setDrawGridLines(false);
             y.setAxisLineColor(Color.BLUE);
             y.setAxisMinValue(0);
-            y.setAxisMaxValue(20);
+            y.setAxisMaxValue(25);
             mLineChart.getAxisRight().setEnabled(true);
             yVals = new ArrayList<Entry>();
             yVals.add(new Entry(0, 0));
