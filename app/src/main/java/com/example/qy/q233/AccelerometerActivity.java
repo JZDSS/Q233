@@ -106,6 +106,7 @@ public class AccelerometerActivity extends AppCompatActivity {
         xBarView.closed = false;
         yBarView.closed = false;
         zBarView.closed = false;
+        isChart = true;
 
         sensorOn = true;
         mAccelerometer.resume();
