@@ -9,4 +9,6 @@
     <string name="export">export</string>
     <string name="SD_card">SD</string>
     <string name="read">read</string>
+    <string name="text_on">on</string>
+    <string name="text_off">off</string>
 </resources>

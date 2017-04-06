@@ -67,7 +67,7 @@ public class DrawLinechart {
             y.setDrawGridLines(false);
             y.setAxisLineColor(Color.BLUE);
             y.setAxisMinValue(0);
-            y.setAxisMaxValue(25);
+            y.setAxisMaxValue(20);
             mLineChart.getAxisRight().setEnabled(true);
             yVals = new ArrayList<Entry>();
             yVals.add(new Entry(0, 0));
@@ -86,7 +86,7 @@ public class DrawLinechart {
             set1.setFillFormatter(new IFillFormatter() {
                 @Override
                 public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
-                    return -1000;
+                    return -10;
                 }
             });
             LineData data;
