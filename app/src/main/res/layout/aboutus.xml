@@ -1,27 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.2"
+                android:text="\t\t\t\tThere are more than 1000 employees in CNS at present. CNS is headquartered in Beijing. It has set up not only 28 branches in China’s mainland, Hong Kong and Macao, but also branches or report stations in Tokyo, Bangkok, Kuala Lumpur, New York, Washington, Los Angeles, San Francisco, Vancouver, London, Paris, Sydney and Moscow. Meanwhile, it has reporters in Taiwan. News release centers are established in Beijing, New York and Hong Kong."
+                android:textSize="20sp" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_geo"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:lineSpacingExtra="3dp"
+                android:text="\t\t\t\tAndroid 采用ScrollView布局时出现异常：ScrollView can host only one direct child。
+                \t\t\t\t主要是ScrollView内部只能有一个子元素，即不能并列两个子元素，所以需要把所有的子元素放到一个LinearLayout内部或RelativeLayout等其他布局方式。"
+                android:textSize="20sp"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_geo"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text=""
+                android:textSize="20sp"/>
+        </LinearLayout>
+
     </ScrollView>
-</FrameLayout>
+</LinearLayout>
