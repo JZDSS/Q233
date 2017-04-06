@@ -115,8 +115,8 @@ public class AccelerometerActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        sensorOn = false;
         isChart = false;
+        sensorOn = false;
         mAccelerometer.pause();
     }
 
