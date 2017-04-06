@@ -103,6 +103,7 @@ public class AccelerometerActivity extends AppCompatActivity {
         xBarView.closed = false;
         yBarView.closed = false;
         zBarView.closed = false;
+        isChart = true;
 
         sensorOn = true;
         mAccelerometer.resume();
@@ -111,12 +112,14 @@ public class AccelerometerActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        sensorOn = false;
         isChart = false;
+
+        sensorOn = false;
         if(!Debug.ENABLE)
         {
             mAccelerometer.pause();
         }
+
     }
 
     @Override
