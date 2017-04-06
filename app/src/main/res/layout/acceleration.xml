@@ -18,8 +18,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_alignParentBottom="true">
+                android:layout_alignParentTop="true">
                 <TextView
+                    android:id="@+id/titleA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" Acceleration "
@@ -27,7 +28,18 @@
                     android:textStyle="italic"
                     android:typeface="serif"/>
             </RelativeLayout>
+            <Switch
+                android:id="@+id/sensor_switch"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:onClick="sensorControl"
+                android:textOff="@string/text_off"
+                android:textOn="@string/text_on" />
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -42,7 +54,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1.5">
                     <LinearLayout
-                        android:layout_width="200dp"
+                        android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
                         android:layout_centerInParent="true">
@@ -93,7 +105,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1">
                     <LinearLayout
-                        android:layout_width="200dp"
+                        android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
                         android:orientation="horizontal">
@@ -147,7 +159,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="5">
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="300dp"
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
                     android:orientation="horizontal">
@@ -187,50 +199,58 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_centerInParent="true">
-                    <Button
-                        android:id="@+id/sensor_control"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:onClick="sensorControl"
-                        android:text="@string/stop" />
-                    <Button
-                        android:id="@+id/export"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:onClick="exportControl"
-                        android:text="@string/export" />
-                    <Button
-                        android:id="@+id/read"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:onClick="read"
-                        android:text="@string/read" />
-                    <Button
-                        android:id="@+id/jump"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:onClick="jump"
-                        android:text="jump" />
-                    <EditText
-                        android:id="@+id/file_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"/>
-                </LinearLayout>
-            </RelativeLayout>
+            <!--<RelativeLayout-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_height="match_parent">-->
+                <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_centerInParent="true">-->
+                    <!--<Switch-->
+                        <!--android:id="@+id/sensor_switch"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:onClick="sensorControl"-->
+                        <!--android:textOn="text_on"-->
+                        <!--android:textOff="text_off" />-->
+                    <!--<Button-->
+                        <!--android:id="@+id/sensor_control"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:onClick="sensorControl"-->
+                        <!--android:text="@string/stop" />-->
+                    <!--<Button-->
+                        <!--android:id="@+id/export"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:onClick="exportControl"-->
+                        <!--android:text="@string/export" />-->
+                    <!--<Button-->
+                        <!--android:id="@+id/read"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:onClick="read"-->
+                        <!--android:text="@string/read" />-->
+                    <!--<Button-->
+                        <!--android:id="@+id/jump"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:onClick="jump"-->
+                        <!--android:text="jump" />-->
+                    <!--<EditText-->
+                        <!--android:id="@+id/file_name"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0dp"-->
+                        <!--android:layout_weight="1"/>-->
+                <!--</LinearLayout>-->
+            <!--</RelativeLayout>-->
         </LinearLayout>
     </LinearLayout>
     <RelativeLayout
@@ -241,10 +261,11 @@
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/linechart"
             android:layout_width="320dp"
-            android:layout_height="140dp"
+            android:layout_height="180dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:layout_centerInParent="true"/>
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 </LinearLayout>

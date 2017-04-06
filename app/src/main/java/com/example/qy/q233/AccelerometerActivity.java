@@ -16,7 +16,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,16 +47,14 @@ public class AccelerometerActivity extends AppCompatActivity {
     private Timer chartTimer = new Timer();
     private String cache = "";
     private Handler mHandler = new MyHandler();
-    SDKReceiver mReceiver;
     private BarView xBarView, yBarView, zBarView;
     private boolean storageAllowed = true;
     LineChart mLinechart;
     DrawLinechart mDrawLineChart;
-    public static Typeface tf;
     public boolean isChart = false;
     public static float savedTime;
-    ArrayList<Entry> yVals = new ArrayList<Entry>();
-    private static float xVals = 0;
+    ArrayList<Entry> yVals = new ArrayList<>();
+    public Switch mSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +78,19 @@ public class AccelerometerActivity extends AppCompatActivity {
             isChart = true;
         }
         mFileManager = new FileManager(getApplicationContext());
+
+        mSwitch = (Switch) findViewById(R.id.sensor_switch);
+        mSwitch.toggle();
+        mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (!isChecked){
+//                    mSwitch.setText(getString(R.string.text_off));
+//                }else {
+//                    mSwitch.setText(getString(R.string.text_on));
+//                }
+            }
+        });
 
         IntentFilter iFilter = new IntentFilter();
         iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR);
@@ -116,8 +129,13 @@ public class AccelerometerActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         isChart = false;
+
         sensorOn = false;
-        mAccelerometer.pause();
+        if(!Debug.ENABLE)
+        {
+            mAccelerometer.pause();
+        }
+
     }
 
     @Override
@@ -152,7 +170,7 @@ public class AccelerometerActivity extends AppCompatActivity {
             requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
             return;
         }
-        fileName = ((EditText) findViewById(R.id.file_name)).getText().toString();
+//        fileName = ((EditText) findViewById(R.id.file_name)).getText().toString();
         try
         {
             String content = mFileManager.read(fileName);
@@ -169,7 +187,7 @@ public class AccelerometerActivity extends AppCompatActivity {
     public void sensorControl(View view) {
         if (sensorOn) {
             onPause();
-            ((Button) findViewById(R.id.sensor_control)).setText(R.string.start);
+//            ((Button) findViewById(R.id.sensor_control)).setText(R.string.start);
             if (exporting && storageAllowed)
             {
                 exporting = false;
@@ -184,11 +202,11 @@ public class AccelerometerActivity extends AppCompatActivity {
                     return;
                 }
                 cache = "";
-                ((Button)findViewById(R.id.export)).setText(R.string.export);
+//                ((Button)findViewById(R.id.export)).setText(R.string.export);
             }
         } else {
             onResume();
-            ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
+//            ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
 
         }
     }
@@ -198,12 +216,6 @@ public class AccelerometerActivity extends AppCompatActivity {
         mTextView.setText(s);
     }
 
-//    public void sendMessage(int id) {
-//        if (mHandler != null) {
-//            Message message = Message.obtain(mHandler, id);
-//            mHandler.sendMessage(message);
-//        }
-//    }
 
     public void exportControl(View view) {
         if (!storageAllowed && SplashActivity.apiVersion >=23){
@@ -222,18 +234,18 @@ public class AccelerometerActivity extends AppCompatActivity {
                 return;
             }
             cache = "";
-            ((Button)findViewById(R.id.export)).setText(R.string.export);
+//            ((Button)findViewById(R.id.export)).setText(R.string.export);
             exporting = false;
         } else {
 
             if (!sensorOn){
 
                 onResume();
-                ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
+//                ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
                 sensorOn = true;
             }
 
-            fileName = ((EditText) findViewById(R.id.file_name)).getText().toString();
+//            fileName = ((EditText) findViewById(R.id.file_name)).getText().toString();
             try{
                 mFileManager.save(fileName, "", false);
             }catch (Exception e){
@@ -243,7 +255,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                 }
                 return;
             }
-            ((Button)findViewById(R.id.export)).setText(R.string.stop);
+//            ((Button)findViewById(R.id.export)).setText(R.string.stop);
             exporting = true;
         }
     }
@@ -294,7 +306,7 @@ public class AccelerometerActivity extends AppCompatActivity {
 
 
                     if (exporting && storageAllowed){
-                        cache += mAccelerometer.x + "," + mAccelerometer.y + "," +
+                        cache += System.currentTimeMillis() + "," + mAccelerometer.x + "," + mAccelerometer.y + "," +
                                 mAccelerometer.z + "\n";
                         if (cache.length()>1024){
                             try {

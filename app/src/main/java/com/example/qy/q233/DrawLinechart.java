@@ -86,7 +86,7 @@ public class DrawLinechart {
             set1.setFillFormatter(new IFillFormatter() {
                 @Override
                 public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
-                    return -1000;
+                    return -10;
                 }
             });
             LineData data;
