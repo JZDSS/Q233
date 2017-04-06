@@ -24,7 +24,6 @@ import java.util.Date;
 
 public class DrawLinechart {
     public LineChart mLineChart;
-    public boolean isChart = false;
 
 //    if(!isChart){
 //        initChart();

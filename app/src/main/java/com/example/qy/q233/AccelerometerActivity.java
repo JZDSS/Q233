@@ -104,7 +104,6 @@ public class AccelerometerActivity extends AppCompatActivity {
 
         super.onResume();
         xBarView.closed = false;
-
         yBarView.closed = false;
         zBarView.closed = false;
 
@@ -335,9 +334,11 @@ public class AccelerometerActivity extends AppCompatActivity {
                     }
                     break;
                 case UPDATE_CHART:
-                    //yVals.add(new Entry(savedTime, mAccelerometer.norm));
-                    savedTime += 0.002;
-                    mDrawLineChart.updateData(mLinechart, mAccelerometer.norm, yVals, savedTime);
+                    if (isChart) {
+                        //yVals.add(new Entry(savedTime, mAccelerometer.norm));
+                        savedTime += 0.002;
+                        mDrawLineChart.updateData(mLinechart, mAccelerometer.norm, yVals, savedTime);
+                    }
                 default:
                     break;
             }
