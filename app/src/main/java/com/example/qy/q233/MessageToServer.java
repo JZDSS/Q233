@@ -26,7 +26,7 @@ public class MessageToServer {
     long time = System.currentTimeMillis();
     float value = (float) Math.random();
     HttpClient httpClient = new DefaultHttpClient();
-    String url = "http://192.168.1.104/q233/index.php";
+    String url = "http://192.168.1.104/q233/rec.php";
     HttpPost httpPost = new HttpPost(url);
 
     MessageToServer(){
@@ -35,18 +35,26 @@ public class MessageToServer {
     }
 
 
-    public void Post(final float norm) {
-        mThread.setval(norm);
+    public void Post(long time, float x, float y, float z, float norm) {
+        mThread.setval(time, x, y, z, norm);
     }
 
     class MyThread extends Thread{
+        long time;
+        float x;
+        float y;
+        float z;
         float norm;
         boolean on;
         MyThread(float norm){
             this.norm = norm;
             this.on = false;
         }
-        void setval(float norm){
+        void setval(long time, float x, float y, float z, float norm){
+            this.time = time;
+            this.x = x;
+            this.y = y;
+            this.z = z;
             this.norm = norm;
         }
         void open(){
@@ -59,24 +67,27 @@ public class MessageToServer {
         @Override
         public void run() {
             super.run();
+            ArrayList<NameValuePair> pairs = new ArrayList<>();
             while(true){
                 if(on){
+                    pairs.clear();
                     //NameValuePair对象代表了一个需要发往服务器的键值对
-                    NameValuePair pair= new BasicNameValuePair("norm", String.format("%f", norm));
-        //                NameValuePair pair1 = new BasicNameValuePair("address", "sichuan"+String.format("%d",(int)(Math.random()*100)));
-        //                NameValuePair pair2 = new BasicNameValuePair("latitude", String.format("%f",Math.random()));
-        //                NameValuePair pair3 = new BasicNameValuePair("longitude", String.format("%f",Math.random()));
+                    NameValuePair pair0= new BasicNameValuePair("t", String.format("%d", time));
+                    NameValuePair pair1 = new BasicNameValuePair("x", String.format("%f", x));
+                    NameValuePair pair2 = new BasicNameValuePair("y", String.format("%f", y));
+                    NameValuePair pair3 = new BasicNameValuePair("z", String.format("%f", z));
+                    NameValuePair pair4 = new BasicNameValuePair("n", String.format("%f", norm));
                     //将准备好的键值对对象放置在一个List当中
-                    ArrayList<NameValuePair> pairs = new ArrayList<>();
-                    pairs.add(pair);
-        //                pairs.add(pair1);
-        //                pairs.add(pair2);
-        //                pairs.add(pair3);
+
+                    pairs.add(pair0);
+                    pairs.add(pair1);
+                    pairs.add(pair2);
+                    pairs.add(pair3);
+                    pairs.add(pair4);
+
                     try {
-                        //创建代表请求体的对象（注意，是请求体）
-                        HttpEntity requestEntity = new UrlEncodedFormEntity(pairs);
                         //将请求体放置在请求对象当中
-                        httpPost.setEntity(requestEntity);
+                        httpPost.setEntity(new UrlEncodedFormEntity(pairs));
                         //执行请求对象
                         try {
                             //第三步：执行请求对象，获取服务器发还的相应对象

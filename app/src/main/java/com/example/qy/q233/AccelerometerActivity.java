@@ -307,7 +307,8 @@ public class AccelerometerActivity extends AppCompatActivity {
                         zBarView.value = mAccelerometer.z;
                     }
 
-                    messageToServer.Post(mAccelerometer.norm);
+                    messageToServer.Post(System.currentTimeMillis(), mAccelerometer.x, mAccelerometer.y,
+                            mAccelerometer.z, mAccelerometer.norm);
 
                     if (exporting && storageAllowed){
                         cache += System.currentTimeMillis() + "," + mAccelerometer.x + "," + mAccelerometer.y + "," +
