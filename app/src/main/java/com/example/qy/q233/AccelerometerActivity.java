@@ -55,12 +55,13 @@ public class AccelerometerActivity extends AppCompatActivity {
     public static float savedTime;
     ArrayList<Entry> yVals = new ArrayList<>();
     public Switch mSwitch;
+    public MessageToServer messageToServer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acceleration);
-
+        messageToServer = new MessageToServer();
 
         if (SplashActivity.apiVersion >=23) {
             requestPermissions(Permission.allPermissions, 0);
@@ -123,6 +124,7 @@ public class AccelerometerActivity extends AppCompatActivity {
 
         sensorOn = true;
         mAccelerometer.resume();
+        messageToServer.mThread.open();
     }
 
     @Override
@@ -134,6 +136,7 @@ public class AccelerometerActivity extends AppCompatActivity {
         if(!Debug.ENABLE)
         {
             mAccelerometer.pause();
+            messageToServer.mThread.close();
         }
 
     }
@@ -304,6 +307,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                         zBarView.value = mAccelerometer.z;
                     }
 
+                    messageToServer.Post(mAccelerometer.norm);
 
                     if (exporting && storageAllowed){
                         cache += System.currentTimeMillis() + "," + mAccelerometer.x + "," + mAccelerometer.y + "," +
