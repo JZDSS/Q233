@@ -31,5 +31,10 @@
         android:layout_height="wrap_content"
         android:text="@string/log_in"
         android:onClick="logIn"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/force"
+        android:onClick="jump2main"/>
 
 </LinearLayout>
