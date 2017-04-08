@@ -11,6 +11,7 @@
     <string name="read">read</string>
     <string name="text_on">on</string>
     <string name="text_off">off</string>
-    <string name="aboutus">新建Android XML文件，类型选Drawable,根结点选selector,文件名就buton_style吧。
-                程序自动给我们刚刚建的文件里加了selector结点，我们只需要在selector结点里写上三种状态时显示的背景图片（按下、获取焦点，正常）。</string>
+    <string name="user_name">User Name:</string>
+    <string name="password">Password:</string>
+    <string name="log_in">Log In</string>
 </resources>
