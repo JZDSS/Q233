@@ -23,8 +23,6 @@ import java.util.ArrayList;
 public class MessageToServer {
 
     MyThread mThread;
-    long time = System.currentTimeMillis();
-    float value = (float) Math.random();
     HttpClient httpClient = new DefaultHttpClient();
     String url = "http://192.168.1.104/q233/rec.php";
     HttpPost httpPost = new HttpPost(url);
