@@ -25,6 +25,7 @@ public class LogIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        mHandler = new MyHandler();
         String url = "http://192.168.1.104/q233/login.php";
         post = new Post(url, mHandler);
     }
@@ -42,14 +43,6 @@ public class LogIn extends AppCompatActivity {
         post.post(pairs);
     }
 
-    public void jump2main(View view) {
-        Intent intent=new Intent();
-        //setClass函数的第一个参数是一个Context对象
-        //Context是一个类,Activity是Context类的子类,也就是说,所有的Activity对象都可以向上转型为Context对象
-        //setClass函数的第二个参数是Class对象,在当前场景下,应该传入需要被启动的Activity的class对象
-        intent.setClass(LogIn.this, MainActivity.class);
-        startActivity(intent);
-    }
 
     class MyHandler extends Handler {
         void jump(){

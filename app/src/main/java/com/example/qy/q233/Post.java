@@ -63,7 +63,7 @@ public class Post {
                         BufferedReader reader = new BufferedReader(
                                 new InputStreamReader(entity.getContent()));
                         String result = reader.readLine();
-                        if (result=="p"){
+                        if (result.equals("p")){
                             sendMessage(mHandler, 3);
                         }
                         else {
