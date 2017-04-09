@@ -31,6 +31,7 @@ public class Register extends AppCompatActivity {
         String url = "http://192.168.1.104/q233/register.php";
         post = new Post(url, mHandler);
         ((EditText) findViewById(R.id.pass_word)).setTransformationMethod(PasswordTransformationMethod.getInstance());
+        ((EditText) findViewById(R.id.confirm)).setTransformationMethod(PasswordTransformationMethod.getInstance());
 
     }
 
