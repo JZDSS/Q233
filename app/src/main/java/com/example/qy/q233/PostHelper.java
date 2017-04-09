@@ -30,6 +30,12 @@ public class PostHelper {
     HttpPost httpPost;
     HttpClient httpClient;
 
+    /**
+     * Constructed function.
+     * @param url Url to who deals with the post request.
+     * @param mHandler Handler that handles the massage.
+     * @param map Mapping from server massage to cases in Handler.
+     */
     PostHelper(String url, Handler mHandler, HashMap<String, Integer> map){
         httpClient = new DefaultHttpClient();
         httpPost = new HttpPost(url);
@@ -38,17 +44,32 @@ public class PostHelper {
     }
 
 
+    /**
+     * Start a new thread and post the information.
+     * @param pairs
+     */
     void post (ArrayList<NameValuePair> pairs){
         new MyTread(pairs).start();
     }
 
 
     class MyTread extends Thread{
+
         ArrayList<NameValuePair> pairs;
+
+        /**
+         * Constructed function.
+         * @param pairs Massage to post.
+         */
         MyTread(ArrayList<NameValuePair> pairs){
             this.pairs = pairs;
         }
 
+        /**
+         *
+         * @param mHandler Handler that handles the massage.
+         * @param id The handler case id.
+         */
         private void sendMessage(Handler mHandler, int id) {
             if (mHandler != null) {
                 Message message = Message.obtain(mHandler, id);

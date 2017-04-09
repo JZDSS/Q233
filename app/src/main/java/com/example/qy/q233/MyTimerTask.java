@@ -24,7 +24,11 @@ public class MyTimerTask extends TimerTask {
         flag = id;
     }
 
-
+    /**
+     * Send a massage to a Handler.
+     * @param mHandler Handler that handles the massage.
+     * @param id Case id.
+     */
     private void sendMessage(Handler mHandler, int id) {
         if (mHandler != null) {
             Message message = Message.obtain(mHandler, id);

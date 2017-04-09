@@ -21,11 +21,13 @@ import java.util.HashMap;
  */
 
 public class Register extends AppCompatActivity {
+
     static final int SUCCEED = 0;
     static final int FAILED = 1;
     PostHelper mpostHelper;
     Register.MyHandler mHandler;
     HashMap<String,Integer> map;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,11 @@ public class Register extends AppCompatActivity {
 
     }
 
+    /**
+     * Post user's user name and password to server.
+     * If successfully registered, jump to Lon In interface.
+     * @param view The button.
+     */
     public void register(View view) {
         String userName = ((EditText) findViewById(R.id.user_name)).getText().toString();
         String passwd = ((EditText) findViewById(R.id.pass_word)).getText().toString();
@@ -64,6 +71,10 @@ public class Register extends AppCompatActivity {
 
 
     class MyHandler extends Handler {
+
+        /**
+         * Jump to Lon In interface.
+         */
         void jump2login(){
             Intent intent=new Intent();
             //setClass函数的第一个参数是一个Context对象
@@ -72,6 +83,11 @@ public class Register extends AppCompatActivity {
             intent.setClass(Register.this, LogIn.class);
             startActivity(intent);
         }
+
+        /**
+         * What this function will do depends on the massage from server.
+         * @param msg Massage from server(has been translated by PostHelper).
+         */
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {

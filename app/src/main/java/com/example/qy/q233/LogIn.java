@@ -21,11 +21,13 @@ import java.util.HashMap;
  */
 
 public class LogIn extends AppCompatActivity {
+
     static final int SUCCEED = 0;
     static final int FAILEDD = 1;
     PostHelper mpostHelper;
     MyHandler mHandler;
     HashMap<String, Integer> map;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,10 @@ public class LogIn extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Post user name and password to server.
+     * @param view The button.
+     */
     public void logIn(View view) {
         String userName = ((EditText) findViewById(R.id.user_name)).getText().toString();
         String passwd = ((EditText) findViewById(R.id.pass_word)).getText().toString();
@@ -55,6 +60,10 @@ public class LogIn extends AppCompatActivity {
         mpostHelper.post(pairs);
     }
 
+    /**
+     * Jump to register interface.
+     * @param view The button.
+     */
     public void jump2reg(View view) {
         Intent intent=new Intent();
         intent.setClass(LogIn.this, Register.class);
@@ -63,7 +72,11 @@ public class LogIn extends AppCompatActivity {
 
 
     class MyHandler extends Handler {
-        void jump(){
+
+        /**
+         * Jump to MainActivity interface.
+         */
+        void jump2main(){
             Intent intent=new Intent();
             //setClass函数的第一个参数是一个Context对象
             //Context是一个类,Activity是Context类的子类,也就是说,所有的Activity对象都可以向上转型为Context对象
@@ -71,11 +84,16 @@ public class LogIn extends AppCompatActivity {
             intent.setClass(LogIn.this, MainActivity.class);
             startActivity(intent);
         }
+
+        /**
+         * What this function will do depends on the massage from server.
+         * @param msg Massage from server(has been translated by PostHelper).
+         */
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case SUCCEED:
-                    jump();
+                    jump2main();
                     break;
                 case FAILEDD:
                     Toast.makeText(getApplicationContext(), "帐号或密码错误", Toast.LENGTH_SHORT).show();
