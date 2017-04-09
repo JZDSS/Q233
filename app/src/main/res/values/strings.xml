@@ -14,5 +14,6 @@
     <string name="user_name">User Name:</string>
     <string name="password">Password:</string>
     <string name="log_in">Log In</string>
-    <string name="register">Register</string>>
+    <string name="register">Register</string>
+    <string name="confirm">Confirm:</string>
 </resources>
