@@ -43,7 +43,7 @@
 
         <activity android:name=".BDMapActivity" />
         <activity android:name=".AccelerometerActivity" />
-        <activity android:name=".AboutusActivity"/>
+        <activity android:name=".AboutUsActivity"/>
         <activity android:name=".LogIn" />
         <activity android:name=".Register" />
         <meta-data

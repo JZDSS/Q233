@@ -9,26 +9,20 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IFillFormatter;
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.formatter.IFillFormatter;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Xu Yining on 2017/4/3.
  */
 
-public class DrawLinechart {
+class DrawLinechart {
     public LineChart mLineChart;
 
-//    if(!isChart){
-//        initChart();
-//        return;
-//    }
-
-    public void initChart(LineChart mLineChart, float savedTime, ArrayList<Entry> yVals) {
+    void initChart(LineChart mLineChart, float savedTime, ArrayList<Entry> yVals) {
         if (mLineChart == null) {
             return;
         }
@@ -36,8 +30,6 @@ public class DrawLinechart {
             savedTime += 0.002;
 
         } else {
-            long currentTime = 0;
-            currentTime = new Date().getTime();
             mLineChart.setViewPortOffsets(50, 20, 5, 60);
             // no description text
             Description xlabel = new Description();

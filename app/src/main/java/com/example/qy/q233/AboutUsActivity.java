@@ -7,7 +7,7 @@ import android.os.Bundle;
  * Created by Xu Yining on 2017/4/6.
  */
 
-public class AboutusActivity extends Activity {
+public class AboutUsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

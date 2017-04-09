@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 
 public class LogIn extends AppCompatActivity {
-    Post post;
+    PostHelper mpostHelper;
     MyHandler mHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class LogIn extends AppCompatActivity {
         setContentView(R.layout.login);
         mHandler = new MyHandler();
         String url = "http://192.168.1.104/q233/login.php";
-        post = new Post(url, mHandler);
+        mpostHelper = new PostHelper(url, mHandler);
         ((EditText) findViewById(R.id.pass_word)).setTransformationMethod(PasswordTransformationMethod.getInstance());
     }
 
@@ -42,7 +42,7 @@ public class LogIn extends AppCompatActivity {
         NameValuePair pair1= new BasicNameValuePair("p", passwd);
         pairs.add(pair0);
         pairs.add(pair1);
-        post.post(pairs);
+        mpostHelper.post(pairs);
     }
 
     public void jump2reg(View view) {

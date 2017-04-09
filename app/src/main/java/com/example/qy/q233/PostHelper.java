@@ -22,12 +22,12 @@ import java.util.ArrayList;
  * Created by Qi Yao on 17-4-8.
  */
 
-public class Post {
+public class PostHelper {
     Handler mHandler;
     HttpPost httpPost;
     HttpClient httpClient;
 
-    Post(String url, Handler mHandler){
+    PostHelper(String url, Handler mHandler){
         httpClient = new DefaultHttpClient();
         httpPost = new HttpPost(url);
         this.mHandler = mHandler;

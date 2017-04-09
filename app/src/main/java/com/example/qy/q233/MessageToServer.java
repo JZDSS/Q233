@@ -1,6 +1,5 @@
 package com.example.qy.q233;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.apache.http.HttpEntity;
@@ -33,8 +32,8 @@ public class MessageToServer {
     }
 
 
-    public void Post(long time, float x, float y, float z, float norm) {
-        mThread.setval(time, x, y, z, norm);
+    public void post(long time, float x, float y, float z, float norm) {
+        mThread.setVal(time, x, y, z, norm);
     }
 
     class MyThread extends Thread{
@@ -48,7 +47,7 @@ public class MessageToServer {
             this.norm = norm;
             this.on = false;
         }
-        void setval(long time, float x, float y, float z, float norm){
+        void setVal(long time, float x, float y, float z, float norm){
             this.time = time;
             this.x = x;
             this.y = y;

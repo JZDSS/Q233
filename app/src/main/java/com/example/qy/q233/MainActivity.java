@@ -1,22 +1,11 @@
 package com.example.qy.q233;
 
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.view.View.OnClickListener;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.baidu.mapapi.SDKInitializer;
-
-import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
+import android.widget.Button;
 
 /**
  * Created by Qi Yao on 17-3-15.
@@ -65,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent=new Intent();
-            intent.setClass(MainActivity.this, AboutusActivity.class);
+            intent.setClass(MainActivity.this, AboutUsActivity.class);
             startActivity(intent);
         }
     }

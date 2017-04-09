@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class Register extends AppCompatActivity {
 
-    Post post;
+    PostHelper mpostHelper;
     Register.MyHandler mHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.register);
         mHandler = new Register.MyHandler();
         String url = "http://192.168.1.104/q233/register.php";
-        post = new Post(url, mHandler);
+        mpostHelper = new PostHelper(url, mHandler);
         ((EditText) findViewById(R.id.pass_word)).setTransformationMethod(PasswordTransformationMethod.getInstance());
         ((EditText) findViewById(R.id.confirm)).setTransformationMethod(PasswordTransformationMethod.getInstance());
 
@@ -50,7 +50,7 @@ public class Register extends AppCompatActivity {
         NameValuePair pair1= new BasicNameValuePair("p", passwd);
         pairs.add(pair0);
         pairs.add(pair1);
-        post.post(pairs);
+        mpostHelper.post(pairs);
     }
 
 
