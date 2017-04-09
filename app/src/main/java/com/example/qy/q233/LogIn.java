@@ -29,8 +29,6 @@ public class LogIn extends AppCompatActivity {
         mHandler = new MyHandler();
         String url = "http://192.168.1.104/q233/login.php";
         post = new Post(url, mHandler);
-
-
         ((EditText) findViewById(R.id.pass_word)).setTransformationMethod(PasswordTransformationMethod.getInstance());
     }
 
@@ -45,6 +43,12 @@ public class LogIn extends AppCompatActivity {
         pairs.add(pair0);
         pairs.add(pair1);
         post.post(pairs);
+    }
+
+    public void jump2reg(View view) {
+        Intent intent=new Intent();
+        intent.setClass(LogIn.this, Register.class);
+        startActivity(intent);
     }
 
 

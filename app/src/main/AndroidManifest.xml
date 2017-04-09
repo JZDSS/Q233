@@ -45,6 +45,7 @@
         <activity android:name=".AccelerometerActivity" />
         <activity android:name=".AboutusActivity"/>
         <activity android:name=".LogIn" />
+        <activity android:name=".Register" />
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="MSTWCXXj6AW7Y27uCiVoQm5Gnce0yX0f" />
