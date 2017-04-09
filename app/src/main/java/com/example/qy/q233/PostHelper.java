@@ -17,20 +17,24 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Qi Yao on 17-4-8.
  */
 
 public class PostHelper {
+
+    HashMap<String, Integer> map;
     Handler mHandler;
     HttpPost httpPost;
     HttpClient httpClient;
 
-    PostHelper(String url, Handler mHandler){
+    PostHelper(String url, Handler mHandler, HashMap<String, Integer> map){
         httpClient = new DefaultHttpClient();
         httpPost = new HttpPost(url);
         this.mHandler = mHandler;
+        this.map = map;
     }
 
 
@@ -63,12 +67,9 @@ public class PostHelper {
                         BufferedReader reader = new BufferedReader(
                                 new InputStreamReader(entity.getContent()));
                         String result = reader.readLine();
-                        if (result.equals("p")){
-                            sendMessage(mHandler, 3);
-                        }
-                        else {
-                            sendMessage(mHandler, 4);
-                        }
+
+                        sendMessage(mHandler, map.get(result));
+
                         Log.d("HTTP", "POST:" + result);
                     }
                 } catch (IOException e) {

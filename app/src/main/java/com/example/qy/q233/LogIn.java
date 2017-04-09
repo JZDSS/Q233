@@ -14,21 +14,31 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Qi Yao on 17-4-8.
  */
 
 public class LogIn extends AppCompatActivity {
+    static final int SUCCEED = 0;
+    static final int FAILEDD = 1;
     PostHelper mpostHelper;
     MyHandler mHandler;
+    HashMap<String, Integer> map;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        mHandler = new MyHandler();
+
         String url = "http://192.168.1.104/q233/login.php";
-        mpostHelper = new PostHelper(url, mHandler);
+        mHandler = new MyHandler();
+
+        map = new HashMap<>();
+        map.put("p", SUCCEED);
+        map.put("d", FAILEDD);
+
+        mpostHelper = new PostHelper(url, mHandler, map);
         ((EditText) findViewById(R.id.pass_word)).setTransformationMethod(PasswordTransformationMethod.getInstance());
     }
 
@@ -64,10 +74,10 @@ public class LogIn extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case 3:
+                case SUCCEED:
                     jump();
                     break;
-                case 4:
+                case FAILEDD:
                     Toast.makeText(getApplicationContext(), "帐号或密码错误", Toast.LENGTH_SHORT).show();
                 default:
                     break;

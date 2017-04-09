@@ -1,13 +1,12 @@
 package com.example.qy.q233;
 
 import android.Manifest;
-import android.content.Context;
 
 /**
  * Created by Qi Yao on 17-3-18.
  */
 
-public class Permission {
+class Permission {
 
     static String[] allPermissions = {
 //            Manifest.permission.ACCESS_COARSE_LOCATION,

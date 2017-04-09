@@ -1,6 +1,5 @@
 package com.example.qy.q233;
 
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import com.baidu.mapapi.SDKInitializer;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 
@@ -160,25 +158,25 @@ public class AccelerometerActivity extends AppCompatActivity {
         }
     }
 
-    public void read(View view){
-        if (!storageAllowed && SplashActivity.apiVersion >=23){
-            requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
-            return;
-        }
-//        fileName = ((EditText) findViewById(R.id.file_name)).getText().toString();
-        try
-        {
-            String content = mFileManager.read(fileName);
-            Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
-        } catch(IOException e){
-            e.printStackTrace();
-            if (SplashActivity.apiVersion >=23){
-                requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
-            }
-        }
+//    public void read(View view){
+//        if (!storageAllowed && SplashActivity.apiVersion >=23){
+//            requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+//            return;
+//        }
+////        fileName = ((EditText) findViewById(R.id.file_name)).getText().toString();
+//        try
+//        {
+//            String content = mFileManager.read(fileName);
+//            Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
+//        } catch(IOException e){
+//            e.printStackTrace();
+//            if (SplashActivity.apiVersion >=23){
+//                requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+//            }
+//        }
+//    }
 
 
-    }
     public void sensorControl(View view) {
         if (sensorOn) {
             onPause();
@@ -212,61 +210,61 @@ public class AccelerometerActivity extends AppCompatActivity {
     }
 
 
-    public void exportControl(View view) {
-        if (!storageAllowed && SplashActivity.apiVersion >=23){
-            requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
-            return;
-        }
-        if (exporting){
-            //mFileManager.save(cache);
-            try{
-                mFileManager.save(fileName, cache, true);
-            } catch (Exception e) {
-                e.printStackTrace();
-                if (SplashActivity.apiVersion >=23) {
-                    requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
-                }
-                return;
-            }
-            cache = "";
-//            ((Button)findViewById(R.id.export)).setText(R.string.export);
-            exporting = false;
-        } else {
+//    public void exportControl(View view) {
+//        if (!storageAllowed && SplashActivity.apiVersion >=23){
+//            requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+//            return;
+//        }
+//        if (exporting){
+//            //mFileManager.save(cache);
+//            try{
+//                mFileManager.save(fileName, cache, true);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                if (SplashActivity.apiVersion >=23) {
+//                    requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+//                }
+//                return;
+//            }
+//            cache = "";
+////            ((Button)findViewById(R.id.export)).setText(R.string.export);
+//            exporting = false;
+//        } else {
+//
+//            if (!sensorOn){
+//
+//                onResume();
+////                ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
+//                sensorOn = true;
+//            }
+//
+////            fileName = ((EditText) findViewById(R.id.file_name)).getText().toString();
+//            try{
+//                mFileManager.save(fileName, "", false);
+//            }catch (Exception e){
+//                e.printStackTrace();
+//                if (SplashActivity.apiVersion >=23) {
+//                    requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+//                }
+//                return;
+//            }
+////            ((Button)findViewById(R.id.export)).setText(R.string.stop);
+//            exporting = true;
+//        }
+//    }
 
-            if (!sensorOn){
-
-                onResume();
-//                ((Button) findViewById(R.id.sensor_control)).setText(R.string.stop);
-                sensorOn = true;
-            }
-
-//            fileName = ((EditText) findViewById(R.id.file_name)).getText().toString();
-            try{
-                mFileManager.save(fileName, "", false);
-            }catch (Exception e){
-                e.printStackTrace();
-                if (SplashActivity.apiVersion >=23) {
-                    requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
-                }
-                return;
-            }
-//            ((Button)findViewById(R.id.export)).setText(R.string.stop);
-            exporting = true;
-        }
-    }
-
-    public void jump(View view){
-        xBarView.closed = true;
-        yBarView.closed = true;
-        zBarView.closed = true;
-
-        Intent intent=new Intent();
-        //setClass函数的第一个参数是一个Context对象
-        //Context是一个类,Activity是Context类的子类,也就是说,所有的Activity对象都可以向上转型为Context对象
-        //setClass函数的第二个参数是Class对象,在当前场景下,应该传入需要被启动的Activity的class对象
-        intent.setClass(AccelerometerActivity.this, BDMapActivity.class);
-        startActivity(intent);
-    }
+//    public void jump(View view){
+//        xBarView.closed = true;
+//        yBarView.closed = true;
+//        zBarView.closed = true;
+//
+//        Intent intent=new Intent();
+//        //setClass函数的第一个参数是一个Context对象
+//        //Context是一个类,Activity是Context类的子类,也就是说,所有的Activity对象都可以向上转型为Context对象
+//        //setClass函数的第二个参数是Class对象,在当前场景下,应该传入需要被启动的Activity的class对象
+//        intent.setClass(AccelerometerActivity.this, BDMapActivity.class);
+//        startActivity(intent);
+//    }
 
 
     class MyHandler extends Handler {
@@ -321,7 +319,6 @@ public class AccelerometerActivity extends AppCompatActivity {
                     break;
                 case UPDATE_CHART:
                     if (isChart) {
-                        //yVals.add(new Entry(savedTime, mAccelerometer.norm));
                         savedTime += 0.125;
                         mDrawLineChart.updateData(mLinechart, mAccelerometer.norm, yVals, savedTime);
                     }

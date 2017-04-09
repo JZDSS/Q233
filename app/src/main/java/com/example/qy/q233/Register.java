@@ -14,22 +14,31 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Qi Yao on 17-4-9.
  */
 
 public class Register extends AppCompatActivity {
-
+    static final int SUCCEED = 0;
+    static final int FAILED = 1;
     PostHelper mpostHelper;
     Register.MyHandler mHandler;
+    HashMap<String,Integer> map;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
-        mHandler = new Register.MyHandler();
+
         String url = "http://192.168.1.104/q233/register.php";
-        mpostHelper = new PostHelper(url, mHandler);
+        mHandler = new Register.MyHandler();
+
+        map = new HashMap<>();
+        map.put("p", SUCCEED);
+        map.put("d", FAILED);
+
+        mpostHelper = new PostHelper(url, mHandler,map);
         ((EditText) findViewById(R.id.pass_word)).setTransformationMethod(PasswordTransformationMethod.getInstance());
         ((EditText) findViewById(R.id.confirm)).setTransformationMethod(PasswordTransformationMethod.getInstance());
 
@@ -66,11 +75,11 @@ public class Register extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case 3:
+                case SUCCEED:
                     Toast.makeText(getApplicationContext(), "注册成功！", Toast.LENGTH_SHORT).show();
                     jump2login();
                     break;
-                case 4:
+                case FAILED:
                     Toast.makeText(getApplicationContext(), "注册失败！", Toast.LENGTH_SHORT).show();
                 default:
                     break;
