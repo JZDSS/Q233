@@ -29,9 +29,25 @@ android {
     }
 
     sourceSets { main { jniLibs.srcDirs = ['src/main/jniLibs/'] } }
+
+    packagingOptions {
+        pickFirst "META-INF/DEPENDENCIES"
+        pickFirst "META-INF/LICENSE"
+        pickFirst "META-INF/MANIFEST.MF"
+        pickFirst "META-INF/NOTICE"
+        pickFirst "META-INF/maven.org.apache.httpcomponnet.httpclient/pom.properties"
+        pickFirst "META-INF/maven.org.apache.httpcomponnet.httpclient/pom.xml"
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
 }
 
 dependencies {
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -40,4 +56,6 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile files('libs/BaiduLBS_Android.jar')
+    compile files('libs/httpcore-4.4.6.jar')
+    compile files('libs/httpclient-4.5.3.jar')
 }

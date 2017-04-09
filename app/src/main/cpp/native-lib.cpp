@@ -1,11 +1,11 @@
 #include <jni.h>
-#include <string>
-
+#include "Max.h"
 extern "C"
-JNIEXPORT jstring JNICALL
-Java_com_example_qy_q233_MainActivity_stringFromJNI(
-        JNIEnv *env,
-        jobject /* this */) {
-    std::string hello = "Hello from C++";
-    return env->NewStringUTF(hello.c_str());
+JNIEXPORT jint JNICALL
+Java_com_example_qy_q233_Accelerometer_maxFromJNI(JNIEnv *env, jclass type, jintArray arr) {
+
+    // TODO
+    jsize len = env->GetArrayLength(arr);
+    jint *body = env->GetIntArrayElements(arr, 0);
+    return max(body);
 }

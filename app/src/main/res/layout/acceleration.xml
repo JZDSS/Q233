@@ -18,8 +18,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_alignParentBottom="true">
+                android:layout_alignParentTop="true">
                 <TextView
+                    android:id="@+id/titleA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" Acceleration "
@@ -27,208 +28,244 @@
                     android:textStyle="italic"
                     android:typeface="serif"/>
             </RelativeLayout>
+            <Switch
+                android:id="@+id/sensor_switch"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:onClick="sensorControl"
+                android:textOff="@string/text_off"
+                android:textOn="@string/text_on" />
         </RelativeLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5">
+            android:layout_weight="7.5">
             <LinearLayout
-                android:layout_width="300dp"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:orientation="horizontal">
+                android:orientation="vertical">
                 <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="@string/x"
-                        android:textSize="40sp"
-                        android:textStyle="italic"
-                        android:typeface="serif"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5">
+                    <LinearLayout
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_centerInParent="true">
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text=" x "
+                                android:textSize="40sp"
+                                android:textStyle="italic"
+                                android:typeface="serif"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text=" y "
+                                android:textSize="40sp"
+                                android:textStyle="italic"
+                                android:typeface="serif"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text=" z "
+                                android:textSize="40sp"
+                                android:textStyle="italic"
+                                android:typeface="serif"/>
+                        </RelativeLayout>
+                    </LinearLayout>
                 </RelativeLayout>
+
                 <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <LinearLayout
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
                         android:layout_centerInParent="true"
-                        android:text="@string/y"
-                        android:textSize="40sp"
-                        android:textStyle="italic"
-                        android:typeface="serif"/>
+                        android:orientation="horizontal">
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/val_x"
+                                android:maxLines="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:textSize="20sp"
+                                android:textStyle="italic"
+                                android:typeface="serif"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/val_y"
+                                android:maxLines="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:textSize="20sp"
+                                android:textStyle="italic"
+                                android:typeface="serif"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/val_z"
+                                android:maxLines="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:textSize="20sp"
+                                android:textStyle="italic"
+                                android:typeface="serif"/>
+                        </RelativeLayout>
+                    </LinearLayout>
                 </RelativeLayout>
+
                 <RelativeLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5">
+                <LinearLayout
+                    android:layout_width="300dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="@string/z"
-                        android:textSize="40sp"
-                        android:textStyle="italic"
-                        android:typeface="serif"/>
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                        <com.example.qy.q233.BarView
+                            android:id="@+id/sv1"
+                            android:layout_width="20dp"
+                            android:layout_height="160dp"
+                            android:layout_centerInParent="true" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <com.example.qy.q233.BarView
+                            android:id="@+id/sv2"
+                            android:layout_width="20dp"
+                            android:layout_height="160dp"
+                            android:layout_centerInParent="true" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <com.example.qy.q233.BarView
+                            android:id="@+id/sv3"
+                            android:layout_width="20dp"
+                            android:layout_height="160dp"
+                            android:layout_centerInParent="true" />
+                    </RelativeLayout>
+                </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:orientation="horizontal">
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <TextView
-                        android:id="@+id/val_x"
-                        android:maxLines="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:textSize="20sp"
-                        android:textStyle="italic"
-                        android:typeface="serif"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <TextView
-                        android:id="@+id/val_y"
-                        android:maxLines="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:textSize="20sp"
-                        android:textStyle="italic"
-                        android:typeface="serif"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <TextView
-                        android:id="@+id/val_z"
-                        android:maxLines="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:textSize="20sp"
-                        android:textStyle="italic"
-                        android:typeface="serif"/>
-                </RelativeLayout>
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5">
-
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <com.example.qy.q233.BarView
-                        android:id="@+id/sv1"
-                        android:layout_width="20dp"
-                        android:layout_height="160dp"
-                        android:layout_centerInParent="true" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <com.example.qy.q233.BarView
-                        android:id="@+id/sv2"
-                        android:layout_width="20dp"
-                        android:layout_height="160dp"
-                        android:layout_centerInParent="true" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <com.example.qy.q233.BarView
-                        android:id="@+id/sv3"
-                        android:layout_width="20dp"
-                        android:layout_height="160dp"
-                        android:layout_centerInParent="true" />
-                </RelativeLayout>
-            </LinearLayout>
-
-        </RelativeLayout>
+            <!--<RelativeLayout-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_height="match_parent">-->
+                <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_centerInParent="true">-->
+                    <!--<Switch-->
+                        <!--android:id="@+id/sensor_switch"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:onClick="sensorControl"-->
+                        <!--android:textOn="text_on"-->
+                        <!--android:textOff="text_off" />-->
+                    <!--<Button-->
+                        <!--android:id="@+id/sensor_control"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:onClick="sensorControl"-->
+                        <!--android:text="@string/stop" />-->
+                    <!--<Button-->
+                        <!--android:id="@+id/export"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:onClick="exportControl"-->
+                        <!--android:text="@string/export" />-->
+                    <!--<Button-->
+                        <!--android:id="@+id/read"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:onClick="read"-->
+                        <!--android:text="@string/read" />-->
+                    <!--<Button-->
+                        <!--android:id="@+id/jump"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:onClick="jump"-->
+                        <!--android:text="jump" />-->
+                    <!--<EditText-->
+                        <!--android:id="@+id/file_name"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0dp"-->
+                        <!--android:layout_weight="1"/>-->
+                <!--</LinearLayout>-->
+            <!--</RelativeLayout>-->
+        </LinearLayout>
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/sensor_control"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:onClick="sensorControl"
-                android:text="@string/stop" />
-
-            <Button
-                android:id="@+id/export"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:onClick="exportControl"
-                android:text="@string/export" />
-
-            <Button
-                android:id="@+id/read"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:onClick="read"
-                android:text="@string/read" />
-
-            <Button
-                android:id="@+id/jump"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:onClick="jump"
-                android:text="jump" />
-
-
-        </LinearLayout>
+        android:layout_weight="4"
+        android:background="@drawable/backgroungacc">
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/linechart"
+            android:layout_width="320dp"
+            android:layout_height="180dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"/>
     </RelativeLayout>
-
-
-
 </LinearLayout>

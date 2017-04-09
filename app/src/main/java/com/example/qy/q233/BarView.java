@@ -8,7 +8,6 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 
 /**
  * Created by Xu Yining on 2017/4/1.
@@ -49,7 +48,7 @@ public class BarView extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-    public class MyThread extends Thread implements Runnable{
+    private class MyThread extends Thread implements Runnable{
 
         @Override
         public void run() {
