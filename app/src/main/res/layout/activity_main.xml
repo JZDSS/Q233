@@ -12,17 +12,17 @@
             android:id="@+id/button_jump1"
             android:layout_width="368dp"
             android:layout_height="wrap_content"
-            android:text="Jump1" />
+            android:text="@string/Jump1" />
         <Button
             android:id="@+id/button_jump2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Jump2"/>
+            android:text="@string/Jump2"/>
         <Button
             android:id="@+id/button_jump3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Jump3"/>
+            android:text="@string/Jump3"/>
     </LinearLayout>
 
 

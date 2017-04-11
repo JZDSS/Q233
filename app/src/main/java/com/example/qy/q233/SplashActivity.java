@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
@@ -14,7 +13,6 @@ import android.widget.ImageView;
  */
 
 public class SplashActivity extends Activity {
-    private final int SPLASH_DISPLAY_LENGHT = 30; // 延迟3秒
     static int apiVersion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +27,7 @@ public class SplashActivity extends Activity {
         ImageView imageView = (ImageView) findViewById(R.id.loading);
         ObjectAnimator.ofFloat(imageView, "rotation", 0F, 6000F).setDuration(100).start();
 
+        int SPLASH_DISPLAY_LENGHT = 1000;
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 Intent mainIntent = new Intent(SplashActivity.this,
@@ -36,7 +35,6 @@ public class SplashActivity extends Activity {
                 SplashActivity.this.startActivity(mainIntent);
                 SplashActivity.this.finish();
             }
-
         }, SPLASH_DISPLAY_LENGHT);
 
     }

@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         mButton.setOnClickListener(new ButtonListener3());
     }
 
-    class ButtonListener1 implements OnClickListener {
+    private class ButtonListener1 implements OnClickListener {
 
         @Override
         public void onClick(View v) {
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class ButtonListener2 implements OnClickListener {
+    private class ButtonListener2 implements OnClickListener {
         @Override
         public void onClick(View v) {
             Intent intent=new Intent();

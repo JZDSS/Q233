@@ -16,4 +16,8 @@
     <string name="log_in">Log In</string>
     <string name="register">Register</string>
     <string name="confirm">Confirm:</string>
+    <string name="Jump1">Jump1</string>
+    <string name="Jump2">Jump2</string>
+    <string name="Jump3">Jump3</string>
+    <string name="ip">Server IP</string>
 </resources>

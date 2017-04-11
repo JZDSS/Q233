@@ -24,23 +24,24 @@ public class Register extends AppCompatActivity {
 
     static final int SUCCEED = 0;
     static final int FAILED = 1;
-    PostHelper mpostHelper;
+    // mpostHelper;
     Register.MyHandler mHandler;
     HashMap<String,Integer> map;
+    AskForServerIP popupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
-        String url = "http://192.168.1.104/q233/register.php";
+        popupWindow = new AskForServerIP(this);
+
         mHandler = new Register.MyHandler();
 
         map = new HashMap<>();
         map.put("p", SUCCEED);
         map.put("d", FAILED);
 
-        mpostHelper = new PostHelper(url, mHandler,map);
         ((EditText) findViewById(R.id.pass_word)).setTransformationMethod(PasswordTransformationMethod.getInstance());
         ((EditText) findViewById(R.id.confirm)).setTransformationMethod(PasswordTransformationMethod.getInstance());
 
@@ -52,21 +53,30 @@ public class Register extends AppCompatActivity {
      * @param view The button.
      */
     public void register(View view) {
-        String userName = ((EditText) findViewById(R.id.user_name)).getText().toString();
-        String passwd = ((EditText) findViewById(R.id.pass_word)).getText().toString();
-        String confirm = ((EditText) findViewById(R.id.confirm)).getText().toString();
-        if (!passwd.equals(confirm)) {
-            Toast.makeText(getApplicationContext(), "两次密码不一致！", Toast.LENGTH_SHORT).show();
-            ((EditText) findViewById(R.id.pass_word)).setText("");
-            ((EditText) findViewById(R.id.confirm)).setText("");
-            return;
+        MyApp myApp = (MyApp) getApplication();
+        String url =  myApp.getUrl();//((EditText) findViewById(R.id.ipp)).getText().toString();//"http://192.168.1.104/q233/login.php";
+
+        if (url.isEmpty()) {
+            popupWindow.show();
+        } else {
+            url = url + "/q233/register.php";
+            PostHelper mpostHelper = new PostHelper(url, mHandler, map);
+            String userName = ((EditText) findViewById(R.id.user_name)).getText().toString();
+            String passwd = ((EditText) findViewById(R.id.pass_word)).getText().toString();
+            String confirm = ((EditText) findViewById(R.id.confirm)).getText().toString();
+            if (!passwd.equals(confirm)) {
+                Toast.makeText(getApplicationContext(), "两次密码不一致！", Toast.LENGTH_SHORT).show();
+                ((EditText) findViewById(R.id.pass_word)).setText("");
+                ((EditText) findViewById(R.id.confirm)).setText("");
+                return;
+            }
+            ArrayList<NameValuePair> pairs = new ArrayList<>();
+            NameValuePair pair0= new BasicNameValuePair("u", userName);
+            NameValuePair pair1= new BasicNameValuePair("p", passwd);
+            pairs.add(pair0);
+            pairs.add(pair1);
+            mpostHelper.post(pairs);
         }
-        ArrayList<NameValuePair> pairs = new ArrayList<>();
-        NameValuePair pair0= new BasicNameValuePair("u", userName);
-        NameValuePair pair1= new BasicNameValuePair("p", passwd);
-        pairs.add(pair0);
-        pairs.add(pair1);
-        mpostHelper.post(pairs);
     }
 
 
