@@ -38,14 +38,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".Start" />
         <activity android:name=".MainActivity" />
 
         <activity android:name=".BDMapActivity" />
         <activity android:name=".AccelerometerActivity" />
         <activity android:name=".AboutUsActivity"/>
-        <activity android:name=".LogIn" />
-        <activity android:name=".Register" />
+        <activity android:name=".Login" />
+        <activity android:name=".Signup" />
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="MSTWCXXj6AW7Y27uCiVoQm5Gnce0yX0f" />
