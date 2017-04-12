@@ -14,25 +14,40 @@ import android.widget.PopupWindow;
  */
 
 public class AskForServerIP extends PopupWindow {
-    Activity mActivity;
-    View contentView;
-    PopupWindow popupWindow;
+    private Activity mActivity;
+    private View contentView;
+    private PopupWindow popupWindow;
     AskForServerIP(Activity outActivity) {
         mActivity = outActivity;
         contentView = mActivity.getLayoutInflater().inflate(R.layout.server_ip, null);
 
+        EditText editText1 = (EditText) contentView.findViewById(R.id.ip1);
+        EditText editText2 = (EditText) contentView.findViewById(R.id.ip2);
+        EditText editText3 = (EditText) contentView.findViewById(R.id.ip3);
+        EditText editText4 = (EditText) contentView.findViewById(R.id.ip4);
+        editText1.setInputType(InputType.TYPE_CLASS_NUMBER);
+        editText2.setInputType(InputType.TYPE_CLASS_NUMBER);
+        editText3.setInputType(InputType.TYPE_CLASS_NUMBER);
+        editText4.setInputType(InputType.TYPE_CLASS_NUMBER);
+
         Button button = (Button) contentView.findViewById(R.id.bt1);
         contentView.setBackgroundColor(Color.WHITE);
-
         button.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //contentView.setBackgroundColor(Color.RED);
                 MyApp myApp = (MyApp) mActivity.getApplication();
-                EditText editText = (EditText) contentView.findViewById(R.id.ip);
-                editText.setInputType(InputType.TYPE_CLASS_NUMBER);
-                String url = editText.getText().toString();
-                myApp.setUrl("http://" + url);
+                EditText editText1 = (EditText) contentView.findViewById(R.id.ip1);
+                EditText editText2 = (EditText) contentView.findViewById(R.id.ip2);
+                EditText editText3 = (EditText) contentView.findViewById(R.id.ip3);
+                EditText editText4 = (EditText) contentView.findViewById(R.id.ip4);
+
+
+                String url = editText1.getText().toString() + "." +
+                        editText2.getText().toString() + "." +
+                        editText3.getText().toString() + "." +
+                        editText4.getText().toString();
+                myApp.setUrl(url);
                 popupWindow.dismiss();
             }
         });

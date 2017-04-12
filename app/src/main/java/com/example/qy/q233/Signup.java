@@ -59,7 +59,7 @@ public class Signup extends AppCompatActivity {
         if (url.isEmpty()) {
             popupWindow.show();
         } else {
-            url = url + "/q233/register.php";
+            url = "http://" + url + "/q233/register.php";
             PostHelper mpostHelper = new PostHelper(url, mHandler, map);
             String userName = ((EditText) findViewById(R.id.user_name)).getText().toString();
             String passwd = ((EditText) findViewById(R.id.pass_word)).getText().toString();

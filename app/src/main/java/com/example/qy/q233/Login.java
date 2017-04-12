@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -44,6 +45,30 @@ public class Login extends AppCompatActivity {
 
         popupWindow = new AskForServerIP(this);
 
+        ((Button) findViewById(R.id.login_bt)).setOnClickListener(
+                new View.OnClickListener() {
+                      @Override
+                      public void onClick(View v) {
+                          MyApp myApp = (MyApp) getApplication();
+                          String url =  myApp.getUrl();//((EditText) findViewById(R.id.ipp)).getText().toString();//"http://192.168.1.104/q233/login.php";
+
+                          if (url.isEmpty()) {
+                              popupWindow.show();
+                          } else {
+                              url = "http://" + url + "/q233/login.php";
+                              PostHelper mpostHelper = new PostHelper(url, mHandler, map);
+                              String userName = ((EditText) findViewById(R.id.user_name)).getText().toString();
+                              String passwd = ((EditText) findViewById(R.id.pass_word)).getText().toString();
+                              ArrayList<NameValuePair> pairs = new ArrayList<>();
+                              NameValuePair pair0= new BasicNameValuePair("u", userName);
+                              NameValuePair pair1= new BasicNameValuePair("p", passwd);
+                              pairs.add(pair0);
+                              pairs.add(pair1);
+                              mpostHelper.post(pairs);
+                          }
+                      }
+                }
+        );
     }
 
     /**
@@ -52,23 +77,7 @@ public class Login extends AppCompatActivity {
      */
     public void logIn(View view) {
 
-        MyApp myApp = (MyApp) getApplication();
-        String url =  myApp.getUrl();//((EditText) findViewById(R.id.ipp)).getText().toString();//"http://192.168.1.104/q233/login.php";
 
-        if (url.isEmpty()) {
-            popupWindow.show();
-        } else {
-            url = url + "/q233/login.php";
-            PostHelper mpostHelper = new PostHelper(url, mHandler, map);
-            String userName = ((EditText) findViewById(R.id.user_name)).getText().toString();
-            String passwd = ((EditText) findViewById(R.id.pass_word)).getText().toString();
-            ArrayList<NameValuePair> pairs = new ArrayList<>();
-            NameValuePair pair0= new BasicNameValuePair("u", userName);
-            NameValuePair pair1= new BasicNameValuePair("p", passwd);
-            pairs.add(pair0);
-            pairs.add(pair1);
-            mpostHelper.post(pairs);
-        }
     }
 
     class MyHandler extends Handler {
