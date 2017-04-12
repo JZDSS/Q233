@@ -4,36 +4,35 @@
     android:layout_height="match_parent"
     android:paddingBottom="50dp"
     android:paddingLeft="30dp"
-    android:paddingRight="30dp">
+    android:paddingRight="30dp"
+    android:background="@drawable/welcome">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingRight="10dp">
+            android:layout_weight="1">
             <Button
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/login_bt"
                 android:id="@+id/login_bt"
-                android:text="Login"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-        <LinearLayout
+                android:layout_width="128.7dp"
+                android:layout_height="33.3dp" />
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="10dp">
+            android:layout_weight="1">
             <Button
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/signup_bt"
                 android:id="@+id/signup_bt"
-                android:text="Signup"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
+                android:layout_width="128.7dp"
+                android:layout_height="33.3dp" />
+        </RelativeLayout>
 
     </LinearLayout>
 
