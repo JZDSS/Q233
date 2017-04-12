@@ -47,7 +47,9 @@ public class AskForServerIP extends PopupWindow {
                         editText2.getText().toString() + "." +
                         editText3.getText().toString() + "." +
                         editText4.getText().toString();
-                myApp.setUrl(url);
+                if (!url.equals("...")) {
+                    myApp.setUrl(url);
+                }
                 popupWindow.dismiss();
             }
         });
@@ -56,8 +58,8 @@ public class AskForServerIP extends PopupWindow {
 
         popupWindow = new PopupWindow(contentView,
                 1000, 400, true);
-        popupWindow.setFocusable(true);
-        popupWindow.setOutsideTouchable(false);
+//        popupWindow.setFocusable(true);
+//        popupWindow.setOutsideTouchable(false);
     }
 
     void show() {

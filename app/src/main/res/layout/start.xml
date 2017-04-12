@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:paddingBottom="50dp"
     android:paddingLeft="30dp"
-    android:paddingRight="30dp">
+    android:paddingRight="30dp"
+    android:background="@drawable/welcome">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +18,7 @@
             android:paddingRight="10dp">
             <Button
                 android:id="@+id/login_bt"
-                android:text="Login"
+                android:text="@string/login"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
@@ -29,7 +30,7 @@
             android:paddingLeft="10dp">
             <Button
                 android:id="@+id/signup_bt"
-                android:text="Signup"
+                android:text="@string/signup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
