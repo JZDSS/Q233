@@ -7,8 +7,15 @@ import android.app.Application;
  */
 
 public class MyApp extends Application {
+    int apiVersion;
     String url = "";
+    public void setApiVersion(int version) {
+        apiVersion = version;
+    }
 
+    public int getApiVersion() {
+        return apiVersion;
+    }
     public void setUrl(String url) {
         this.url = url;
     }

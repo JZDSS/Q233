@@ -53,7 +53,7 @@ public class AccelerometerActivity extends AppCompatActivity {
         setContentView(R.layout.acceleration);
         messageToServer = new MessageToServer();
 
-        if (SplashActivity.apiVersion >=23) {
+        if (((MyApp)getApplication()).getApiVersion() >= 23) {
             requestPermissions(Permission.allPermissions, 0);
         }
         mAccelerometer = new Accelerometer(this);
@@ -189,7 +189,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                     mFileManager.save(fileName, cache, true);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    if (SplashActivity.apiVersion >=23){
+                    if (((MyApp) getApplication()).getApiVersion() >= 23){
                         requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
                     }
                     return;
@@ -308,7 +308,7 @@ public class AccelerometerActivity extends AppCompatActivity {
                                 mFileManager.save(fileName, cache, true);
                             }catch (Exception e){
                                 e.printStackTrace();
-                                if (SplashActivity.apiVersion >=23) {
+                                if (((MyApp) getApplication()).getApiVersion() >= 23) {
                                     requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
                                 }
                                 return;

@@ -13,13 +13,14 @@ import android.widget.ImageView;
  */
 
 public class SplashActivity extends Activity {
-    static int apiVersion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
-        apiVersion = android.os.Build.VERSION.SDK_INT;
+        int apiVersion = android.os.Build.VERSION.SDK_INT;
+        ((MyApp) getApplication()).setApiVersion(apiVersion);
 
         TranslateAnimation animation = new TranslateAnimation(0, 0, 0, 0);
         animation.setDuration(100);

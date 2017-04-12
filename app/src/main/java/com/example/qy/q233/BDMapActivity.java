@@ -27,17 +27,16 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.model.LatLng;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+
 //import com.baidu.location.BDLocation;
 //import com.baidu.location.BDLocationListener;
 //import com.baidu.location.LocationClient;
 //import com.baidu.location.LocationClientOption;
 //import com.baidu.location.BDNotifyListener;//假如用到位置提醒功能，需要import该类
 //import com.baidu.location.Poi;
-
-import java.security.PrivateKey;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
 
 /**
  * Created by Qi Yao on 17-3-19.
@@ -175,7 +174,7 @@ public class BDMapActivity extends AppCompatActivity {
         public void onReceiveLocation(BDLocation location) {
             if (location.getLocType() == 167)
             {
-                if (SplashActivity.apiVersion >=23) {
+                if (((MyApp) getApplication()).getApiVersion() >= 23) {
                     requestPermissions(new String[]{Permission.allPermissions[0]}, Permission.Codes[0]);
                 }
                 return;
