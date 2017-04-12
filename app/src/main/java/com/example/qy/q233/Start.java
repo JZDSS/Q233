@@ -11,6 +11,26 @@ import android.widget.Button;
  */
 
 public class Start extends AppCompatActivity {
+
+//    public static final View.OnTouchListener TouchDark = new View.OnTouchListener() {
+//
+//        public final float[] BT_SELECTED = new float[] {1,0,0,0,-50,0,1,0,0,-50,0,0,1,0,-50,0,0,0,1,0};
+//        public final float[] BT_NOT_SELECTED = new float[] {1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0};
+//
+//        @Override
+//        public boolean onTouch(View v, MotionEvent event) {
+//            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                v.getBackground().setColorFilter(
+//                        new ColorMatrixColorFilter(BT_SELECTED));
+//                v.setBackgroundDrawable(v.getBackground());
+//            } else if (event.getAction() == MotionEvent.ACTION_UP) {
+//                v.getBackground().setColorFilter(
+//                        new ColorMatrixColorFilter(BT_NOT_SELECTED));
+//                v.setBackgroundDrawable(v.getBackground());
+//            }
+//            return false;
+//        }
+//    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +54,9 @@ public class Start extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        login.setOnTouchListener(new TouchDark());
+        signup.setOnTouchListener(new TouchDark());
     }
 
 
