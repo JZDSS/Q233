@@ -48,8 +48,17 @@ public class Login extends AppCompatActivity {
 
         popupWindow = new AskForServerIP(this);
 
-        ((Button) findViewById(R.id.login_bt)).setOnClickListener(
-                new View.OnClickListener() {
+        EditText editText_u = ((EditText) findViewById(R.id.login_username));
+        editText_u.setOnFocusChangeListener(new EditTextViewBackgroundSwitcher(this, R.drawable.login_editbk, R.drawable.login_editbk_username));
+
+        EditText editText_p = ((EditText) findViewById(R.id.login_password));
+        //editText_p.setOnTouchListener(new ShowCursor(true));
+
+        editText_p.setOnFocusChangeListener(new EditTextViewBackgroundSwitcher(this, R.drawable.login_editbk, R.drawable.login_editbk_password));
+
+        ((Button) findViewById(R.id.login_bt)).setOnTouchListener(new TouchDark());
+
+        ((Button) findViewById(R.id.login_bt)).setOnClickListener(new View.OnClickListener() {
                       @Override
                       public void onClick(View v) {
                           MyApp myApp = (MyApp) getApplication();
@@ -77,16 +86,8 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        EditText editText_u = ((EditText) findViewById(R.id.login_username));
-        editText_u.setOnFocusChangeListener(new EditTextViewBackgroundSwitcher(this, R.drawable.login_editbk, R.drawable.login_editbk_username));
-
-        EditText editText_p = ((EditText) findViewById(R.id.login_password));
-        //editText_p.setOnTouchListener(new ShowCursor(true));
-        editText_p.setOnFocusChangeListener(new EditTextViewBackgroundSwitcher(this, R.drawable.login_editbk, R.drawable.login_editbk_password));
-
         ((EditText) findViewById(R.id.login_focus)).requestFocus();
-        ((Button) findViewById(R.id.login_bt)).setOnTouchListener(new TouchDark());
+
     }
 
     @Override
