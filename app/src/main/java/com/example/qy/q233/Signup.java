@@ -42,8 +42,21 @@ public class Signup extends AppCompatActivity {
         map.put("p", SUCCEED);
         map.put("d", FAILED);
 
-        ((EditText) findViewById(R.id.pass_word)).setTransformationMethod(PasswordTransformationMethod.getInstance());
-        ((EditText) findViewById(R.id.confirm)).setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EditText editText_u = ((EditText) findViewById(R.id.user_name));
+        EditText editText_p = ((EditText) findViewById(R.id.pass_word));
+        EditText editText_c = ((EditText) findViewById(R.id.confirm));//.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        editText_p.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        editText_c.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        editText_u.setOnTouchListener(new ShowCursor(true));
+        editText_p.setOnTouchListener(new ShowCursor(true));
+        editText_c.setOnTouchListener(new ShowCursor(true));
 
     }
 
