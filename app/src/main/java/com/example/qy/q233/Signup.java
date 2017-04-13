@@ -44,13 +44,6 @@ public class Signup extends AppCompatActivity {
         map.put("p", SUCCEED);
         map.put("d", FAILED);
 
-
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         EditText editText_u = ((EditText) findViewById(R.id.signup_username));
         EditText editText_p = ((EditText) findViewById(R.id.signup_password));
         EditText editText_c = ((EditText) findViewById(R.id.signup_confirm));//.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -66,8 +59,23 @@ public class Signup extends AppCompatActivity {
 //        editText_u.setOnTouchListener(new ShowCursor(true));
 //        editText_p.setOnTouchListener(new ShowCursor(true));
 //        editText_c.setOnTouchListener(new ShowCursor(true));
-        ((EditText) findViewById(R.id.signup_focus)).requestFocus();
         ((Button) findViewById(R.id.signup_bt_signup)).setOnTouchListener(new TouchDark());
+        ((Button) findViewById(R.id.signup_bt_login)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(Signup.this, Login.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        ((EditText) findViewById(R.id.signup_focus)).requestFocus();
+
     }
 
     @Override
