@@ -5,7 +5,4 @@
         <!-- Customize your theme here. -->
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="my_edittext_style" parent="@android:style/Widget.EditText">
-        <item name="android:background">@drawable/username</item>
-    </style>
 </resources>

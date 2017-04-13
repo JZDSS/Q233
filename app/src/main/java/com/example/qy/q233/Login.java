@@ -83,18 +83,13 @@ public class Login extends AppCompatActivity {
         String password = sp.getString("password", "");
         EditText editText_u = ((EditText) findViewById(R.id.user_name));
         editText_u.setText(username);
-        editText_u.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                return false;
-            }
-        });
+        editText_u.setOnTouchListener(new ShowCursor(true));
 
         EditText editText_p = ((EditText) findViewById(R.id.pass_word));
         editText_p.setText(password);
         editText_p.setOnTouchListener(new ShowCursor(true));
 
+        ((Button) findViewById(R.id.login_bt)).setOnTouchListener(new TouchDark());
     }
 
 

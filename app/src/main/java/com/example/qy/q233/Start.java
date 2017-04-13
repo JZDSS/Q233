@@ -16,8 +16,14 @@ public class Start extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start);
-        Button login = (Button) findViewById(R.id.login_bt);
-        Button signup = (Button) findViewById(R.id.signup_bt);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Button login = (Button) findViewById(R.id.start_bt_login);
+        Button signup = (Button) findViewById(R.id.start_bt_signup);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,6 +45,5 @@ public class Start extends AppCompatActivity {
         login.setOnTouchListener(new TouchDark());
         signup.setOnTouchListener(new TouchDark());
     }
-
 
 }

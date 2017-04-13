@@ -18,7 +18,7 @@
             <Button
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/start_bt_login"
-                android:id="@+id/login_bt"
+                android:id="@+id/start_bt_login"
                 android:layout_width="128.7dp"
                 android:layout_height="33.3dp" />
         </RelativeLayout>
@@ -29,7 +29,7 @@
             <Button
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/start_bt_signup"
-                android:id="@+id/signup_bt"
+                android:id="@+id/start_bt_signup"
                 android:layout_width="128.7dp"
                 android:layout_height="33.3dp" />
         </RelativeLayout>

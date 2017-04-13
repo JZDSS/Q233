@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -58,6 +59,7 @@ public class Signup extends AppCompatActivity {
         editText_p.setOnTouchListener(new ShowCursor(true));
         editText_c.setOnTouchListener(new ShowCursor(true));
 
+        ((Button) findViewById(R.id.signup_bt_signup)).setOnTouchListener(new TouchDark());
     }
 
     /**
