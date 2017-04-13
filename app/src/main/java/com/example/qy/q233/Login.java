@@ -31,7 +31,7 @@ public class Login extends AppCompatActivity {
     MyHandler mHandler;
     HashMap<String, Integer> map;
     AskForServerIP popupWindow;
-
+    SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +39,7 @@ public class Login extends AppCompatActivity {
 
 
         mHandler = new MyHandler();
-
+        sp = this.getSharedPreferences("userinfo", MODE_PRIVATE);
         map = new HashMap<>();
         map.put("p", SUCCEED);
         map.put("d", FAILEDD);
@@ -77,21 +77,32 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        SharedPreferences sp = this.getSharedPreferences("userinfo",
-                MODE_PRIVATE);
         String username = sp.getString("username", "");
         String password = sp.getString("password", "");
         EditText editText_u = ((EditText) findViewById(R.id.user_name));
         editText_u.setText(username);
-        editText_u.setOnTouchListener(new ShowCursor(true));
+        editText_u.setOnFocusChangeListener(new EditTextViewBackgroundSwitcher(this, R.drawable.login_editbk, R.drawable.login_editbk_username));
 
         EditText editText_p = ((EditText) findViewById(R.id.pass_word));
         editText_p.setText(password);
         editText_p.setOnTouchListener(new ShowCursor(true));
+        editText_p.setOnFocusChangeListener(new EditTextViewBackgroundSwitcher(this, R.drawable.login_editbk, R.drawable.login_editbk_password));
 
+        ((EditText) findViewById(R.id.login_focus)).requestFocus();
         ((Button) findViewById(R.id.login_bt)).setOnTouchListener(new TouchDark());
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (KeyboardHider.isShouldHideKeyboard(v, ev)) {
+                KeyboardHider.hideKeyboard(this, v.getWindowToken());
+            }
+            ((EditText) findViewById(R.id.login_focus)).requestFocus();
+        }
+        return super.dispatchTouchEvent(ev);
+    }
 
     class MyHandler extends Handler {
 
