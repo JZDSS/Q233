@@ -23,12 +23,11 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:layout_centerHorizontal="true"
-                android:cursorVisible="false"
-                android:id="@+id/user_name"
+                android:id="@+id/signup_username"
                 android:layout_width="245.5dp"
                 android:layout_height="51.5dp"
                 android:textCursorDrawable="@drawable/cursor_style"
-                android:background="@drawable/signup_editbk"/>
+                android:background="@drawable/signup_editbk_username" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -40,12 +39,11 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:layout_centerHorizontal="true"
-                android:cursorVisible="false"
-                android:id="@+id/pass_word"
+                android:id="@+id/signup_password"
                 android:layout_width="245.5dp"
                 android:layout_height="51.5dp"
                 android:textCursorDrawable="@drawable/cursor_style"
-                android:background="@drawable/signup_editbk"/>
+                android:background="@drawable/signup_editbk_password"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -57,12 +55,11 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:layout_centerHorizontal="true"
-                android:cursorVisible="false"
-                android:id="@+id/confirm"
+                android:id="@+id/signup_confirm"
                 android:layout_width="245.5dp"
                 android:layout_height="51.5dp"
                 android:textCursorDrawable="@drawable/cursor_style"
-                android:background="@drawable/signup_editbk"/>
+                android:background="@drawable/signup_editbk_confirm"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"

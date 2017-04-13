@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity {
         map.put("p", SUCCEED);
         map.put("d", FAILEDD);
 
-        ((EditText) findViewById(R.id.pass_word)).setTransformationMethod(PasswordTransformationMethod.getInstance());
+        ((EditText) findViewById(R.id.login_password)).setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         popupWindow = new AskForServerIP(this);
 
@@ -60,8 +60,8 @@ public class Login extends AppCompatActivity {
                           } else {
                               url = "http://" + url + "/q233/login.php";
                               PostHelper mpostHelper = new PostHelper(url, mHandler, map);
-                              String userName = ((EditText) findViewById(R.id.user_name)).getText().toString();
-                              String passwd = ((EditText) findViewById(R.id.pass_word)).getText().toString();
+                              String userName = ((EditText) findViewById(R.id.login_username)).getText().toString();
+                              String passwd = ((EditText) findViewById(R.id.login_password)).getText().toString();
                               ArrayList<NameValuePair> pairs = new ArrayList<>();
                               NameValuePair pair0= new BasicNameValuePair("u", userName);
                               NameValuePair pair1= new BasicNameValuePair("p", passwd);
@@ -75,17 +75,14 @@ public class Login extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        String username = sp.getString("username", "");
-        String password = sp.getString("password", "");
-        EditText editText_u = ((EditText) findViewById(R.id.user_name));
-        editText_u.setText(username);
+    protected void onResume() {
+        super.onResume();
+
+        EditText editText_u = ((EditText) findViewById(R.id.login_username));
         editText_u.setOnFocusChangeListener(new EditTextViewBackgroundSwitcher(this, R.drawable.login_editbk, R.drawable.login_editbk_username));
 
-        EditText editText_p = ((EditText) findViewById(R.id.pass_word));
-        editText_p.setText(password);
-        editText_p.setOnTouchListener(new ShowCursor(true));
+        EditText editText_p = ((EditText) findViewById(R.id.login_password));
+        //editText_p.setOnTouchListener(new ShowCursor(true));
         editText_p.setOnFocusChangeListener(new EditTextViewBackgroundSwitcher(this, R.drawable.login_editbk, R.drawable.login_editbk_password));
 
         ((EditText) findViewById(R.id.login_focus)).requestFocus();

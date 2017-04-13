@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,18 +49,37 @@ public class Signup extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        EditText editText_u = ((EditText) findViewById(R.id.user_name));
-        EditText editText_p = ((EditText) findViewById(R.id.pass_word));
-        EditText editText_c = ((EditText) findViewById(R.id.confirm));//.setTransformationMethod(PasswordTransformationMethod.getInstance());
+    protected void onResume() {
+        super.onResume();
+        EditText editText_u = ((EditText) findViewById(R.id.signup_username));
+        EditText editText_p = ((EditText) findViewById(R.id.signup_password));
+        EditText editText_c = ((EditText) findViewById(R.id.signup_confirm));//.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+        editText_u.setOnFocusChangeListener(new EditTextViewBackgroundSwitcher(this, R.drawable.signup_editbk, R.drawable.signup_editbk_username));
+        editText_p.setOnFocusChangeListener(new EditTextViewBackgroundSwitcher(this, R.drawable.signup_editbk, R.drawable.signup_editbk_password));
+        editText_c.setOnFocusChangeListener(new EditTextViewBackgroundSwitcher(this, R.drawable.signup_editbk, R.drawable.signup_editbk_confirm));
+
+
+
         editText_p.setTransformationMethod(PasswordTransformationMethod.getInstance());
         editText_c.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        editText_u.setOnTouchListener(new ShowCursor(true));
-        editText_p.setOnTouchListener(new ShowCursor(true));
-        editText_c.setOnTouchListener(new ShowCursor(true));
-
+//        editText_u.setOnTouchListener(new ShowCursor(true));
+//        editText_p.setOnTouchListener(new ShowCursor(true));
+//        editText_c.setOnTouchListener(new ShowCursor(true));
+        ((EditText) findViewById(R.id.signup_focus)).requestFocus();
         ((Button) findViewById(R.id.signup_bt_signup)).setOnTouchListener(new TouchDark());
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (KeyboardHider.isShouldHideKeyboard(v, ev)) {
+                KeyboardHider.hideKeyboard(this, v.getWindowToken());
+            }
+            ((EditText) findViewById(R.id.signup_focus)).requestFocus();
+        }
+        return super.dispatchTouchEvent(ev);
     }
 
     /**
@@ -76,13 +96,13 @@ public class Signup extends AppCompatActivity {
         } else {
             url = "http://" + url + "/q233/register.php";
             PostHelper mpostHelper = new PostHelper(url, mHandler, map);
-            String userName = ((EditText) findViewById(R.id.user_name)).getText().toString();
-            String passwd = ((EditText) findViewById(R.id.pass_word)).getText().toString();
-            String confirm = ((EditText) findViewById(R.id.confirm)).getText().toString();
+            String userName = ((EditText) findViewById(R.id.signup_username)).getText().toString();
+            String passwd = ((EditText) findViewById(R.id.signup_password)).getText().toString();
+            String confirm = ((EditText) findViewById(R.id.signup_confirm)).getText().toString();
             if (!passwd.equals(confirm)) {
                 Toast.makeText(getApplicationContext(), "两次密码不一致！", Toast.LENGTH_SHORT).show();
-                ((EditText) findViewById(R.id.pass_word)).setText("");
-                ((EditText) findViewById(R.id.confirm)).setText("");
+                ((EditText) findViewById(R.id.signup_password)).setText("");
+                ((EditText) findViewById(R.id.signup_confirm)).setText("");
                 return;
             }
             ArrayList<NameValuePair> pairs = new ArrayList<>();
