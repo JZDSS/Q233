@@ -17,6 +17,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/user_name"/>
             <EditText
+                android:cursorVisible="false"
                 android:id="@+id/user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -29,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/password"/>
             <EditText
+                android:cursorVisible="false"
                 android:id="@+id/pass_word"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -41,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/confirm"/>
             <EditText
+                android:cursorVisible="false"
                 android:id="@+id/confirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

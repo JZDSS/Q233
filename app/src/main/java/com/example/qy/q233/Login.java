@@ -1,11 +1,14 @@
 package com.example.qy.q233;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,14 +74,29 @@ public class Login extends AppCompatActivity {
         );
     }
 
-    /**
-     * Post user name and password to server.
-     * @param view The button.
-     */
-    public void logIn(View view) {
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferences sp = this.getSharedPreferences("userinfo",
+                MODE_PRIVATE);
+        String username = sp.getString("username", "");
+        String password = sp.getString("password", "");
+        EditText editText_u = ((EditText) findViewById(R.id.user_name));
+        editText_u.setText(username);
+        editText_u.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
 
+                return false;
+            }
+        });
+
+        EditText editText_p = ((EditText) findViewById(R.id.pass_word));
+        editText_p.setText(password);
+        editText_p.setOnTouchListener(new ShowCursor(true));
 
     }
+
 
     class MyHandler extends Handler {
 

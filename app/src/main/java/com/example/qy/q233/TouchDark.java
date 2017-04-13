@@ -15,14 +15,19 @@ public class TouchDark implements View.OnTouchListener {
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            v.getBackground().setColorFilter(
-                    new ColorMatrixColorFilter(BT_SELECTED));
-            v.setBackgroundDrawable(v.getBackground());
-        } else if (event.getAction() == MotionEvent.ACTION_UP) {
-            v.getBackground().setColorFilter(
-                    new ColorMatrixColorFilter(BT_NOT_SELECTED));
-            v.setBackgroundDrawable(v.getBackground());
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                v.getBackground().setColorFilter(
+                        new ColorMatrixColorFilter(BT_SELECTED));
+                v.setBackgroundDrawable(v.getBackground());
+                break;
+            case MotionEvent.ACTION_UP:
+                v.getBackground().setColorFilter(
+                        new ColorMatrixColorFilter(BT_NOT_SELECTED));
+                v.setBackgroundDrawable(v.getBackground());
+                break;
+            default:
+                break;
         }
         return false;
     }

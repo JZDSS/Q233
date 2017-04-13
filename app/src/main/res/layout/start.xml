@@ -5,7 +5,7 @@
     android:paddingBottom="50dp"
     android:paddingLeft="30dp"
     android:paddingRight="30dp"
-    android:background="@drawable/welcome">
+    android:background="@drawable/start_bk">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
             android:layout_weight="1">
             <Button
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/login_bt"
+                android:background="@drawable/start_bt_login"
                 android:id="@+id/login_bt"
                 android:layout_width="128.7dp"
                 android:layout_height="33.3dp" />
@@ -28,7 +28,7 @@
             android:layout_weight="1">
             <Button
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/signup_bt"
+                android:background="@drawable/start_bt_signup"
                 android:id="@+id/signup_bt"
                 android:layout_width="128.7dp"
                 android:layout_height="33.3dp" />
