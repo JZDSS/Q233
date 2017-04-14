@@ -123,11 +123,11 @@ public class AccelerometerActivity extends AppCompatActivity {
         isChart = false;
 
         sensorOn = false;
-        if(!Debug.ENABLE)
-        {
+//        if(!Debug.ENABLE)
+//        {
             mAccelerometer.pause();
             messageToServer.mThread.close();
-        }
+//        }
 
     }
 
