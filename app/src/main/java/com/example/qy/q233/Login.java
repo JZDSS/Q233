@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
@@ -61,6 +60,15 @@ public class Login extends AppCompatActivity {
         ((Button) findViewById(R.id.login_bt)).setOnClickListener(new View.OnClickListener() {
                       @Override
                       public void onClick(View v) {
+                          if(Debug.ENABLE) {
+                              Intent intent=new Intent();
+                              //setClass函数的第一个参数是一个Context对象
+                              //Context是一个类,Activity是Context类的子类,也就是说,所有的Activity对象都可以向上转型为Context对象
+                              //setClass函数的第二个参数是Class对象,在当前场景下,应该传入需要被启动的Activity的class对象
+                              intent.setClass(Login.this, MainActivity.class);
+                              startActivity(intent);
+                              return;
+                          }
                           MyApp myApp = (MyApp) getApplication();
                           String url =  myApp.getUrl();//((EditText) findViewById(R.id.ipp)).getText().toString();//"http://192.168.1.104/q233/login.php";
 
