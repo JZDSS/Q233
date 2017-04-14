@@ -19,10 +19,16 @@
             android:layout_height="wrap_content"
             android:text="@string/Jump2"/>
         <Button
-            android:id="@+id/button_jump3"
+        android:id="@+id/button_jump3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Jump3"/>
+
+        <Button
+            android:id="@+id/button_jump4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Jump3"/>
+            android:text="Jump4"/>
     </LinearLayout>
 
 

@@ -84,7 +84,7 @@ public class GuideActivity extends Activity {
         public void onClick(View v) {
             //设置已经引导
             setGuided();
-ss
+
             //跳转
             Intent mIntent = new Intent();
             mIntent.setClass(GuideActivity.this, Start.class);
