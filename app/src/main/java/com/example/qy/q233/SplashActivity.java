@@ -58,13 +58,13 @@ public class SplashActivity extends Activity {
                 switch(msg.what){
                     case SWITCH_STARTACTIVITY:
                         Intent mIntent = new Intent();
-                        mIntent.setClass(SplashActivity.this, Start.class);
+                        mIntent.setClass(SplashActivity.this, SignupActivity.class);
                         SplashActivity.this.startActivity(mIntent);
                         SplashActivity.this.finish();
                         break;
                     case SWITCH_GUIDACTIVITY:
                         mIntent = new Intent();
-                        mIntent.setClass(SplashActivity.this, GuideActivity.class);
+                        mIntent.setClass(SplashActivity.this, StartActivity.class);
                         SplashActivity.this.startActivity(mIntent);
                         SplashActivity.this.finish();
                         break;

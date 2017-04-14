@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * Created by Xu Yining on 2017/4/14.
  */
 
-public class GuideActivity extends Activity {
+public class StartActivity extends Activity {
 
     private ViewPager viewPager;
 
@@ -36,30 +36,53 @@ public class GuideActivity extends Activity {
     //包裹小圆点的LinearLayout
     private ViewGroup viewPoints;
 
-    public void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.start);
+        Button login = (Button) findViewById(R.id.start_bt_login);
+        Button signup = (Button) findViewById(R.id.start_bt_signup);
+
         LayoutInflater inflater = getLayoutInflater();
         pageViews = new ArrayList<View>();
         pageViews.add(inflater.inflate(R.layout.viewpager_page1, null));
         pageViews.add(inflater.inflate(R.layout.viewpager_page2, null));
-
         //创建imageviews数组，大小是要显示的图片的数量
         imageViews = new ImageView[pageViews.size()];
         //从指定的XML文件加载视图
-        viewPics = (ViewGroup) inflater.inflate(R.layout.activity_guide, null);
-
+        viewPics = (ViewGroup) inflater.inflate(R.layout.start, null);
         //实例化小圆点的linearLayout和viewpager
         viewPoints = (ViewGroup) viewPics.findViewById(R.id.viewGroup);
         viewPager = (ViewPager) viewPics.findViewById(R.id.guidePages);
-
         //添加小圆点的图片
         for(int i=0;i<pageViews.size();i++){
-            imageView = new ImageView(GuideActivity.this);
+            imageView = new ImageView(StartActivity.this);
             //设置小圆点imageview的参数
             imageView.setLayoutParams(new ViewGroup.LayoutParams(20,20));//创建一个宽高均为20 的布局
             imageView.setPadding(20, 0, 20, 0);
             //将小圆点layout添加到数组中
             imageViews[i] = imageView;
+
+            login.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent();
+                    intent.setClass(StartActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            signup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent();
+                    intent.setClass(StartActivity.this, SignupActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            login.setOnTouchListener(new TouchDark());
+            signup.setOnTouchListener(new TouchDark());
 
             //默认选中的是第一张图片，此时第一个小圆点是选中状态，其他不是
             if(i==0){
@@ -71,27 +94,12 @@ public class GuideActivity extends Activity {
             //将imageviews添加到小圆点视图组
             viewPoints.addView(imageViews[i]);
         }
-
         //显示滑动图片的视图
         setContentView(viewPics);
-
         //设置viewpager的适配器和监听事件
         viewPager.setAdapter(new GuidePageAdapter());
         viewPager.setOnPageChangeListener(new GuidePageChangeListener());
     }
-
-    private Button.OnClickListener  Button_OnClickListener = new Button.OnClickListener() {
-        public void onClick(View v) {
-            //设置已经引导
-            setGuided();
-ss
-            //跳转
-            Intent mIntent = new Intent();
-            mIntent.setClass(GuideActivity.this, Start.class);
-            GuideActivity.this.startActivity(mIntent);
-            GuideActivity.this.finish();
-        }
-    };
 
     private static final String SHAREDPREFERENCES_NAME = "interface";
     private static final String KEY_GUIDE_ACTIVITY = "guide_activity";
@@ -131,13 +139,6 @@ ss
         public Object instantiateItem(View v, int position) {
             // TODO Auto-generated method stub
             ((ViewPager) v).addView(pageViews.get(position));
-
-            // 测试页卡1内的按钮事件
-            if (position == 1) {
-                Button btn = (Button) findViewById(R.id.button_close);
-                btn.setOnClickListener(Button_OnClickListener);
-            }
-
             return pageViews.get(position);
         }
 
@@ -202,7 +203,8 @@ ss
             }
 
         }
-}
+    }
+
 
 
 }
