@@ -116,7 +116,7 @@
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="12dp"
                         android:layout_toRightOf="@id/xyn1"
-                        android:text="个人标签：弹得了古筝，编的了程序，全方位综合发展的新时代美丽女性！ "
+                        android:text="个人标签：弹得了古筝，编得了程序，还有点强迫症的女神！ "
                         android:textSize="18sp" />
                 </LinearLayout>
 
