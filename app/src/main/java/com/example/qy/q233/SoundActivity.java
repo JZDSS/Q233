@@ -14,11 +14,9 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by Rita on 2017/4/14.
+ * Created by Zhang Xiaorui on 2017/4/14.
  */
 
-//public class SoundActivity {
-//}
 public class SoundActivity extends AppCompatActivity implements View.OnClickListener {
     private static final int START_RECORD = 0;
 
@@ -67,9 +65,11 @@ public class SoundActivity extends AppCompatActivity implements View.OnClickList
                 isListener = false;
                 isThreading = false;
                 isRecording = false;
+                SoundCalculator.dblast = 0;
+                SoundCalculator.dbstart = 0;
                 mMediaRecorder.reset();
                 mFileRec.delete();
-                SoundCalculator.dbstart = 0;
+              //  SoundCalculator.dbstart = 0;
                 break;
 
         }
