@@ -13,9 +13,6 @@ import android.util.AttributeSet;
  * Created by Rita on 2017/4/14.
  */
 
-//public class SoundView {
-//}
-
 public class SoundView extends android.support.v7.widget.AppCompatImageView {
 
     private float scaleWidth, scaleHeight;
@@ -68,11 +65,11 @@ public class SoundView extends android.support.v7.widget.AppCompatImageView {
         mMatrix.setRotate(currentAngle, newWidth / 2, newHeight * 215 / 460);   //片相对位置
         canvas.drawBitmap(indicatorBitmap, mMatrix, paint);
         postInvalidateDelayed(ANIMATION_INTERVAL);
-        canvas.drawText((int)SoundCalculator.dbstart +" DB", newWidth/2,newHeight*36/46, paint); //图片相对位置
+        canvas.drawText((int)SoundCalculator.dbstart +" dB", newWidth/2,newHeight*36/46, paint); //图片相对位置
     }
 
     private float getAngle(float db){
-        return(db-85)*5/3;  //说多了都是泪，网上找的图片。。自己不会改图，代码计算下
+        return(db-85)*5/3;
     }
 }
 
