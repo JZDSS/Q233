@@ -9,6 +9,7 @@ import android.app.Application;
 public class MyApp extends Application {
     int apiVersion;
     String url = "";
+
     public void setApiVersion(int version) {
         apiVersion = version;
     }

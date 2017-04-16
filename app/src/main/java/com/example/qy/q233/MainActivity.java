@@ -20,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (((MyApp)getApplication()).getApiVersion() >= 23) {
+            requestPermissions(Permission.allPermissions, 0);
+        }
+
         mButton = (Button) findViewById(R.id.button_jump1);
         mButton.setOnClickListener(new ButtonListener1());
         mButton = (Button) findViewById(R.id.button_jump2);

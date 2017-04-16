@@ -53,9 +53,7 @@ public class AccelerometerActivity extends AppCompatActivity {
         setContentView(R.layout.acceleration);
         messageToServer = new MessageToServer();
 
-        if (((MyApp)getApplication()).getApiVersion() >= 23) {
-            requestPermissions(Permission.allPermissions, 0);
-        }
+
         mAccelerometer = new Accelerometer(this);
 
         xBarView = (BarView) findViewById(R.id.sv1);
