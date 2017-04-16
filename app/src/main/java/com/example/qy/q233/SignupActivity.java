@@ -1,6 +1,7 @@
 package com.example.qy.q233;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,12 +30,14 @@ public class SignupActivity extends AppCompatActivity {
     SignupActivity.MyHandler mHandler;
     HashMap<String,Integer> map;
     AskForServerIP popupWindow;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
 
+        sp = ((MyApp) getApplication()).sp;
         popupWindow = new AskForServerIP(this, ((MyApp) getApplication()).sp);
 
         mHandler = new SignupActivity().mHandler;
@@ -59,8 +61,11 @@ public class SignupActivity extends AppCompatActivity {
 //        editText_u.setOnTouchListener(new ShowCursor(true));
 //        editText_p.setOnTouchListener(new ShowCursor(true));
 //        editText_c.setOnTouchListener(new ShowCursor(true));
-        ((Button) findViewById(R.id.signup_bt_signup)).setOnTouchListener(new TouchDark());
-        ((Button) findViewById(R.id.signup_bt_login)).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.signup_bt_signup).setOnTouchListener(new TouchDark());
+        findViewById(R.id.signup_bt_login).setOnTouchListener(new TouchDark());
+
+
+        findViewById(R.id.signup_bt_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
@@ -98,10 +103,15 @@ public class SignupActivity extends AppCompatActivity {
     public void register(View view) {
         MyApp myApp = (MyApp) getApplication();
         String url =  myApp.getUrl();//((EditText) findViewById(R.id.ipp)).getText().toString();//"http://192.168.1.104/q233/login.php";
-
         if (url.isEmpty()) {
-            popupWindow.show();
-        } else {
+            String tmp = ((MyApp) getApplication()).sp.getString("ip","");
+            if (tmp.isEmpty()) {
+                popupWindow.show();
+            } else {
+                url = tmp;
+            }
+        }
+        if (!url.isEmpty()) {
             url = "http://" + url + "/q233/register.php";
             PostHelper mpostHelper = new PostHelper(url, mHandler, map);
             String userName = ((EditText) findViewById(R.id.signup_username)).getText().toString();
@@ -145,6 +155,15 @@ public class SignupActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case SUCCEED:
+                    EditText editText_u = ((EditText) findViewById(R.id.signup_username));
+                    EditText editText_p = ((EditText) findViewById(R.id.signup_password));
+
+                    String username = editText_u.getText().toString();
+                    String password = editText_p.getText().toString();
+
+                    sp.edit().putString("username", username).apply();
+                    sp.edit().putString("password", password).apply();
+
                     Toast.makeText(getApplicationContext(), "注册成功！", Toast.LENGTH_SHORT).show();
                     jump2login();
                     break;

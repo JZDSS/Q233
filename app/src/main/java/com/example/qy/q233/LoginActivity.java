@@ -1,6 +1,7 @@
 package com.example.qy.q233;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -29,31 +29,38 @@ public class LoginActivity extends AppCompatActivity {
     MyHandler mHandler;
     HashMap<String, Integer> map;
     AskForServerIP popupWindow;
+
+    SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        sp = ((MyApp) getApplication()).sp;
 
         mHandler = new MyHandler();
         map = new HashMap<>();
         map.put("p", SUCCEED);
         map.put("d", FAILEDD);
 
-        ((EditText) findViewById(R.id.login_password)).setTransformationMethod(PasswordTransformationMethod.getInstance());
+        EditText editText_u = ((EditText) findViewById(R.id.login_username));
+        EditText editText_p = ((EditText) findViewById(R.id.login_password));
+
+        editText_p.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+        String username = sp.getString("username", "");
+        String password = sp.getString("password", "");
+        editText_u.setText(username);
+        editText_p.setText(password);
 
         popupWindow = new AskForServerIP(this, ((MyApp) getApplication()).sp);
 
-        EditText editText_u = ((EditText) findViewById(R.id.login_username));
         editText_u.setOnFocusChangeListener(new EditTextViewBackgroundSwitcher(this, R.drawable.login_editbk, R.drawable.login_editbk_username));
-
-        EditText editText_p = ((EditText) findViewById(R.id.login_password));
-        //editText_p.setOnTouchListener(new ShowCursor(true));
-
         editText_p.setOnFocusChangeListener(new EditTextViewBackgroundSwitcher(this, R.drawable.login_editbk, R.drawable.login_editbk_password));
 
-        ((Button) findViewById(R.id.login_bt)).setOnTouchListener(new TouchDark());
+        findViewById(R.id.login_bt).setOnTouchListener(new TouchDark());
 
-        ((Button) findViewById(R.id.login_bt)).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.login_bt).setOnClickListener(new View.OnClickListener() {
                       @Override
                       public void onClick(View v) {
                           if(Debug.ENABLE) {
@@ -94,7 +101,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ((EditText) findViewById(R.id.login_focus)).requestFocus();
+
+        findViewById(R.id.login_username).requestFocus();
+        findViewById(R.id.login_password).requestFocus();
+        findViewById(R.id.login_focus).requestFocus();
 
     }
 
@@ -105,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
             if (KeyboardHider.isShouldHideKeyboard(v, ev)) {
                 KeyboardHider.hideKeyboard(this, v.getWindowToken());
             }
-            ((EditText) findViewById(R.id.login_focus)).requestFocus();
+            findViewById(R.id.login_focus).requestFocus();
         }
         return super.dispatchTouchEvent(ev);
     }
@@ -132,6 +142,15 @@ public class LoginActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case SUCCEED:
+                    EditText editText_u = ((EditText) findViewById(R.id.login_username));
+                    EditText editText_p = ((EditText) findViewById(R.id.login_password));
+
+                    String username = editText_u.getText().toString();
+                    String password = editText_p.getText().toString();
+
+                    SharedPreferences sp = ((MyApp) getApplication()).sp;
+                    sp.edit().putString("username", username).apply();
+                    sp.edit().putString("password", password).apply();
                     jump2main();
                     break;
                 case FAILEDD:
