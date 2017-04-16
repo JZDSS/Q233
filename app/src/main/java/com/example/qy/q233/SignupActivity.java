@@ -36,7 +36,7 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
 
-        popupWindow = new AskForServerIP(this);
+        popupWindow = new AskForServerIP(this, ((MyApp) getApplication()).sp);
 
         mHandler = new SignupActivity().mHandler;
 

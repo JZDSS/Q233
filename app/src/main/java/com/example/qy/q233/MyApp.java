@@ -1,6 +1,7 @@
 package com.example.qy.q233;
 
 import android.app.Application;
+import android.content.SharedPreferences;
 
 /**
  * Created by Qi Yao on 17-4-11.
@@ -9,6 +10,11 @@ import android.app.Application;
 public class MyApp extends Application {
     int apiVersion;
     String url = "";
+    SharedPreferences sp;
+
+    public void setSharedPreferences(SharedPreferences sp){
+        this.sp = sp;
+    }
 
     public void setApiVersion(int version) {
         apiVersion = version;

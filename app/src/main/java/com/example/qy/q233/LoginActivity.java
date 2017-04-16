@@ -1,7 +1,6 @@
 package com.example.qy.q233;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -30,22 +29,19 @@ public class LoginActivity extends AppCompatActivity {
     MyHandler mHandler;
     HashMap<String, Integer> map;
     AskForServerIP popupWindow;
-    SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-
         mHandler = new MyHandler();
-        sp = this.getSharedPreferences("userinfo", MODE_PRIVATE);
         map = new HashMap<>();
         map.put("p", SUCCEED);
         map.put("d", FAILEDD);
 
         ((EditText) findViewById(R.id.login_password)).setTransformationMethod(PasswordTransformationMethod.getInstance());
 
-        popupWindow = new AskForServerIP(this);
+        popupWindow = new AskForServerIP(this, ((MyApp) getApplication()).sp);
 
         EditText editText_u = ((EditText) findViewById(R.id.login_username));
         editText_u.setOnFocusChangeListener(new EditTextViewBackgroundSwitcher(this, R.drawable.login_editbk, R.drawable.login_editbk_username));
@@ -62,9 +58,6 @@ public class LoginActivity extends AppCompatActivity {
                       public void onClick(View v) {
                           if(Debug.ENABLE) {
                               Intent intent=new Intent();
-                              //setClass函数的第一个参数是一个Context对象
-                              //Context是一个类,Activity是Context类的子类,也就是说,所有的Activity对象都可以向上转型为Context对象
-                              //setClass函数的第二个参数是Class对象,在当前场景下,应该传入需要被启动的Activity的class对象
                               intent.setClass(LoginActivity.this, MainActivity.class);
                               startActivity(intent);
                               return;
@@ -73,8 +66,15 @@ public class LoginActivity extends AppCompatActivity {
                           String url =  myApp.getUrl();//((EditText) findViewById(R.id.ipp)).getText().toString();//"http://192.168.1.104/q233/login.php";
 
                           if (url.isEmpty()) {
-                              popupWindow.show();
-                          } else {
+                              String tmp = ((MyApp) getApplication()).sp.getString("ip","");
+                              if (tmp.isEmpty()) {
+                                  popupWindow.show();
+                              } else {
+                                  url = tmp;
+                              }
+                          }
+
+                          if (!url.isEmpty()){
                               url = "http://" + url + "/q233/login.php";
                               PostHelper mpostHelper = new PostHelper(url, mHandler, map);
                               String userName = ((EditText) findViewById(R.id.login_username)).getText().toString();

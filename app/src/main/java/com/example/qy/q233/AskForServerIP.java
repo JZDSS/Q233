@@ -1,6 +1,7 @@
 package com.example.qy.q233;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.text.InputType;
 import android.view.Gravity;
@@ -17,8 +18,10 @@ public class AskForServerIP extends PopupWindow {
     private Activity mActivity;
     private View contentView;
     private PopupWindow popupWindow;
-    AskForServerIP(Activity outActivity) {
+    final SharedPreferences msp;
+    AskForServerIP(Activity outActivity, SharedPreferences sp) {
         mActivity = outActivity;
+        msp = sp;
         contentView = mActivity.getLayoutInflater().inflate(R.layout.server_ip, null);
 
         EditText editText1 = (EditText) contentView.findViewById(R.id.ip1);
@@ -49,6 +52,7 @@ public class AskForServerIP extends PopupWindow {
                         editText4.getText().toString();
                 if (!url.equals("...")) {
                     myApp.setUrl(url);
+                    msp.edit().putString("ip", url);
                 }
                 popupWindow.dismiss();
             }

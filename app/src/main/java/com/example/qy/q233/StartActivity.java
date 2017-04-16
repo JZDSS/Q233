@@ -4,18 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ViewFlipper;
-
-import java.util.ArrayList;
 
 /**
  * Created by Xu Yining on 2017/4/14.
@@ -39,10 +31,18 @@ public class StartActivity extends Activity {
 //    private ViewGroup viewPoints;
     ViewFlipper viewFlipper = null;
     float startX;
+
+    SharedPreferences sp;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start);
+
+        sp = getSharedPreferences("userinfo", MODE_PRIVATE);
+        ((MyApp) getApplication()).setSharedPreferences(sp);
+
         Button login = (Button) findViewById(R.id.start_bt_login);
         Button signup = (Button) findViewById(R.id.start_bt_signup);
         login.setOnClickListener(new View.OnClickListener() {
