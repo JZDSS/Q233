@@ -52,7 +52,7 @@ public class AskForServerIP extends PopupWindow {
                         editText4.getText().toString();
                 if (!url.equals("...")) {
                     myApp.setUrl(url);
-                    msp.edit().putString("ip", url);
+                    msp.edit().putString("ip", url).apply();
                 }
                 popupWindow.dismiss();
             }
