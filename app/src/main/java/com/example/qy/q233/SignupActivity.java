@@ -27,7 +27,7 @@ public class SignupActivity extends AppCompatActivity {
     static final int SUCCEED = 0;
     static final int FAILED = 1;
     // mpostHelper;
-    SignupActivity.MyHandler mHandler;
+    MyHandler mHandler;
     HashMap<String,Integer> map;
     AskForServerIP popupWindow;
     SharedPreferences sp;
@@ -40,7 +40,7 @@ public class SignupActivity extends AppCompatActivity {
         sp = ((MyApp) getApplication()).sp;
         popupWindow = new AskForServerIP(this, ((MyApp) getApplication()).sp);
 
-        mHandler = new SignupActivity().mHandler;
+        mHandler = new MyHandler();
 
         map = new HashMap<>();
         map.put("p", SUCCEED);
