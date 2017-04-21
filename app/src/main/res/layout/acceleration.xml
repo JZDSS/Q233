@@ -28,7 +28,13 @@
                     android:textSize="30dp"
                     android:textStyle="italic"
                     android:typeface="serif"
-                    android:textColor="@color/gray"/>
+                    android:textColor="@color/gray"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"/>
+                <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/toolbar"></android.support.v7.widget.Toolbar>
             </RelativeLayout>
             <Switch
                 android:id="@+id/sensor_switch"
@@ -175,7 +181,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
-                        <com.example.qy.q233.BarView
+                        <com.example.qy.q233.lib.BarView
                             android:id="@+id/sv1"
                             android:layout_width="20dp"
                             android:layout_height="160dp"
@@ -186,7 +192,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                        <com.example.qy.q233.BarView
+                        <com.example.qy.q233.lib.BarView
                             android:id="@+id/sv2"
                             android:layout_width="20dp"
                             android:layout_height="160dp"
@@ -197,7 +203,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                        <com.example.qy.q233.BarView
+                        <com.example.qy.q233.lib.BarView
                             android:id="@+id/sv3"
                             android:layout_width="20dp"
                             android:layout_height="160dp"

@@ -58,9 +58,7 @@ public class SignupActivity extends AppCompatActivity {
 
         editText_p.setTransformationMethod(PasswordTransformationMethod.getInstance());
         editText_c.setTransformationMethod(PasswordTransformationMethod.getInstance());
-//        editText_u.setOnTouchListener(new ShowCursor(true));
-//        editText_p.setOnTouchListener(new ShowCursor(true));
-//        editText_c.setOnTouchListener(new ShowCursor(true));
+
         findViewById(R.id.signup_bt_signup).setOnTouchListener(new TouchDark());
         findViewById(R.id.signup_bt_login).setOnTouchListener(new TouchDark());
 

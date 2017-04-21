@@ -1,4 +1,4 @@
-package com.example.qy.q233;
+package com.example.qy.q233.lib;
 
 import android.graphics.Color;
 
@@ -19,10 +19,10 @@ import java.util.ArrayList;
  * Created by Xu Yining on 2017/4/3.
  */
 
-class DrawLinechart {
+public class DrawLinechart {
     public LineChart mLineChart;
 
-    void initChart(LineChart mLineChart, float savedTime, ArrayList<Entry> yVals) {
+    public void initChart(LineChart mLineChart, float savedTime, ArrayList<Entry> yVals) {
         if (mLineChart == null) {
             return;
         }
@@ -101,7 +101,7 @@ class DrawLinechart {
     }
 
 
-    public void updateData(LineChart mLineChart, float val, ArrayList<Entry> yVals, float savedTime) {
+    public void updateData(LineChart mLineChart, float val, float savedTime) {
         if (mLineChart == null) {
             return;
         }

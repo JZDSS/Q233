@@ -1,4 +1,4 @@
-package com.example.qy.q233;
+package com.example.qy.q233.lib;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -16,10 +16,10 @@ import android.view.SurfaceView;
 public class BarView extends SurfaceView implements SurfaceHolder.Callback {
 
     int mtop, mbottom;
-    float value;
+    public float value;
     SurfaceHolder mholder;
     MyThread t;
-    boolean closed = false;
+    public boolean closed = false;
 
     public BarView(Context context, AttributeSet attrs) {
         super(context, attrs);
