@@ -55,8 +55,8 @@ public class BDMapActivity extends AppCompatActivity {
     private double centerLatitude, centerLongitude;
     private boolean start = false;
     private String s = "";
-    Handler mHandler = new MyHandler();
-    Timer mTimer = new Timer();
+//    Handler mHandler = new MyHandler();
+//    Timer mTimer = new Timer();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,9 +87,9 @@ public class BDMapActivity extends AppCompatActivity {
         //注册监听函数
         mLocationClient.start();
 
-        MyTimerTask mTimerTask = new MyTimerTask(mHandler);
-        mTimerTask.setMsg(UPDATE_RESULT);
-        mTimer.schedule(mTimerTask, 1, 500);
+//        MyTimerTask mTimerTask = new MyTimerTask(mHandler);
+//        mTimerTask.setMsg(UPDATE_RESULT);
+//        mTimer.schedule(mTimerTask, 1, 500);
     }
 
     private void initLocation(){
@@ -328,17 +328,17 @@ public class BDMapActivity extends AppCompatActivity {
         }
     }
 
-    class MyHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case UPDATE_RESULT:
-
-                    ((TextView) findViewById(R.id.lat)).setText(s);
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
+//    class MyHandler extends Handler {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            switch (msg.what) {
+//                case UPDATE_RESULT:
+//
+//                    //((TextView) findViewById(R.id.lat)).setText(s);
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//    }
 }
