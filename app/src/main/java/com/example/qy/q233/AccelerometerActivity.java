@@ -19,7 +19,7 @@ import com.github.mikephil.charting.data.Entry;
 
 import java.util.ArrayList;
 import java.util.Timer;
-
+import com.example.qy.q233.lib.Accelerometer;
 /**
  * Created by Xu Yining on 2017/4/1.
  */

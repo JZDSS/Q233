@@ -1,4 +1,4 @@
-package com.example.qy.q233;
+package com.example.qy.q233.lib;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,7 +14,7 @@ import java.io.IOException;
  * Created by Qi Yao on 17-3-15.
  */
 
-class Accelerometer{
+public class Accelerometer{
 
     static {
         System.loadLibrary("native-lib");
@@ -24,7 +24,10 @@ class Accelerometer{
     private SensorManager mSensorManager;
     private Sensor mSensor;
     private MySensorEventListener mSensorEventListener;
-    float x, y, z, norm;
+    public float x;
+    public float y;
+    public float z;
+    public float norm;
 
     /**
      * Initialize an Accelerometer variable.
@@ -32,7 +35,7 @@ class Accelerometer{
      * @param mContext Accelerometer is not an Activity Class, it need a Context
      *                 in order to call getSystemService.
      */
-    Accelerometer(Context mContext) {
+    public Accelerometer(Context mContext) {
         mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensorEventListener = new MySensorEventListener();
@@ -46,14 +49,14 @@ class Accelerometer{
     /**
      * Restart to collect data form the sensor.
      */
-    void resume() {
+    public void resume() {
         mSensorManager.registerListener(mSensorEventListener, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     /**
      * Stop collecting data from the sensor.
      */
-    void pause() {
+    public void pause() {
         mSensorManager.unregisterListener(mSensorEventListener);
         database.close();
     }
