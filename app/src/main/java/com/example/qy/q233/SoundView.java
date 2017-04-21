@@ -62,7 +62,7 @@ public class SoundView extends android.support.v7.widget.AppCompatImageView {
             init();
         }
         float currentAngle = getAngle(SoundCalculator.dbstart);
-        mMatrix.setRotate(currentAngle, newWidth / 2, newHeight * 215 / 460);   //片相对位置
+        mMatrix.setRotate(currentAngle, newWidth / 2, newHeight * 256 / 460);   //片相对位置
         canvas.drawBitmap(indicatorBitmap, mMatrix, paint);
         postInvalidateDelayed(ANIMATION_INTERVAL);
         canvas.drawText((int)SoundCalculator.dbstart +" dB", newWidth/2,newHeight*36/46, paint); //图片相对位置
