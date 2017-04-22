@@ -3,191 +3,198 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <ScrollView
-        android:layout_width="match_parent"
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/backgroundus">
+        android:text="1233;"/>
+</ScrollView>
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/backgroundus">-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical">-->
 
-            <TextView
-                android:id="@+id/text_a2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:text="研发团队成员介绍"
-                android:textSize="34sp"
-                android:textStyle="bold" />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <ImageView
-                    android:id="@+id/qy1"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="30dp"
-                    android:src="@drawable/qy1" />
+            <!--<TextView-->
+                <!--android:id="@+id/text_a2"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:text="研发团队成员介绍"-->
+                <!--android:textSize="34sp"-->
+                <!--android:textStyle="bold" />-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="horizontal">-->
+                <!--<ImageView-->
+                    <!--android:id="@+id/qy1"-->
+                    <!--android:layout_width="150dp"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:layout_marginTop="30dp"-->
+                    <!--android:src="@drawable/qy1" />-->
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/Qy1T1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_toRightOf="@+id/qy1"
-                        android:text="姓名：戚耀"
-                        android:textSize="18sp" />
+                <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/Qy1T1"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="50dp"-->
+                        <!--android:layout_marginLeft="12dp"-->
+                        <!--android:layout_toRightOf="@+id/qy1"-->
+                        <!--android:text="姓名：戚耀"-->
+                        <!--android:textSize="18sp" />-->
 
-                    <TextView
-                        android:id="@+id/Qy1T2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/Qy1T1"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_toRightOf="@+id/qy1"
-                        android:text="学号：2014141453124"
-                        android:textSize="18sp" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/Qy1T2"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@id/Qy1T1"-->
+                        <!--android:layout_marginTop="12dp"-->
+                        <!--android:layout_marginLeft="12dp"-->
+                        <!--android:layout_toRightOf="@+id/qy1"-->
+                        <!--android:text="学号：2014141453124"-->
+                        <!--android:textSize="18sp" />-->
 
-                    <TextView
-                        android:id="@+id/Qy1T3"
-                        android:layout_width="227dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/Qy1T2"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_toRightOf="@+id/qy1"
-                        android:text="个人标签：毒舌，腹黑，学习能力超强的编程大牛 "
-                        android:textSize="18sp" />
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:weightSum="1">
-
-                    <TextView
-                        android:id="@+id/xyn1T1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/Qy1T3"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="50dp"
-                        android:layout_toRightOf="@+id/xyn1"
-                        android:text="姓名：许一宁"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/xyn1T2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/xyn1T1"
-                        android:layout_marginLeft="12dp"
-                        android:layout_toRightOf="@+id/qy1"
-                        android:text="学号：20141414xxx "
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/xyn1T3"
-                        android:layout_width="220dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/xyn1T2"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_toRightOf="@id/xyn1"
-                        android:text="个人标签：弹得了古筝，编得了程序，还有点强迫症的女神！ "
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/xyn1"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_toRightOf="@id/xyn1T1"
-                    android:src="@drawable/xyn1" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/Qy1T3"-->
+                        <!--android:layout_width="227dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@id/Qy1T2"-->
+                        <!--android:layout_marginLeft="12dp"-->
+                        <!--android:layout_marginTop="12dp"-->
+                        <!--android:layout_toRightOf="@+id/qy1"-->
+                        <!--android:text="个人标签：毒舌，腹黑，学习能力超强的编程大牛 "-->
+                        <!--android:textSize="18sp" />-->
 
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/zxr1"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="30dp"
-                    android:src="@drawable/zxr1" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/zxr1T1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="50dp"
-                        android:layout_toRightOf="@+id/qy1"
-                        android:text="姓名：张小睿"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/zxr1T2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/zxr1T1"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_toRightOf="@+id/zxr1"
-                        android:text="学号：2014141453235"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/zxr1T3"
-                        android:layout_width="227dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/zxr1T2"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_toRightOf="@+id/zxr1"
-                        android:text="个人标签：时时被“新手光环”照顾的菜鸟-_-"
-                        android:textSize="18sp" />
+                <!--</LinearLayout>-->
 
 
-                </LinearLayout>
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:weightSum="1">-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/xyn1T1"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@id/Qy1T3"-->
+                        <!--android:layout_marginBottom="12dp"-->
+                        <!--android:layout_marginLeft="12dp"-->
+                        <!--android:layout_marginTop="50dp"-->
+                        <!--android:layout_toRightOf="@+id/xyn1"-->
+                        <!--android:text="姓名：许一宁"-->
+                        <!--android:textSize="18sp" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/xyn1T2"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@id/xyn1T1"-->
+                        <!--android:layout_marginLeft="12dp"-->
+                        <!--android:layout_toRightOf="@+id/qy1"-->
+                        <!--android:text="学号：20141414xxx "-->
+                        <!--android:textSize="18sp" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/xyn1T3"-->
+                        <!--android:layout_width="220dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@id/xyn1T2"-->
+                        <!--android:layout_marginLeft="12dp"-->
+                        <!--android:layout_marginTop="12dp"-->
+                        <!--android:layout_toRightOf="@id/xyn1"-->
+                        <!--android:text="个人标签：弹得了古筝，编得了程序，还有点强迫症的女神！ "-->
+                        <!--android:textSize="18sp" />-->
+                <!--</LinearLayout>-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/xyn1"-->
+                    <!--android:layout_width="150dp"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:layout_marginTop="30dp"-->
+                    <!--android:layout_toRightOf="@id/xyn1T1"-->
+                    <!--android:src="@drawable/xyn1" />-->
 
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/zxr1"-->
+                    <!--android:layout_width="150dp"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:layout_marginTop="30dp"-->
+                    <!--android:src="@drawable/zxr1" />-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/zxr1T1"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="12dp"-->
+                        <!--android:layout_marginTop="50dp"-->
+                        <!--android:layout_toRightOf="@+id/qy1"-->
+                        <!--android:text="姓名：张小睿"-->
+                        <!--android:textSize="18sp" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/zxr1T2"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@id/zxr1T1"-->
+                        <!--android:layout_marginLeft="12dp"-->
+                        <!--android:layout_marginTop="12dp"-->
+                        <!--android:layout_toRightOf="@+id/zxr1"-->
+                        <!--android:text="学号：2014141453235"-->
+                        <!--android:textSize="18sp" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/zxr1T3"-->
+                        <!--android:layout_width="227dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@id/zxr1T2"-->
+                        <!--android:layout_marginLeft="12dp"-->
+                        <!--android:layout_marginTop="12dp"-->
+                        <!--android:layout_toRightOf="@+id/zxr1"-->
+                        <!--android:text="个人标签：时时被“新手光环”照顾的菜鸟-_-"-->
+                        <!--android:textSize="18sp" />-->
+
+
+                <!--</LinearLayout>-->
+
+
+            <!--</LinearLayout>-->
 
 
 
 
-        </LinearLayout>
-    </ScrollView>
+        <!--</LinearLayout>-->
+    <!--</ScrollView>-->
 </LinearLayout>

@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SoundActivity"/>
-        <activity android:name=".GuideActivity"/>
+        <!--<activity android:name=".GuideActivity"/>-->
         <activity android:name=".StartActivity" />
         <activity android:name=".MainActivity" />
 
