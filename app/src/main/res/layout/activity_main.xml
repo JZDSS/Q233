@@ -28,7 +28,13 @@
             android:id="@+id/button_jump4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Jump4"/>
+            android:text="@string/Jump4"/>
+
+        <Button
+            android:id="@+id/button_jump5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Jump5"/>
     </LinearLayout>
 
 

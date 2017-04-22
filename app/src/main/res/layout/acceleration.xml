@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bk">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
-        android:background="@drawable/backgroundacceler"
         android:orientation="vertical">
+        <!--android:background="@drawable/backgroundacceler"-->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -26,7 +27,14 @@
                     android:text=" Acceleration "
                     android:textSize="30dp"
                     android:textStyle="italic"
-                    android:typeface="serif"/>
+                    android:typeface="serif"
+                    android:textColor="@color/gray"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"/>
+                <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/toolbar"></android.support.v7.widget.Toolbar>
             </RelativeLayout>
             <Switch
                 android:id="@+id/sensor_switch"
@@ -69,7 +77,8 @@
                                 android:text=" x "
                                 android:textSize="40sp"
                                 android:textStyle="italic"
-                                android:typeface="serif"/>
+                                android:typeface="serif"
+                                android:textColor="@color/gray"/>
                         </RelativeLayout>
                         <RelativeLayout
                             android:layout_width="0dp"
@@ -82,7 +91,8 @@
                                 android:text=" y "
                                 android:textSize="40sp"
                                 android:textStyle="italic"
-                                android:typeface="serif"/>
+                                android:typeface="serif"
+                                android:textColor="@color/gray"/>
                         </RelativeLayout>
                         <RelativeLayout
                             android:layout_width="0dp"
@@ -95,7 +105,8 @@
                                 android:text=" z "
                                 android:textSize="40sp"
                                 android:textStyle="italic"
-                                android:typeface="serif"/>
+                                android:typeface="serif"
+                                android:textColor="@color/gray"/>
                         </RelativeLayout>
                     </LinearLayout>
                 </RelativeLayout>
@@ -121,7 +132,8 @@
                                 android:layout_centerInParent="true"
                                 android:textSize="20sp"
                                 android:textStyle="italic"
-                                android:typeface="serif"/>
+                                android:typeface="serif"
+                                android:textColor="@color/gray"/>
                         </RelativeLayout>
                         <RelativeLayout
                             android:layout_width="0dp"
@@ -135,7 +147,8 @@
                                 android:layout_centerInParent="true"
                                 android:textSize="20sp"
                                 android:textStyle="italic"
-                                android:typeface="serif"/>
+                                android:typeface="serif"
+                                android:textColor="@color/gray"/>
                         </RelativeLayout>
                         <RelativeLayout
                             android:layout_width="0dp"
@@ -149,7 +162,8 @@
                                 android:layout_centerInParent="true"
                                 android:textSize="20sp"
                                 android:textStyle="italic"
-                                android:typeface="serif"/>
+                                android:typeface="serif"
+                                android:textColor="@color/gray"/>
                         </RelativeLayout>
                     </LinearLayout>
                 </RelativeLayout>
@@ -167,7 +181,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
-                        <com.example.qy.q233.BarView
+                        <com.example.qy.q233.lib.BarView
                             android:id="@+id/sv1"
                             android:layout_width="20dp"
                             android:layout_height="160dp"
@@ -178,7 +192,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                        <com.example.qy.q233.BarView
+                        <com.example.qy.q233.lib.BarView
                             android:id="@+id/sv2"
                             android:layout_width="20dp"
                             android:layout_height="160dp"
@@ -189,7 +203,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                        <com.example.qy.q233.BarView
+                        <com.example.qy.q233.lib.BarView
                             android:id="@+id/sv3"
                             android:layout_width="20dp"
                             android:layout_height="160dp"
@@ -256,8 +270,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
-        android:background="@drawable/backgroungacc">
+        android:layout_weight="4">
+        <!--android:background="@drawable/backgroungacc">-->
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/linechart"
             android:layout_width="320dp"
