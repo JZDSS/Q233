@@ -41,13 +41,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".SoundActivity"/>
-        <activity android:name=".GuideActivity"/>
         <activity android:name=".StartActivity" />
         <activity android:name=".MainActivity" />
 
         <activity android:name=".BDMapActivity" />
         <activity android:name=".AccelerometerActivity" />
         <activity android:name=".AboutUsActivity"/>
+        <activity android:name=".CounterActivity"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignupActivity" />
         <meta-data
