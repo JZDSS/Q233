@@ -44,26 +44,26 @@ public class CounterActivity extends AppCompatActivity {
         counterTimer.schedule(counterTask, 1, 500);
 
     }
-    @Override
-    protected void onStart(){
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-
-        super.onResume();
-        accelerometer.resume();
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        accelerometer.pause();
-
-
-    }
+//    @Override
+//    protected void onStart(){
+//        super.onStart();
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//
+//        super.onResume();
+//        accelerometer.resume();
+//
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        accelerometer.pause();
+//
+//
+//    }
 
     class MyHandler extends Handler {
         @Override
