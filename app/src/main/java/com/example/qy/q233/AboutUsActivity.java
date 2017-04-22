@@ -1,13 +1,13 @@
 package com.example.qy.q233;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by Xu Yining on 2017/4/6.
  */
 
-public class AboutUsActivity extends Activity {
+public class AboutUsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
