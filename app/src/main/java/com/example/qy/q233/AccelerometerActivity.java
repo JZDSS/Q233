@@ -205,7 +205,6 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
     protected void onPause() {
         super.onPause();
         isChart = false;
-
         sensorOn = false;
 //        if(!Debug.ENABLE)
 //        {

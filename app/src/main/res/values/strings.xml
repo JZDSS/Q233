@@ -21,5 +21,7 @@
     <string name="Jump1">Jump1</string>
     <string name="Jump2">Jump2</string>
     <string name="Jump3">Jump3</string>
+    <string name="Jump4">Jump4</string>
+    <string name="Jump5">Jump5</string>
     <string name="ip">Server IP</string>
 </resources>
