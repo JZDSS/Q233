@@ -65,11 +65,11 @@ public class SoundActivity extends AppCompatActivity implements View.OnClickList
                 isListener = false;
                 isThreading = false;
                 isRecording = false;
-                SoundCalculator.dblast = 0;
-                SoundCalculator.dbstart = 0;
+//                SoundCalculator.dblast = 0;
+//                SoundCalculator.dbstart = 0;
                 mMediaRecorder.reset();
                 mFileRec.delete();
-              //  SoundCalculator.dbstart = 0;
+//                SoundCalculator.dbstart = 0;
                 break;
 
         }
@@ -99,6 +99,7 @@ public class SoundActivity extends AppCompatActivity implements View.OnClickList
         mThread = new Thread(new Runnable() {
             @Override
             public void run() {
+                SoundCalculator.dbstart = 0;
                 while (isThreading) {
                     try {
                         if (isListener) {
@@ -114,7 +115,14 @@ public class SoundActivity extends AppCompatActivity implements View.OnClickList
                         isListener = false;
                     }
                 }
-
+                while(SoundCalculator.dbstart > 0) {
+                    try {
+                        SoundCalculator.setDbCount(0);
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
         mThread.start();
