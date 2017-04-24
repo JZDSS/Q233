@@ -33,7 +33,7 @@ public class SoundView extends android.support.v7.widget.AppCompatImageView {
 
 
     private void init() {
-        Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.noise_index);
+        Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.noise_index);
         int bitmapWidth = myBitmap.getWidth();
         int bitmapHeight = myBitmap.getHeight();
         newWidth = getWidth();
