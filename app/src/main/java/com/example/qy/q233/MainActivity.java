@@ -1,8 +1,14 @@
 package com.example.qy.q233;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
+import android.view.View;
+import android.widget.TextView;
+
+import com.example.qy.q233.view.CircleImageView;
+import com.example.qy.q233.view.CircleLayout;
 
 /**
  * Created by Qi Yao on 17-3-15.
@@ -10,8 +16,9 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button mButton;
-
+//    private Button mButton;
+    TextView selectedTextView;
+    CircleLayout circleMenu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +27,53 @@ public class MainActivity extends AppCompatActivity {
         if (((MyApp)getApplication()).getApiVersion() >= 23) {
             requestPermissions(Permission.allPermissions, 0);
         }
+
+        circleMenu = (CircleLayout)findViewById(R.id.main_circle_layout);
+        circleMenu.setOnItemSelectedListener(new CircleLayout.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(View view, int position, long id, String name) {
+                selectedTextView.setText(((CircleImageView)circleMenu.getSelectedItem()).getName());
+            }
+        });
+
+        circleMenu.setOnItemClickListener(new CircleLayout.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position, long id, String name) {
+
+                int DELAY = 1000;
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        Intent intent=new Intent();
+                        switch(circleMenu.getSelectedItem().getId()){
+                            case R.id.acc:
+                                intent.setClass(MainActivity.this, AccelerometerActivity.class);
+                                break;
+                            case R.id.bdmap:
+                                intent.setClass(MainActivity.this, BDMapActivity.class);
+                                break;
+                            case R.id.db:
+                                intent.setClass(MainActivity.this, SoundActivity.class);
+                                break;
+                            case R.id.count:
+                                intent.setClass(MainActivity.this, CounterActivity.class);
+                                break;
+                            case R.id.home:
+                                break;
+                            default:
+                                break;
+                        }
+                        startActivity(intent);
+                    }
+                }, DELAY);
+
+            }
+        });
+
+
+        selectedTextView = (TextView)findViewById(R.id.main_selected_textView);
+        selectedTextView.setText(((CircleImageView)circleMenu.getSelectedItem()).getName());
+
+
 
 //        mButton = (Button) findViewById(R.id.button_jump1);
 //        mButton.setOnClickListener(new ButtonListener());

@@ -5,13 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="join"
-        android:id="@+id/join"/>
+
     <com.example.qy.q233.view.CircleLayout
         android:id="@+id/main_circle_layout"
         android:layout_width="fill_parent"
@@ -25,49 +19,50 @@
 
 
         <com.example.qy.q233.view.CircleImageView
-            android:id="@+id/main_facebook_image"
+            android:id="@+id/home"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@mipmap/icon_facebook"
             circle:name="@string/facebook" />
 
         <com.example.qy.q233.view.CircleImageView
-            android:id="@+id/main_myspace_image"
+            android:id="@+id/acc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/icon_myspace"
             circle:name="@string/myspace" />
 
         <com.example.qy.q233.view.CircleImageView
-            android:id="@+id/main_google_image"
+            android:id="@+id/bdmap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/icon_google"
             circle:name="@string/google" />
 
         <com.example.qy.q233.view.CircleImageView
-            android:id="@+id/main_linkedin_image"
+            android:id="@+id/db"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/icon_linkedin"
             circle:name="@string/linkedin" />
 
         <com.example.qy.q233.view.CircleImageView
-            android:id="@+id/main_twitter_image"
+            android:id="@+id/count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/icon_twitter"
             circle:name="@string/twitter" />
 
-        <com.example.qy.q233.view.CircleImageView
-            android:id="@+id/main_wordpress_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/icon_wordpress"
-            circle:name="@string/wordpress" />
+        <!--<com.example.qy.q233.view.CircleImageView-->
+            <!--android:id="@+id/main_wordpress_image"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@mipmap/icon_wordpress"-->
+            <!--circle:name="@string/wordpress" />-->
     </com.example.qy.q233.view.CircleLayout>
 
     <TextView
+        android:text="home"
         android:id="@+id/main_selected_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
