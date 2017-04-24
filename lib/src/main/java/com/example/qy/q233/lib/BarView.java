@@ -48,7 +48,7 @@ public class BarView extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-    private class MyThread extends Thread implements Runnable{
+    private class MyThread extends Thread{
 
         @Override
         public void run() {

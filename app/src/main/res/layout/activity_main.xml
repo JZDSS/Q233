@@ -1,41 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:circle="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.qy.q233.MainActivity">
-    <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        android:orientation="vertical">
-        <Button
-            android:id="@+id/button_jump1"
-            android:layout_width="368dp"
-            android:layout_height="wrap_content"
-            android:text="@string/Jump1" />
-        <Button
-            android:id="@+id/button_jump2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Jump2"/>
-        <Button
-        android:id="@+id/button_jump3"
-        android:layout_width="match_parent"
+    tools:context=".MainActivity" >
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Jump3"/>
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="join"
+        android:id="@+id/join"/>
+    <com.example.qy.q233.view.CircleLayout
+        android:id="@+id/main_circle_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/main_selected_textView"
+        android:layout_gravity="center_horizontal"
+        circle:firstChildPosition="South"
+        circle:rotateToCenter="true"
+        circle:isRotating="true" >
+        <!--         circle:circleBackground="@drawable/green"  > -->
 
-        <Button
-            android:id="@+id/button_jump4"
-            android:layout_width="match_parent"
+
+        <com.example.qy.q233.view.CircleImageView
+            android:id="@+id/main_facebook_image"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/icon_facebook"
+            circle:name="@string/facebook" />
+
+        <com.example.qy.q233.view.CircleImageView
+            android:id="@+id/main_myspace_image"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Jump4"/>
+            android:src="@mipmap/icon_myspace"
+            circle:name="@string/myspace" />
 
-        <Button
-            android:id="@+id/button_jump5"
-            android:layout_width="match_parent"
+        <com.example.qy.q233.view.CircleImageView
+            android:id="@+id/main_google_image"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Jump5"/>
-    </LinearLayout>
+            android:src="@mipmap/icon_google"
+            circle:name="@string/google" />
+
+        <com.example.qy.q233.view.CircleImageView
+            android:id="@+id/main_linkedin_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_linkedin"
+            circle:name="@string/linkedin" />
+
+        <com.example.qy.q233.view.CircleImageView
+            android:id="@+id/main_twitter_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_twitter"
+            circle:name="@string/twitter" />
+
+        <com.example.qy.q233.view.CircleImageView
+            android:id="@+id/main_wordpress_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_wordpress"
+            circle:name="@string/wordpress" />
+    </com.example.qy.q233.view.CircleLayout>
+
+    <TextView
+        android:id="@+id/main_selected_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>
+<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--tools:context="com.example.qy.q233.MainActivity">-->
+    <!--<LinearLayout-->
+        <!--android:layout_width="368dp"-->
+        <!--android:layout_height="495dp"-->
+        <!--android:orientation="vertical">-->
+        <!--<Button-->
+            <!--android:id="@+id/button_jump1"-->
+            <!--android:layout_width="368dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/Jump1" />-->
+        <!--<Button-->
+            <!--android:id="@+id/button_jump2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/Jump2"/>-->
+        <!--<Button-->
+        <!--android:id="@+id/button_jump3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/Jump3"/>-->
+
+        <!--<Button-->
+            <!--android:id="@+id/button_jump4"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/Jump4"/>-->
+
+        <!--<Button-->
+            <!--android:id="@+id/button_jump5"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/Jump5"/>-->
+    <!--</LinearLayout>-->
 
 
-</android.support.constraint.ConstraintLayout>
+<!--</android.support.constraint.ConstraintLayout>-->
