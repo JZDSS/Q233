@@ -17,13 +17,14 @@ import java.io.IOException;
  * Created by Zhang Xiaorui on 2017/4/14.
  */
 
-public class SoundActivity extends AppCompatActivity implements View.OnClickListener {
+public class SoundActivity extends AppCompatActivity{
+
+    boolean start;
     private static final int START_RECORD = 0;
 
-    private Button mBtnStart, mBtnStop;
+    private Button mBtnCtl;
 
     private File mFileRec;
-    private Thread mThread;
     private MediaRecorder mMediaRecorder;
     private MyHandle mHandle;
 
@@ -37,43 +38,65 @@ public class SoundActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sound);
+        start = false;
         mHandle = new MyHandle();
         initView();
     }
 
     private void initView() {
-        mBtnStart = (Button) findViewById(R.id.btn_start);
-        mBtnStop = (Button) findViewById(R.id.btn_stop);
+        mBtnCtl = (Button) findViewById(R.id.btn_ctl);
 
-        mBtnStart.setOnClickListener(this);
-        mBtnStop.setOnClickListener(this);
-
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_start:
-                isListener = true;
-                isRecording = true;
-                isThreading = true;
-                Message msg = new Message();
-                msg.what = START_RECORD;
-                mHandle.sendMessage(msg);
-                break;
-            case R.id.btn_stop:
-                isListener = false;
-                isThreading = false;
-                isRecording = false;
+        mBtnCtl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!start){
+                    ((Button)v).setText(R.string.stop);
+                    start = true;
+                    isListener = true;
+                    isRecording = true;
+                    isThreading = true;
+                    Message msg = new Message();
+                    msg.what = START_RECORD;
+                    mHandle.sendMessage(msg);
+                }else{
+                    start = false;
+                    isListener = false;
+                    isThreading = false;
+                    isRecording = false;
 //                SoundCalculator.dblast = 0;
 //                SoundCalculator.dbstart = 0;
-                mMediaRecorder.reset();
-                mFileRec.delete();
-//                SoundCalculator.dbstart = 0;
-                break;
+                    mMediaRecorder.reset();
+                    mFileRec.delete();
+                }
+            }
+        });
 
-        }
     }
+
+//    @Override
+//    public void onClick(View view) {
+//        switch (view.getId()) {
+//            case R.id.btn_start:
+//                isListener = true;
+//                isRecording = true;
+//                isThreading = true;
+//                Message msg = new Message();
+//                msg.what = START_RECORD;
+//                mHandle.sendMessage(msg);
+//                break;
+//            case R.id.btn_stop:
+//                isListener = false;
+//                isThreading = false;
+//                isRecording = false;
+////                SoundCalculator.dblast = 0;
+////                SoundCalculator.dbstart = 0;
+//                mMediaRecorder.reset();
+//                mFileRec.delete();
+////                SoundCalculator.dbstart = 0;
+//                break;
+//
+//        }
+//    }
 
     private void beginstart() {
         isListener = true;
@@ -96,7 +119,7 @@ public class SoundActivity extends AppCompatActivity implements View.OnClickList
             e.printStackTrace();
         }
 
-        mThread = new Thread(new Runnable() {
+        Thread mThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 SoundCalculator.dbstart = 0;
@@ -115,7 +138,7 @@ public class SoundActivity extends AppCompatActivity implements View.OnClickList
                         isListener = false;
                     }
                 }
-                while(SoundCalculator.dbstart > 0) {
+                while (SoundCalculator.dbstart > 0) {
                     try {
                         SoundCalculator.setDbCount(0);
                         Thread.sleep(100);
