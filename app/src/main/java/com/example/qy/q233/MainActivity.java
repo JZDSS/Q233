@@ -2,7 +2,6 @@ package com.example.qy.q233;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -40,31 +39,31 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position, long id, String name) {
 
-                int DELAY = 1000;
-                new Handler().postDelayed(new Runnable() {
-                    public void run() {
-                        Intent intent=new Intent();
-                        switch(circleMenu.getSelectedItem().getId()){
-                            case R.id.acc:
-                                intent.setClass(MainActivity.this, AccelerometerActivity.class);
-                                break;
-                            case R.id.bdmap:
-                                intent.setClass(MainActivity.this, BDMapActivity.class);
-                                break;
-                            case R.id.db:
-                                intent.setClass(MainActivity.this, SoundActivity.class);
-                                break;
-                            case R.id.count:
-                                intent.setClass(MainActivity.this, CounterActivity.class);
-                                break;
-                            case R.id.home:
-                                break;
-                            default:
-                                break;
-                        }
-                        startActivity(intent);
-                    }
-                }, DELAY);
+//                circleMenu.rotateViewToCenter((CircleImageView) circleMenu.getSelectedItem(),
+//                        false);
+//                long DELAY = 10000000;
+//                while(DELAY--!=0);
+                Intent intent=new Intent();
+                switch(circleMenu.getSelectedItem().getId()){
+                    case R.id.acc:
+                        intent.setClass(MainActivity.this, AccelerometerActivity.class);
+                        break;
+                    case R.id.bdmap:
+                        intent.setClass(MainActivity.this, BDMapActivity.class);
+                        break;
+                    case R.id.db:
+                        intent.setClass(MainActivity.this, SoundActivity.class);
+                        break;
+                    case R.id.count:
+                        intent.setClass(MainActivity.this, CounterActivity.class);
+                        break;
+                    case R.id.abt_us:
+                        intent.setClass(MainActivity.this, AboutUsActivity.class);
+                        break;
+                    default:
+                        return;
+                }
+                startActivity(intent);
 
             }
         });

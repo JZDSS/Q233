@@ -32,5 +32,11 @@
     <string name="wordpress">Wordpress</string>
     <string name="myspace">Myspace</string>
     <string name="start_app">Starting application:</string>
+    <string name="home">Home</string>
+    <string name="acc">Acceleration</string>
+    <string name="bdmap">Baidu Map</string>
+    <string name="db">Sound</string>
+    <string name="count">Counter</string>
+    <string name="about_us">About us</string>
 
 </resources>

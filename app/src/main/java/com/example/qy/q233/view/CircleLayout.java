@@ -393,14 +393,16 @@ public class CircleLayout extends ViewGroup {
 					startAngle = getAngle(event.getX(), event.getY());
 					break;
 				case MotionEvent.ACTION_MOVE:
-					double currentAngle = getAngle(event.getX(), event.getY());
-					rotateButtons((float) (startAngle - currentAngle));
-					startAngle = currentAngle;
+//					double currentAngle = getAngle(event.getX(), event.getY());
+//					rotateButtons((float) (startAngle - currentAngle));
+//					startAngle = currentAngle;
 					break;
 				case MotionEvent.ACTION_UP:
 					allowRotating = true;
-					rotateViewToCenter((CircleImageView) getChildAt(selected),
-							false);
+//					rotateViewToCenter((CircleImageView) getChildAt(selected),
+//							false);
+
+
 					break;
 				}
 			}
@@ -415,41 +417,41 @@ public class CircleLayout extends ViewGroup {
 	}
 
 	private class MyGestureListener extends SimpleOnGestureListener {
-		@Override
-		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-                               float velocityY) {
-			if (!isRotating) {
-				return false;
-			}
-			// get the quadrant of the start and the end of the fling
-			int q1 = getQuadrant(e1.getX() - (circleWidth / 2), circleHeight
-					- e1.getY() - (circleHeight / 2));
-			int q2 = getQuadrant(e2.getX() - (circleWidth / 2), circleHeight
-					- e2.getY() - (circleHeight / 2));
-
-			// the inversed rotations
-			if ((q1 == 2 && q2 == 2 && Math.abs(velocityX) < Math
-					.abs(velocityY))
-					|| (q1 == 3 && q2 == 3)
-					|| (q1 == 1 && q2 == 3)
-					|| (q1 == 4 && q2 == 4 && Math.abs(velocityX) > Math
-							.abs(velocityY))
-					|| ((q1 == 2 && q2 == 3) || (q1 == 3 && q2 == 2))
-					|| ((q1 == 3 && q2 == 4) || (q1 == 4 && q2 == 3))
-					|| (q1 == 2 && q2 == 4 && quadrantTouched[3])
-					|| (q1 == 4 && q2 == 2 && quadrantTouched[3])) {
-
-				CircleLayout.this.post(new FlingRunnable(-1
-						* (velocityX + velocityY)));
-			} else {
-				// the normal rotation
-				CircleLayout.this
-						.post(new FlingRunnable(velocityX + velocityY));
-			}
-
-			return true;
-
-		}
+//		@Override
+//		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+//                               float velocityY) {
+//			if (!isRotating) {
+//				return false;
+//			}
+//			// get the quadrant of the start and the end of the fling
+//			int q1 = getQuadrant(e1.getX() - (circleWidth / 2), circleHeight
+//					- e1.getY() - (circleHeight / 2));
+//			int q2 = getQuadrant(e2.getX() - (circleWidth / 2), circleHeight
+//					- e2.getY() - (circleHeight / 2));
+//
+//			// the inversed rotations
+//			if ((q1 == 2 && q2 == 2 && Math.abs(velocityX) < Math
+//					.abs(velocityY))
+//					|| (q1 == 3 && q2 == 3)
+//					|| (q1 == 1 && q2 == 3)
+//					|| (q1 == 4 && q2 == 4 && Math.abs(velocityX) > Math
+//							.abs(velocityY))
+//					|| ((q1 == 2 && q2 == 3) || (q1 == 3 && q2 == 2))
+//					|| ((q1 == 3 && q2 == 4) || (q1 == 4 && q2 == 3))
+//					|| (q1 == 2 && q2 == 4 && quadrantTouched[3])
+//					|| (q1 == 4 && q2 == 2 && quadrantTouched[3])) {
+//
+//				CircleLayout.this.post(new FlingRunnable(-1
+//						* (velocityX + velocityY)));
+//			} else {
+//				// the normal rotation
+//				CircleLayout.this
+//						.post(new FlingRunnable(velocityX + velocityY));
+//			}
+//
+//			return true;
+//
+//		}
 
 		@Override
 		public boolean onSingleTapUp(MotionEvent e) {
@@ -507,10 +509,10 @@ public class CircleLayout extends ViewGroup {
 	 * @param fromRunnable	if the method is called from the runnable which animates the rotation
 	 * 						then it should be true, otherwise false 
 	 */
-	private void rotateViewToCenter(CircleImageView view, boolean fromRunnable) {
+	public void rotateViewToCenter(CircleImageView view, boolean fromRunnable) {
 		if (rotateToCenter) {
 			float velocityTemp = 1;
-			float destAngle = (float) (firstChildPos - view.getAngle());
+			float destAngle = firstChildPos - view.getAngle();
 			float startAngle = 0;
 			int reverser = 1;
 
