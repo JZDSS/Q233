@@ -29,35 +29,35 @@
             android:id="@+id/acc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/icon_myspace"
+            android:src="@mipmap/icon_acc"
             circle:name="@string/acc" />
 
         <com.example.qy.q233.view.CircleImageView
             android:id="@+id/bdmap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/icon_google"
+            android:src="@mipmap/icon_map"
             circle:name="@string/bdmap" />
 
         <com.example.qy.q233.view.CircleImageView
             android:id="@+id/db"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/icon_linkedin"
+            android:src="@mipmap/icon_sound"
             circle:name="@string/db" />
 
         <com.example.qy.q233.view.CircleImageView
             android:id="@+id/count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/icon_twitter"
+            android:src="@mipmap/icon_counter"
             circle:name="@string/count" />
 
         <com.example.qy.q233.view.CircleImageView
             android:id="@+id/abt_us"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/icon_wordpress"
+            android:src="@mipmap/icon_aboutus"
             circle:name="@string/about_us" />
     </com.example.qy.q233.view.CircleLayout>
 
