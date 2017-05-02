@@ -28,6 +28,7 @@ public class CounterActivity extends AppCompatActivity {
     public TextView textView;
     public int StepCounter = 0;
     public Button button;
+    public boolean isCounter = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class CounterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_counter);
         textView = (TextView) findViewById(R.id.textview);
         button = (Button) findViewById(R.id.button1);
+        isCounter = true;
 
         accelerometer = new Accelerometer(this);
         accelerometer.resume();
@@ -44,43 +46,24 @@ public class CounterActivity extends AppCompatActivity {
         counterTimer.schedule(counterTask, 1, 500);
 
     }
-//    @Override
-//    protected void onStart(){
-//        super.onStart();
-//    }
-//
-//    @Override
-//    protected void onResume() {
-//
-//        super.onResume();
-//        accelerometer.resume();
-//
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        accelerometer.pause();
-//
-//
-//    }
 
     class MyHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-                    new_norm = accelerometer.norm;
-                    mCounter.DetectorPeak(new_norm, old_norm);
-                    mCounter.Counter();
-                    StepCounter = mCounter.couter;
-                    if((new_norm != old_norm) && (new_norm != norm_r)){
-                        norm_r = old_norm;
-                        mCounter.norm_r = old_norm;
-                        old_norm = accelerometer.norm;
+                    if(isCounter) {
+                        new_norm = accelerometer.norm;
+                        mCounter.DetectorPeak(new_norm, old_norm);
+                        mCounter.Counter();
+                        StepCounter = mCounter.couter;
+                        if ((new_norm != old_norm) && (new_norm != norm_r)) {
+                            norm_r = old_norm;
+                            mCounter.norm_r = old_norm;
+                            old_norm = accelerometer.norm;
+                        }
+                        textView.setText(String.valueOf(StepCounter).toString());
                     }
-                    textView.setText(String.valueOf(StepCounter).toString());
-
                 default:
                     break;
             }
@@ -88,4 +71,10 @@ public class CounterActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isCounter = false;
+        accelerometer.pause();
+    }
 }
