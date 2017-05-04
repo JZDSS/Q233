@@ -43,7 +43,6 @@ public class CounterActivity extends AppCompatActivity {
         startService(new Intent(this, StepService.class));
 
         button.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
                 if (button.getText()=="start"){

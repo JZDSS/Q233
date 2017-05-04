@@ -48,6 +48,8 @@ allprojects {
 
 dependencies {
 
+    compile 'com.czp.arcProgressBar:ArcProgressBar:1.0.1'
+
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
