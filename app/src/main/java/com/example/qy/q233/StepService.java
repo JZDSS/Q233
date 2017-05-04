@@ -18,17 +18,22 @@ public class StepService extends Service {
     public Accelerometer accelerometer;
     public Counter counter = new Counter();
     public int StepCounter = 0;
+    public float norm = 9.8f;
 
     @Override
     public IBinder onBind(Intent intent) {
+        Log.i(" StepService", "onBind");
         return null;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.i(" StepCounterService", "onCreate");
+        Log.i(" StepService", "onCreate");
+
         accelerometer = new Accelerometer(this);
+        accelerometer.resume();
+
         Flag = true;
         new Thread() {
             @Override
@@ -36,8 +41,16 @@ public class StepService extends Service {
                 super.run();
                 while (true) {
                     if (Flag) {
+                        norm = accelerometer.norm;
                         counter.RefreshNorm(accelerometer.norm);
-                        counter.Counter();
+                        try {
+                            Thread.sleep(300);
+                            counter.Counter();
+                        } catch (InterruptedException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
                     }
                 }
             }
@@ -48,6 +61,6 @@ public class StepService extends Service {
         // TODO Auto-generated method stub
         super.onDestroy();
         Flag = false;
-        Log.i(" StepCounterService","onDestroy");
+        Log.i(" StepService","onDestroy");
     }
 }

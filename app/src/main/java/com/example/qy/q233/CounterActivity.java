@@ -1,5 +1,6 @@
 package com.example.qy.q233;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,64 +18,50 @@ import java.util.Timer;
  */
 
 public class CounterActivity extends AppCompatActivity {
-    public Accelerometer accelerometer;
-    public boolean isopened;
-    private MyHandler mHandler = new MyHandler();
-    private Timer counterTimer = new Timer();
-    public Counter mCounter = new Counter();
-    public float new_norm = 9.8f;
-    public float old_norm = 9.8f;
-    public float norm_r = 9.8f;
     public TextView textView;
-    public int StepCounter = 0;
-    public Button button;
-    public boolean isCounter = false;
+    public boolean isRun = false;
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            textView.setText(String.valueOf(Counter.couter).toString());
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counter);
         textView = (TextView) findViewById(R.id.textview);
-        button = (Button) findViewById(R.id.button1);
-        isCounter = true;
 
-        accelerometer = new Accelerometer(this);
-        accelerometer.resume();
+        isRun = true;
+        startService(new Intent(this, StepService.class));
 
-        MyTimerTask counterTask = new MyTimerTask(mHandler);
-        counterTask.setMsg(1);
-        counterTimer.schedule(counterTask, 1, 500);
-
-    }
-
-    class MyHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 1:
-                    if(isCounter) {
-                        new_norm = accelerometer.norm;
-                        mCounter.DetectorPeak(new_norm, old_norm);
-                        mCounter.Counter();
-                        StepCounter = mCounter.couter;
-                        if ((new_norm != old_norm) && (new_norm != norm_r)) {
-                            norm_r = old_norm;
-                            mCounter.norm_r = old_norm;
-                            old_norm = accelerometer.norm;
-                        }
-                        textView.setText(String.valueOf(StepCounter).toString());
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                while (true) {
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
                     }
-                default:
-                    break;
+                    if (isRun) {
+                        handler.sendEmptyMessage(199);
+                    }
+                }
             }
+        }.start();
 
-        }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        isCounter = false;
-        accelerometer.pause();
-    }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        isCounter = false;
+//        accelerometer.pause();
+//    }
 }
