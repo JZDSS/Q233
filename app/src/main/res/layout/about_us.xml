@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/backgroundus3">
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -20,6 +21,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:text="研发团队成员介绍"
+                android:textColor="@color/white"
                 android:textSize="34sp"
                 android:textStyle="bold" />
             <LinearLayout
@@ -45,6 +47,7 @@
                         android:layout_marginLeft="12dp"
                         android:layout_toRightOf="@+id/qy1"
                         android:text="姓名：戚耀"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
@@ -56,6 +59,7 @@
                         android:layout_marginLeft="12dp"
                         android:layout_toRightOf="@+id/qy1"
                         android:text="学号：2014141453124"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
@@ -68,6 +72,7 @@
                         android:lineSpacingExtra="9dp"
                         android:layout_toRightOf="@+id/qy1"
                         android:text="个人标签：毒舌，腹黑，学习能力超强的编程大牛 "
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -94,6 +99,7 @@
                         android:layout_marginTop="50dp"
                         android:layout_toRightOf="@+id/xyn1"
                         android:text="姓名：许一宁"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
@@ -104,6 +110,7 @@
                         android:layout_marginLeft="12dp"
                         android:layout_toRightOf="@+id/qy1"
                         android:text="学号：2014141453202 "
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
@@ -115,6 +122,7 @@
                         android:layout_marginTop="12dp"
                         android:layout_toRightOf="@id/xyn1"
                         android:lineSpacingExtra="9dp"
+                        android:textColor="@color/white"
                         android:text="个人标签：弹得了古筝，编得了程序，还有点强迫症的女神！ "
                         android:textSize="18sp" />
                 </LinearLayout>
@@ -154,6 +162,7 @@
                         android:layout_marginTop="50dp"
                         android:layout_toRightOf="@+id/qy1"
                         android:text="姓名：张小睿"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
@@ -165,6 +174,7 @@
                         android:layout_marginTop="12dp"
                         android:layout_toRightOf="@+id/zxr1"
                         android:text="学号：2014141453235"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
@@ -176,6 +186,7 @@
                         android:layout_marginTop="12dp"
                         android:layout_toRightOf="@+id/zxr1"
                         android:lineSpacingExtra="9dp"
+                        android:textColor="@color/white"
                         android:text="个人标签：时时被“新手光环”照顾的菜鸟-_-"
                         android:textSize="18sp" />
 
