@@ -55,7 +55,7 @@ public class CounterActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button1);
 
         mProgress = (ArcProgress) findViewById(R.id.myprogress);
-        mProgress.setUnfinishedStrokeColor(Color.rgb(66, 145, 241));
+        mProgress.setUnfinishedStrokeColor(Color.rgb(100, 150, 255));
         mProgress.setFinishedStrokeColor(Color.rgb(0, 0, 241));
 //        mProgress.setOnCenterDraw(new OnTextCenter());
 //        addProrgress(mProgress);
