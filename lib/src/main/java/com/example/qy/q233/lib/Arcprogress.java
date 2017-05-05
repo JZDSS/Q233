@@ -14,9 +14,8 @@ import android.util.TypedValue;
 import android.widget.ProgressBar;
 
 /**
- * Created by Xu Yining on 2017/5/4.
+ * Created by caizepeng on 16/9/6.
  */
-
 public class ArcProgress extends ProgressBar {
     public static final int STYLE_TICK = 1;
     public static final int STYLE_ARC = 0;
@@ -83,13 +82,13 @@ public class ArcProgress extends ProgressBar {
     protected synchronized void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-        if(widthMode!=MeasureSpec.EXACTLY){
+        if(widthMode!= MeasureSpec.EXACTLY){
             int widthSize = (int) (mRadius*2+mBoardWidth*2);
-            widthMeasureSpec = MeasureSpec.makeMeasureSpec(widthSize,MeasureSpec.EXACTLY);
+            widthMeasureSpec = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY);
         }
         if(heightMode != MeasureSpec.EXACTLY){
             int heightSize = (int) (mRadius*2+mBoardWidth*2);
-            heightMeasureSpec = MeasureSpec.makeMeasureSpec(heightSize,MeasureSpec.EXACTLY);
+            heightMeasureSpec = MeasureSpec.makeMeasureSpec(heightSize, MeasureSpec.EXACTLY);
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
@@ -162,7 +161,7 @@ public class ArcProgress extends ProgressBar {
          * @param storkeWidth   圆弧的边框宽度
          * @param progress      当前进度
          */
-        public  void draw(Canvas canvas, RectF rectF, float x, float y,float storkeWidth,int progress);
+        public  void draw(Canvas canvas, RectF rectF, float x, float y, float storkeWidth, int progress);
     }
     @Override
     protected void onDetachedFromWindow() {

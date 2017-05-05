@@ -6,9 +6,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 /**
- * Created by Xu Yining on 2017/5/4.
+ * Created by caizepeng on 16/9/8.
  */
-
 public class OnTextCenter implements ArcProgress.OnCenterDraw {
     private int textColor = Color.GRAY;
     private int textSize = 50;
@@ -21,7 +20,7 @@ public class OnTextCenter implements ArcProgress.OnCenterDraw {
         super();
     }
     @Override
-    public void draw(Canvas canvas, RectF rectF, float x, float y,float strokeWidth,int progress) {
+    public void draw(Canvas canvas, RectF rectF, float x, float y, float strokeWidth, int progress) {
         Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setStrokeWidth(35);
         textPaint.setTextSize(textSize);

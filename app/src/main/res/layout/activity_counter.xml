@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
     <TextView
         android:id="@+id/textview"
         android:layout_width="wrap_content"
@@ -18,8 +19,8 @@
         android:textSize="50sp"
         android:text="@string/start"
         android:layout_gravity="center_horizontal"/>
-    <com.czp.library.ArcProgress
-        android:id="@+id/myProgress01"
+    <com.example.qy.q233.lib.ArcProgress
+        android:id="@+id/myProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/myProgress"

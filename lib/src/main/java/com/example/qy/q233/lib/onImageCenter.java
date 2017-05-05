@@ -10,9 +10,8 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 
 /**
- * Created by Xu Yining on 2017/5/4.
+ * Created by caizepeng on 16/9/8.
  */
-
 public class onImageCenter implements ArcProgress.OnCenterDraw {
     private Context context;
     private int rid;
@@ -38,4 +37,5 @@ public class onImageCenter implements ArcProgress.OnCenterDraw {
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(target, sx, sy, paint);
     }
+
 }
