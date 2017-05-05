@@ -3,8 +3,9 @@ package com.example.qy.q233.view;
 import android.content.res.Resources;
 
 /**
- * Created by bruce on 14-11-6.
+ * Created by Xu Yining on 2017/5/5.
  */
+
 public final class Utils {
     
     private Utils() {

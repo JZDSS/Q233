@@ -16,7 +16,7 @@ import android.view.View;
 import com.example.qy.q233.R;
 
 /**
- * Created by bruce on 11/6/14.
+ * Created by Xu Yining on 2017/5/5.
  */
 public class ArcProgress extends View {
 
@@ -82,11 +82,11 @@ public class ArcProgress extends View {
 
         default_text_size = Utils.sp2px(getResources(), 18);
         min_size = (int) Utils.dp2px(getResources(), 100);
-        default_text_size = Utils.sp2px(getResources(), 40);
-        default_suffix_text_size = Utils.sp2px(getResources(), 15);
+        default_text_size = Utils.sp2px(getResources(), 50);
+        default_suffix_text_size = Utils.sp2px(getResources(), 20);
         default_suffix_padding = Utils.dp2px(getResources(), 4);
-        default_suffix_text = "%";
-        default_bottom_text_size = Utils.sp2px(getResources(), 20);
+        default_suffix_text = "Step";
+        default_bottom_text_size = Utils.sp2px(getResources(), 25);
         default_stroke_width = Utils.dp2px(getResources(), 4);
 
         TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ArcProgress, defStyleAttr, 0);

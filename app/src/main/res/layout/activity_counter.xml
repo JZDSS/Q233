@@ -24,8 +24,11 @@
         android:layout_marginLeft="80dp"
         android:layout_width="240dp"
         android:layout_height="240dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="50dp"
         app:arc_progress="0"
-        app:arc_bottom_text="aim:100" />
+        app:arc_bottom_text="aim:100"
+        app:arc_stroke_width="15dp"/>
     <!--<com.example.qy.q233.lib.ArcProgress-->
         <!--android:id="@+id/myProgress"-->
         <!--android:layout_width="wrap_content"-->
