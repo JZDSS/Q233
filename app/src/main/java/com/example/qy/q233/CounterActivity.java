@@ -1,6 +1,7 @@
 package com.example.qy.q233;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,9 +12,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.qy.q233.lib.ArcProgress;
+
 import com.example.qy.q233.lib.Counter;
-import com.example.qy.q233.lib.OnTextCenter;
+import com.example.qy.q233.view.ArcProgress;
+//import com.example.qy.q233.lib.OnTextCenter;
 
 import java.util.Timer;
 
@@ -33,13 +35,15 @@ public class CounterActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what) {
-                case 0:
-                    textView.setText(String.valueOf(Counter.couter).toString());
-                default:
-                    ArcProgress progressBar = (ArcProgress) msg.obj;
-                    progressBar.setProgress(msg.what);
-            }
+//            switch (msg.what) {
+//                case 0:
+            textView.setText(String.valueOf(Counter.couter).toString());
+            mProgress.setProgress(Counter.couter);
+
+//                default:
+//                    ArcProgress progressBar = (ArcProgress) msg.obj;
+//                    progressBar.setProgress(msg.what);
+//            }
         }
     };
 
@@ -50,9 +54,11 @@ public class CounterActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.textview);
         button = (Button) findViewById(R.id.button1);
 
-        mProgress = (ArcProgress) findViewById(R.id.myProgress);
-        mProgress.setOnCenterDraw(new OnTextCenter());
-        addProrgress(mProgress);
+        mProgress = (ArcProgress) findViewById(R.id.myprogress);
+        mProgress.setUnfinishedStrokeColor(Color.rgb(66, 145, 241));
+        mProgress.setFinishedStrokeColor(Color.rgb(0, 0, 241));
+//        mProgress.setOnCenterDraw(new OnTextCenter());
+//        addProrgress(mProgress);
 
         isRun = true;
         button.setText("stop");
@@ -85,44 +91,44 @@ public class CounterActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     if (isRun) {
-                        MyTimerTask CountTimerTask = new MyTimerTask(handler);
-                        CountTimerTask.setMsg(0);
-                        CountTimer.schedule(CountTimerTask, 1, 300);
-                        //handler.sendEmptyMessage(0);
+//                        MyTimerTask CountTimerTask = new MyTimerTask(handler);
+//                        CountTimerTask.setMsg(0);
+//                        CountTimer.schedule(CountTimerTask, 1, 300);
+                        handler.sendEmptyMessage(199);
                     }
                 }
             }
         }.start();
     }
 
-    public void addProrgress(ArcProgress progressBar) {
-        Thread thread = new Thread(new ProgressThread(progressBar));
-        thread.start();
-    }
-
-    class ProgressThread implements Runnable{
-        int i= 0;
-        private ArcProgress progressBar;
-        public ProgressThread(ArcProgress progressBar) {
-            this.progressBar = progressBar;
-        }
-        @Override
-        public void run() {
-            for(;i<=100;i++){
-                if(isFinishing()){
-                    break;
-                }
-                Message msg = new Message();
-                msg.what = i;
-                Log.e("DEMO","i == "+i);
-                msg.obj = progressBar;
-                SystemClock.sleep(100);
-                MyTimerTask BarTimerTask = new MyTimerTask(handler);
-                BarTimerTask.setMsg(msg.what);
-                BarTimer.schedule(BarTimerTask, 1, 5);
-            }
-        }
-    }
+//    public void addProrgress(ArcProgress progressBar) {
+//        Thread thread = new Thread(new ProgressThread(progressBar));
+//        thread.start();
+//    }
+//
+//    class ProgressThread implements Runnable{
+//        int i= 0;
+//        private ArcProgress progressBar;
+//        public ProgressThread(ArcProgress progressBar) {
+//            this.progressBar = progressBar;
+//        }
+//        @Override
+//        public void run() {
+//            for(;i<=100;i++){
+//                if(isFinishing()){
+//                    break;
+//                }
+//                Message msg = new Message();
+//                msg.what = i;
+//                Log.e("DEMO","i == "+i);
+//                msg.obj = progressBar;
+//                SystemClock.sleep(100);
+//                MyTimerTask BarTimerTask = new MyTimerTask(handler);
+//                BarTimerTask.setMsg(msg.what);
+//                BarTimer.schedule(BarTimerTask, 1, 5);
+//            }
+//        }
+//    }
 
     @Override
     protected void onResume(){

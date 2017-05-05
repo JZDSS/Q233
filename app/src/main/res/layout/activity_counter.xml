@@ -19,13 +19,19 @@
         android:textSize="50sp"
         android:text="@string/start"
         android:layout_gravity="center_horizontal"/>
-    <com.example.qy.q233.lib.ArcProgress
-        android:id="@+id/myProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/myProgress"
-        app:radius="80dp"
-        app:progressColor="@color/progressColor"
-        app:tickDensity="3" />
+    <com.example.qy.q233.view.ArcProgress
+        android:id="@+id/myprogress"
+        android:layout_marginLeft="80dp"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        app:arc_progress="0"
+        app:arc_bottom_text="aim:100" />
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+        <!--android:id="@+id/myProgress"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_below="@id/myProgress"-->
+        <!--app:radius="80dp"-->
+        <!--app:tickDensity="3" />-->
 
 </LinearLayout>
