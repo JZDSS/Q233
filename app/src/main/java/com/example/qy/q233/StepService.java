@@ -2,6 +2,7 @@ package com.example.qy.q233;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -20,6 +21,8 @@ public class StepService extends Service {
     public int StepCounter = 0;
     public float norm = 9.8f;
 
+    String numCounter;
+
     @Override
     public IBinder onBind(Intent intent) {
         Log.i(" StepService", "onBind");
@@ -33,6 +36,13 @@ public class StepService extends Service {
 
         accelerometer = new Accelerometer(this);
         accelerometer.resume();
+
+        SharedPreferences sharedPreferences;
+        sharedPreferences = ((MyApp) getApplication()).sp;
+        String counternum1  = String.valueOf(Counter.couter);
+        sharedPreferences.edit().putString("StepCounter", counternum1).apply();
+        String counternum2= sharedPreferences.getString("StepCounter", "");
+        Counter.couter = Integer.valueOf(counternum2).intValue();
 
         Flag = true;
         new Thread() {
@@ -61,6 +71,9 @@ public class StepService extends Service {
         // TODO Auto-generated method stub
         super.onDestroy();
         Flag = false;
+        String counternum3  = String.valueOf(Counter.couter);
+        SharedPreferences sharedPreferences = ((MyApp) getApplication()).sp;
+        sharedPreferences.edit().putString("StepCounter", counternum3).apply();
         Log.i(" StepService","onDestroy");
     }
 }
