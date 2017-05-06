@@ -66,6 +66,7 @@ public class StepService extends Service {
             }
         }.start();
     }
+
     @Override
     public void onDestroy() {
         // TODO Auto-generated method stub
