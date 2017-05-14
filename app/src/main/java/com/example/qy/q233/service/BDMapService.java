@@ -1,11 +1,10 @@
-package com.example.qy.q233;
+package com.example.qy.q233.service;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -28,6 +27,8 @@ public class BDMapService extends Service {
     private MyBinder binder = new MyBinder();
     //定位客户端
     private LocationClient client;
+
+    public static double latitude, longitude;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -42,7 +43,7 @@ public class BDMapService extends Service {
         client.registerLocationListener(new MyLocationListener());
         LocationClientOption option = new LocationClientOption();
         //每 5 秒更新一次定位
-        option.setScanSpan(5 * 1000);
+        option.setScanSpan(1 * 1000);
         //开启描述性信息，不开启不会返回城市名等信息
         option.setIsNeedAddress(true);
         client.setLocOption(option);
@@ -62,6 +63,8 @@ public class BDMapService extends Service {
             return city;
         }
     }
+
+
     public class MyLocationListener implements BDLocationListener {
         @Override
         public void onReceiveLocation(BDLocation bdLocation) {
@@ -71,21 +74,20 @@ public class BDMapService extends Service {
             }
             if (bdLocation.getLocType() == BDLocation.TypeNetWorkLocation
                     || bdLocation.getLocType() == BDLocation.TypeGpsLocation) {
-                //也可以使用 bdLocation.getCity()
-                if (bdLocation.getDistrict() != null) {
-                    Log.d(TAG, "onReceiveLocation: " + bdLocation.getDistrict());
-                    if (handler != null) {
-                        city = bdLocation.getDistrict();
-                        //向实例化 Handler 的线程发送消息
-                        handler.sendEmptyMessage(0);
-                    }
-                }
+                latitude = bdLocation.getLatitude();
+                longitude = bdLocation.getLongitude();
+                Log.v(TAG, "" + latitude);
+                Log.v(TAG, "" + longitude);
+
+
             }
         }
         @Override
         public void onConnectHotSpotMessage(String s, int i) {
         }
     }
+
+
     @Override
     public void onDestroy() {
         super.onDestroy();

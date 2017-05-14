@@ -1,6 +1,5 @@
 package com.example.qy.q233;
 
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -10,6 +9,8 @@ import android.os.IBinder;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import com.example.qy.q233.service.BDMapService;
 
 /**
  * Created by Xu Yining on 2017/5/6.

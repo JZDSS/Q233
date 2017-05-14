@@ -5,15 +5,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 
+import com.example.qy.q233.R;
 import com.example.qy.q233.lib.Counter;
+import com.example.qy.q233.service.StepService;
 import com.example.qy.q233.view.ArcProgress;
 //import com.example.qy.q233.lib.OnTextCenter;
 

@@ -10,7 +10,7 @@ import android.content.SharedPreferences;
 public class MyApp extends Application {
     int apiVersion;
     String url = "";
-    SharedPreferences sp;
+    public SharedPreferences sp;
 
     public void setSharedPreferences(SharedPreferences sp){
         this.sp = sp;

@@ -1,10 +1,7 @@
 package com.example.qy.q233;
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -21,6 +18,9 @@ import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.model.LatLng;
+import com.example.qy.q233.MyApp;
+import com.example.qy.q233.Permission;
+import com.example.qy.q233.R;
 
 import java.util.ArrayList;
 import java.util.List;

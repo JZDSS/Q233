@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.qy.q233.R;
+import com.example.qy.q233.SoundCalculator;
+import com.example.qy.q233.SoundFileUtil;
+
 import java.io.File;
 import java.io.IOException;
 

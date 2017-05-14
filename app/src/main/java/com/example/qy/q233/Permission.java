@@ -6,9 +6,9 @@ import android.Manifest;
  * Created by Qi Yao on 17-3-18.
  */
 
-class Permission {
+public class Permission {
 
-    static String[] allPermissions = {
+    public static String[] allPermissions = {
 //            Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION,
 //            Manifest.permission.ACCESS_NETWORK_STATE,
@@ -23,7 +23,7 @@ class Permission {
 //            Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS,
             Manifest.permission.RECORD_AUDIO
     };
-    static int[] Codes = {
+    public static int[] Codes = {
 //            1,
             2,
 //            3,
@@ -38,7 +38,7 @@ class Permission {
 //            12
             13
     };
-    static final int
+    public static final int
 //            CODE_ACCESS_COARSE_LOCATION = 1,
             CODE_ACCESS_FINE_LOCATION = 2,
 //            CODE_ACCESS_NETWORK_STATE = 3,

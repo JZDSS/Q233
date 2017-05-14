@@ -1,44 +1,36 @@
 package com.example.qy.q233;
 
-import android.app.Activity;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.example.qy.q233.MessageToServer;
+import com.example.qy.q233.MyApp;
+import com.example.qy.q233.MyTimerTask;
+import com.example.qy.q233.Permission;
+import com.example.qy.q233.R;
+import com.example.qy.q233.SDKReceiver;
 import com.example.qy.q233.lib.ActivityRoot;
 import com.example.qy.q233.lib.BarView;
+import com.example.qy.q233.lib.ContextMenuDialogFragment;
 import com.example.qy.q233.lib.DrawLinechart;
 import com.example.qy.q233.lib.interfaces.OnMenuItemClickListener;
 import com.example.qy.q233.lib.interfaces.OnMenuItemLongClickListener;
+import com.example.qy.q233.service.Accelerometer;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
-import com.example.qy.q233.lib.Accelerometer;
-import com.example.qy.q233.lib.ContextMenuDialogFragment;
-import com.example.qy.q233.lib.MenuParams;
-import com.example.qy.q233.lib.MenuObject;
-import com.github.mikephil.charting.data.LineData;
 
 /**
  * Created by Xu Yining on 2017/4/1.
@@ -51,8 +43,8 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
     private static final int UPDATE_CHART = 1;
     private boolean sensorOn;
     private boolean exporting;
-    private Accelerometer mAccelerometer;
-    private FileManager mFileManager;
+    //private Accelerometer mAccelerometer;
+    //private FileManager mFileManager;
     private Timer barTimer = new Timer();
     private Timer chartTimer = new Timer();
     private String cache = "";
@@ -74,7 +66,7 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
         messageToServer = new MessageToServer();
 
 
-        mAccelerometer = new Accelerometer(this);
+        //mAccelerometer = new Accelerometer(this);
 
         xBarView = (BarView) findViewById(R.id.sv1);
         yBarView = (BarView) findViewById(R.id.sv2);
@@ -90,16 +82,6 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
 
         mSwitch = (Switch) findViewById(R.id.sensor_switch);
         mSwitch.toggle();
-//        mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-////                if (!isChecked){
-////                    mSwitch.setText(getString(R.string.text_off));
-////                }else {
-////                    mSwitch.setText(getString(R.string.text_on));
-////                }
-//            }
-//        });
 
         IntentFilter iFilter = new IntentFilter();
         iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR);
@@ -107,19 +89,7 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
         SDKReceiver mReceiver = new SDKReceiver();
         registerReceiver(mReceiver, iFilter);
 
-//        fragmentManager = getSupportFragmentManager();
-//        initToolbar();
-//        initMenuFragment();
 
-
-
-        MyTimerTask barTimerTask = new MyTimerTask(mHandler);
-        barTimerTask.setMsg(UPDATE_BAR_AND_TEXTVIWE);
-        barTimer.schedule(barTimerTask, 1, 5);
-
-        MyTimerTask chartTask = new MyTimerTask(mHandler);
-        chartTask.setMsg(UPDATE_CHART);
-        chartTimer.schedule(chartTask, 1, 125);
     }
 
 //    private void initToolbar() {
@@ -198,7 +168,18 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
         isChart = true;
 
         sensorOn = true;
-        mAccelerometer.resume();
+
+        MyTimerTask barTimerTask = new MyTimerTask(mHandler);
+        barTimerTask.setMsg(UPDATE_BAR_AND_TEXTVIWE);
+        barTimer = new Timer();
+        barTimer.schedule(barTimerTask, 1, 5);
+
+        MyTimerTask chartTask = new MyTimerTask(mHandler);
+        chartTask.setMsg(UPDATE_CHART);
+        chartTimer = new Timer();
+        chartTimer.schedule(chartTask, 1, 125);
+        //mAccelerometer.resume();
+
         messageToServer.mThread.open();
 
         mLinechart.getLineData().clearValues();
@@ -213,7 +194,9 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
         sensorOn = false;
 //        if(!Debug.ENABLE)
 //        {
-        mAccelerometer.pause();
+        barTimer.cancel();
+        chartTimer.cancel();
+        //mAccelerometer.pause();
         messageToServer.mThread.close();
 //        }
 
@@ -274,7 +257,7 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
                 exporting = false;
                 //mFileManager.save(cache);
                 try{
-                    mFileManager.save(fileName, cache, true);
+                    //mFileManager.save(fileName, cache, true);
                 } catch (Exception e) {
                     e.printStackTrace();
                     if (((MyApp) getApplication()).getApiVersion() >= 23){
@@ -398,40 +381,40 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case UPDATE_BAR_AND_TEXTVIWE:
-                    refresh(R.id.val_x, String.format("%.3f", mAccelerometer.x));
-                    refresh(R.id.val_y, String.format("%.3f", mAccelerometer.y));
-                    refresh(R.id.val_z, String.format("%.3f", mAccelerometer.z));
-                    if (mAccelerometer.x - xBarView.value > 0.1) {
+                    refresh(R.id.val_x, String.format("%.3f", Accelerometer.x));
+                    refresh(R.id.val_y, String.format("%.3f", Accelerometer.y));
+                    refresh(R.id.val_z, String.format("%.3f", Accelerometer.z));
+                    if (Accelerometer.x - xBarView.value > 0.1) {
                         xBarView.value += 0.1;
-                    }else if (mAccelerometer.x - xBarView.value < -0.1) {
+                    }else if (Accelerometer.x - xBarView.value < -0.1) {
                         xBarView.value -= 0.1;
                     }else {
-                        xBarView.value = mAccelerometer.x;
+                        xBarView.value = Accelerometer.x;
                     }
-                    if (mAccelerometer.y - yBarView.value > 0.1) {
+                    if (Accelerometer.y - yBarView.value > 0.1) {
                         yBarView.value += 0.1;
-                    }else if (mAccelerometer.y - yBarView.value < -0.1) {
+                    }else if (Accelerometer.y - yBarView.value < -0.1) {
                         yBarView.value -= 0.1;
                     }else {
-                        yBarView.value = mAccelerometer.y;
+                        yBarView.value = Accelerometer.y;
                     }
-                    if (mAccelerometer.z - zBarView.value > 0.1) {
+                    if (Accelerometer.z - zBarView.value > 0.1) {
                         zBarView.value += 0.1;
-                    }else if (mAccelerometer.z - zBarView.value < -0.1) {
+                    }else if (Accelerometer.z - zBarView.value < -0.1) {
                         zBarView.value -= 0.1;
                     }else {
-                        zBarView.value = mAccelerometer.z;
+                        zBarView.value = Accelerometer.z;
                     }
 
-                    messageToServer.post(System.currentTimeMillis(), mAccelerometer.x, mAccelerometer.y,
-                            mAccelerometer.z, mAccelerometer.norm);
+                    messageToServer.post(System.currentTimeMillis(), Accelerometer.x, Accelerometer.y,
+                            Accelerometer.z, Accelerometer.norm);
 
                     if (exporting && storageAllowed){
-                        cache += System.currentTimeMillis() + "," + mAccelerometer.x + "," + mAccelerometer.y + "," +
-                                mAccelerometer.z + "\n";
+                        cache += System.currentTimeMillis() + "," + Accelerometer.x + "," + Accelerometer.y + "," +
+                                Accelerometer.z + "\n";
                         if (cache.length()>1024){
                             try {
-                                mFileManager.save(fileName, cache, true);
+                                //mFileManager.save(fileName, cache, true);
                             }catch (Exception e){
                                 e.printStackTrace();
                                 if (((MyApp) getApplication()).getApiVersion() >= 23) {
@@ -445,7 +428,7 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
                     break;
                 case UPDATE_CHART:
                     if (isChart) {
-                        mDrawLineChart.updateData(mLinechart, mAccelerometer.norm, savedTime);
+                        mDrawLineChart.updateData(mLinechart, Accelerometer.norm, savedTime);
                         savedTime += 0.125;
                     }
                 default:

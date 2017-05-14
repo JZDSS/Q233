@@ -14,12 +14,12 @@ public class MyTimerTask extends TimerTask {
     Handler mHandler;
     int flag;
 
-    MyTimerTask (Handler mHandler)
+    public MyTimerTask (Handler mHandler)
     {
         this.mHandler = mHandler;
     }
 
-    void setMsg(int id)
+    public void setMsg(int id)
     {
         flag = id;
     }

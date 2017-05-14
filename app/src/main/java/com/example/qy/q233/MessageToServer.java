@@ -21,12 +21,12 @@ import java.util.ArrayList;
 
 public class MessageToServer {
 
-    MyThread mThread;
+    public MyThread mThread;
     HttpClient httpClient = new DefaultHttpClient();
     String url = "http://192.168.1.104/q233/rec.php";
     HttpPost httpPost = new HttpPost(url);
 
-    MessageToServer(){
+    public MessageToServer(){
         mThread = new MyThread(0);
         mThread.start();
     }
@@ -36,14 +36,14 @@ public class MessageToServer {
         mThread.setVal(time, x, y, z, norm);
     }
 
-    class MyThread extends Thread{
+    public class MyThread extends Thread{
         long time;
         float x;
         float y;
         float z;
         float norm;
         boolean on;
-        MyThread(float norm){
+        public MyThread(float norm){
             this.norm = norm;
             this.on = false;
         }
@@ -54,11 +54,11 @@ public class MessageToServer {
             this.z = z;
             this.norm = norm;
         }
-        void open(){
+        public void open(){
             this.on=true;
         }
 
-        void close(){
+        public void close(){
             this.on = false;
         }
         @Override
