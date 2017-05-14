@@ -18,9 +18,10 @@ class Permission {
 //            Manifest.permission.INTERNET,
 //            Manifest.permission.WAKE_LOCK,
 //            Manifest.permission.ACCESS_WIFI_STATE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//            Manifest.permission.WRITE_EXTERNAL_STORAGE,
 //            Manifest.permission.WRITE_SETTINGS,
 //            Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS,
+            Manifest.permission.RECORD_AUDIO
     };
     static int[] Codes = {
 //            1,
@@ -32,9 +33,10 @@ class Permission {
 //            7,
 //            8,
 //            9,
-            10,
+//            10,
 //            11
 //            12
+            13
     };
     static final int
 //            CODE_ACCESS_COARSE_LOCATION = 1,
@@ -46,8 +48,8 @@ class Permission {
 //            CODE_INTERNET = 7,
 //            CODE_WAKE_LOCK = 8,
 //            CODE_ACCESS_WIFI_STATE = 9,
-            CODE_WRITE_EXTERNAL_STORAGE = 10;
+//            CODE_WRITE_EXTERNAL_STORAGE = 10,
 //            CODE_WRITE_SETTINGS = 11,
 //            CODE_MOUNT_UNMOUNT_FILESYSTEMS = 12
-
+            CODE_RECORD_AUDIO = 13;
 }

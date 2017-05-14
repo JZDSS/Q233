@@ -4,5 +4,7 @@
     <color name="menu_fragment_background">#B3000000</color>
     <color name="menu_item_background">#f2f2f2</color>
     <color name="divider_color">#b5b5b5</color>
-
+    <color name="progressColor">#CC0033</color>
+    <color name="textColor">#CC99FF</color>
+    <color name="gray">#CCCCCC</color>
 </resources>

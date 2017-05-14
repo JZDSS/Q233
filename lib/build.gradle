@@ -28,5 +28,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.nineoldandroids:library:2.4.0'
     //compile 'com.yalantis:contextmenu:1.0.7'
-    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    //compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    testCompile 'junit:junit:4.12'
+    //compile 'com.android.support:appcompat-v7:25.3.0'
 }

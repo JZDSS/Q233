@@ -59,6 +59,7 @@ public class SoundActivity extends AppCompatActivity{
                     msg.what = START_RECORD;
                     mHandle.sendMessage(msg);
                 }else{
+                    ((Button)v).setText(R.string.start);
                     start = false;
                     isListener = false;
                     isThreading = false;
