@@ -38,6 +38,7 @@ import com.example.qy.q233.lib.Accelerometer;
 import com.example.qy.q233.lib.ContextMenuDialogFragment;
 import com.example.qy.q233.lib.MenuParams;
 import com.example.qy.q233.lib.MenuObject;
+import com.github.mikephil.charting.data.LineData;
 
 /**
  * Created by Xu Yining on 2017/4/1.
@@ -82,7 +83,7 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
         mLinechart = (LineChart) findViewById(R.id.linechart);
         yVals.add(new Entry(0,0));
         if (!isChart){
-            mDrawLineChart.initChart(mLinechart, savedTime, yVals);
+            mDrawLineChart.initChart(mLinechart, yVals);
             isChart = true;
         }
 //        mFileManager = new FileManager(getApplicationContext());
@@ -106,9 +107,9 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
         SDKReceiver mReceiver = new SDKReceiver();
         registerReceiver(mReceiver, iFilter);
 
-        fragmentManager = getSupportFragmentManager();
-        initToolbar();
-        initMenuFragment();
+//        fragmentManager = getSupportFragmentManager();
+//        initToolbar();
+//        initMenuFragment();
 
 
 
@@ -121,66 +122,66 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
         chartTimer.schedule(chartTask, 1, 125);
     }
 
-    private void initToolbar() {
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-        }
-        mToolbar.setNavigationIcon(R.mipmap.btn_back);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-    }
-
-    private void initMenuFragment() {
-        MenuParams menuParams = new MenuParams();
-        menuParams.setActionBarSize((int) getResources().getDimension(R.dimen.tool_bar_height));
-        menuParams.setMenuObjects(getMenuObjects());
-        menuParams.setClosableOutside(false);
-        mMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams);
-        mMenuDialogFragment.setItemClickListener(this);
-        mMenuDialogFragment.setItemLongClickListener(this);
-    }
-
-    private List<MenuObject> getMenuObjects() {
-
-        List<MenuObject> menuObjects = new ArrayList<>();
-
-        MenuObject close = new MenuObject();
-        close.setResource(R.mipmap.icn_close);
-
-        MenuObject send = new MenuObject("Send message");
-        send.setResource(R.mipmap.icn_1);
-
-        MenuObject like = new MenuObject("Like profile");
-        Bitmap b = BitmapFactory.decodeResource(getResources(), R.mipmap.icn_2);
-        like.setBitmap(b);
-
-        MenuObject addFr = new MenuObject("Add to friends");
-        BitmapDrawable bd = new BitmapDrawable(getResources(),
-                BitmapFactory.decodeResource(getResources(), R.mipmap.icn_3));
-        addFr.setDrawable(bd);
-
-        MenuObject addFav = new MenuObject("Add to favorites");
-        addFav.setResource(R.mipmap.icn_4);
-
-        MenuObject block = new MenuObject("Block user");
-        block.setResource(R.mipmap.icn_5);
-
-        menuObjects.add(close);
-        menuObjects.add(send);
-        menuObjects.add(like);
-        menuObjects.add(addFr);
-        menuObjects.add(addFav);
-        menuObjects.add(block);
-        return menuObjects;
-    }
+//    private void initToolbar() {
+//        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(mToolbar);
+//        if (getSupportActionBar() != null) {
+//            getSupportActionBar().setHomeButtonEnabled(true);
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//            getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        }
+//        mToolbar.setNavigationIcon(R.mipmap.btn_back);
+//        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
+//    }
+//
+//    private void initMenuFragment() {
+//        MenuParams menuParams = new MenuParams();
+//        menuParams.setActionBarSize((int) getResources().getDimension(R.dimen.tool_bar_height));
+//        menuParams.setMenuObjects(getMenuObjects());
+//        menuParams.setClosableOutside(false);
+//        mMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams);
+//        mMenuDialogFragment.setItemClickListener(this);
+//        mMenuDialogFragment.setItemLongClickListener(this);
+//    }
+//
+//    private List<MenuObject> getMenuObjects() {
+//
+//        List<MenuObject> menuObjects = new ArrayList<>();
+//
+//        MenuObject close = new MenuObject();
+//        close.setResource(R.mipmap.icn_close);
+//
+//        MenuObject send = new MenuObject("Send message");
+//        send.setResource(R.mipmap.icn_1);
+//
+//        MenuObject like = new MenuObject("Like profile");
+//        Bitmap b = BitmapFactory.decodeResource(getResources(), R.mipmap.icn_2);
+//        like.setBitmap(b);
+//
+//        MenuObject addFr = new MenuObject("Add to friends");
+//        BitmapDrawable bd = new BitmapDrawable(getResources(),
+//                BitmapFactory.decodeResource(getResources(), R.mipmap.icn_3));
+//        addFr.setDrawable(bd);
+//
+//        MenuObject addFav = new MenuObject("Add to favorites");
+//        addFav.setResource(R.mipmap.icn_4);
+//
+//        MenuObject block = new MenuObject("Block user");
+//        block.setResource(R.mipmap.icn_5);
+//
+//        menuObjects.add(close);
+//        menuObjects.add(send);
+//        menuObjects.add(like);
+//        menuObjects.add(addFr);
+//        menuObjects.add(addFav);
+//        menuObjects.add(block);
+//        return menuObjects;
+//    }
 
     @Override
     protected void onStart(){
@@ -199,6 +200,10 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
         sensorOn = true;
         mAccelerometer.resume();
         messageToServer.mThread.open();
+
+        mLinechart.getLineData().clearValues();
+        savedTime = 0;
+        mDrawLineChart.initChart(mLinechart, yVals);
     }
 
     @Override
@@ -208,8 +213,8 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
         sensorOn = false;
 //        if(!Debug.ENABLE)
 //        {
-            mAccelerometer.pause();
-            messageToServer.mThread.close();
+        mAccelerometer.pause();
+        messageToServer.mThread.close();
 //        }
 
     }
@@ -223,23 +228,23 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
         super.onDestroy();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
-        switch (requestCode){
-            case Permission.CODE_ACCESS_FINE_LOCATION:
-                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    Toast.makeText(getApplicationContext(), "GET LOCATION PERMISSION DENIED!", Toast.LENGTH_LONG).show();
-                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED);
-            case Permission.CODE_WRITE_EXTERNAL_STORAGE:
-                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    Toast.makeText(getApplicationContext(), "WRITE/READ STORAGE PERMISSION DENIED!", Toast.LENGTH_LONG).show();
-                    storageAllowed = false;
-                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    storageAllowed = true;
-            default:
-                break;
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+//        switch (requestCode){
+//            case Permission.CODE_ACCESS_FINE_LOCATION:
+//                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+//                    Toast.makeText(getApplicationContext(), "GET LOCATION PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+//                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED);
+//            case Permission.CODE_WRITE_EXTERNAL_STORAGE:
+//                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+//                    Toast.makeText(getApplicationContext(), "WRITE/READ STORAGE PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+//                    storageAllowed = false;
+//                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+//                    storageAllowed = true;
+//            default:
+//                break;
+//        }
+//    }
 
 //    public void read(View view){
 //        if (!storageAllowed && SplashActivity.apiVersion >=23){
@@ -440,8 +445,8 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
                     break;
                 case UPDATE_CHART:
                     if (isChart) {
-                        savedTime += 0.125;
                         mDrawLineChart.updateData(mLinechart, mAccelerometer.norm, savedTime);
+                        savedTime += 0.125;
                     }
                 default:
                     break;

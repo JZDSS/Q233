@@ -24,7 +24,7 @@ import java.util.Timer;
  */
 
 public class CounterActivity extends AppCompatActivity {
-    public TextView textView;
+    //public TextView textView;
     public boolean isRun = false;
     public Button button;
     public ArcProgress mProgress;
@@ -37,7 +37,7 @@ public class CounterActivity extends AppCompatActivity {
             super.handleMessage(msg);
 //            switch (msg.what) {
 //                case 0:
-            textView.setText(String.valueOf(Counter.couter).toString());
+            //textView.setText(String.valueOf(Counter.couter).toString());
             mProgress.setProgress(Counter.couter);
 
 //                default:
@@ -51,12 +51,13 @@ public class CounterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counter);
-        textView = (TextView) findViewById(R.id.textview);
+        //textView = (TextView) findViewById(R.id.textview);
         button = (Button) findViewById(R.id.button1);
 
         mProgress = (ArcProgress) findViewById(R.id.myprogress);
-        mProgress.setUnfinishedStrokeColor(Color.rgb(100, 150, 255));
-        mProgress.setFinishedStrokeColor(Color.rgb(0, 0, 241));
+        mProgress.setUnfinishedStrokeColor(Color.rgb(204, 204, 204));
+        mProgress.setFinishedStrokeColor(Color.rgb(200, 255, 255));
+        mProgress.setTextColor(Color.rgb(200, 255, 255));
 //        mProgress.setOnCenterDraw(new OnTextCenter());
 //        addProrgress(mProgress);
 

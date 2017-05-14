@@ -15,27 +15,23 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.5">
-            <RelativeLayout
+
+            <TextView
+                android:id="@+id/titleA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_alignParentTop="true">
-                <TextView
-                    android:id="@+id/titleA"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" Acceleration "
-                    android:textSize="30dp"
-                    android:textStyle="italic"
-                    android:typeface="serif"
-                    android:textColor="@color/gray"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"/>
-                <android.support.v7.widget.Toolbar
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/toolbar"></android.support.v7.widget.Toolbar>
-            </RelativeLayout>
+                android:text=" Acceleration "
+                android:textSize="30dp"
+                android:textStyle="italic"
+                android:typeface="serif"
+                android:textColor="@color/gray"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
+                <!--<android.support.v7.widget.Toolbar-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:id="@+id/toolbar"></android.support.v7.widget.Toolbar>-->
+
             <Switch
                 android:id="@+id/sensor_switch"
                 android:layout_width="100dp"

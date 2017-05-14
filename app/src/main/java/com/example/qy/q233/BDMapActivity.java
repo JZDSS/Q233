@@ -155,21 +155,21 @@ public class BDMapActivity extends AppCompatActivity {
         mMapView.onPause();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
-        switch (requestCode){
-            case Permission.CODE_ACCESS_FINE_LOCATION:
-                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    Toast.makeText(getApplicationContext(), "GET LOCATION PERMISSION DENIED!", Toast.LENGTH_LONG).show();
-                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED);
-            case Permission.CODE_WRITE_EXTERNAL_STORAGE:
-                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    Toast.makeText(getApplicationContext(), "WRITE/READ STORAGE PERMISSION DENIED!", Toast.LENGTH_LONG).show();
-                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED);
-            default:
-                break;
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+//        switch (requestCode){
+//            case Permission.CODE_ACCESS_FINE_LOCATION:
+//                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+//                    Toast.makeText(getApplicationContext(), "GET LOCATION PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+//                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED);
+//            case Permission.CODE_WRITE_EXTERNAL_STORAGE:
+//                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+//                    Toast.makeText(getApplicationContext(), "WRITE/READ STORAGE PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+//                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED);
+//            default:
+//                break;
+//        }
+//    }
 
     private class MyLocationListener implements BDLocationListener {
 

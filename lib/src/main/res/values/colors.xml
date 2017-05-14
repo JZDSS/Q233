@@ -6,4 +6,5 @@
     <color name="divider_color">#b5b5b5</color>
     <color name="progressColor">#CC0033</color>
     <color name="textColor">#CC99FF</color>
+    <color name="gray">#CCCCCC</color>
 </resources>
