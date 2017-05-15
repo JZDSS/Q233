@@ -181,7 +181,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
-                        <com.example.qy.q233.BarView
+                        <com.example.qy.q233.view.BarView
                             android:id="@+id/sv1"
                             android:layout_width="20dp"
                             android:layout_height="160dp"
@@ -192,7 +192,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                        <com.example.qy.q233.BarView
+                        <com.example.qy.q233.view.BarView
                             android:id="@+id/sv2"
                             android:layout_width="20dp"
                             android:layout_height="160dp"
@@ -203,7 +203,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                        <com.example.qy.q233.BarView
+                        <com.example.qy.q233.view.BarView
                             android:id="@+id/sv3"
                             android:layout_width="20dp"
                             android:layout_height="160dp"

@@ -1,12 +1,15 @@
 package com.example.qy.q233;
 
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,10 +29,14 @@ import com.example.qy.q233.lib.MenuParams;
 import com.example.qy.q233.lib.interfaces.OnMenuItemClickListener;
 import com.example.qy.q233.lib.interfaces.OnMenuItemLongClickListener;
 import com.example.qy.q233.service.Accelerometer;
+import com.example.qy.q233.service.BDMapService;
+import com.example.qy.q233.view.BarView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 
@@ -46,7 +53,7 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
     private boolean sensorOn;
     private boolean exporting;
     //private Accelerometer mAccelerometer;
-    //private FileManager mFileManager;
+    private FileManager mFileManager;
     private Timer barTimer = new Timer();
     private Timer chartTimer = new Timer();
     private String cache = "";
@@ -60,15 +67,12 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
     ArrayList<Entry> yVals = new ArrayList<>();
     public Switch mSwitch;
     public MessageToServer messageToServer;
-
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd.HH:mm:ss");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acceleration);
         messageToServer = new MessageToServer();
-
-
-        //mAccelerometer = new Accelerometer(this);
 
         xBarView = (BarView) findViewById(R.id.sv1);
         yBarView = (BarView) findViewById(R.id.sv2);
@@ -80,8 +84,8 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
             mDrawLineChart.initChart(mLinechart, yVals);
             isChart = true;
         }
-//        mFileManager = new FileManager(getApplicationContext());
-
+        mFileManager = new FileManager(getApplicationContext());
+        fileName = "1";
         mSwitch = (Switch) findViewById(R.id.sensor_switch);
         mSwitch.toggle();
 
@@ -215,23 +219,23 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
         super.onDestroy();
     }
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
-//        switch (requestCode){
-//            case Permission.CODE_ACCESS_FINE_LOCATION:
-//                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-//                    Toast.makeText(getApplicationContext(), "GET LOCATION PERMISSION DENIED!", Toast.LENGTH_LONG).show();
-//                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED);
-//            case Permission.CODE_WRITE_EXTERNAL_STORAGE:
-//                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-//                    Toast.makeText(getApplicationContext(), "WRITE/READ STORAGE PERMISSION DENIED!", Toast.LENGTH_LONG).show();
-//                    storageAllowed = false;
-//                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-//                    storageAllowed = true;
-//            default:
-//                break;
-//        }
-//    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+        switch (requestCode){
+            case Permission.CODE_ACCESS_FINE_LOCATION:
+                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                    Toast.makeText(getApplicationContext(), "GET LOCATION PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED);
+            case Permission.CODE_WRITE_EXTERNAL_STORAGE:
+                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                    Toast.makeText(getApplicationContext(), "WRITE/READ STORAGE PERMISSION DENIED!", Toast.LENGTH_LONG).show();
+                    storageAllowed = false;
+                } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    storageAllowed = true;
+            default:
+                break;
+        }
+    }
 
 //    public void read(View view){
 //        if (!storageAllowed && SplashActivity.apiVersion >=23){
@@ -309,7 +313,51 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
 
     @Override
     public void onMenuItemClick(View clickedView, int position) {
-        Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
+        switch (position){
+            case 1:
+                if (exporting) break;
+                exporting = true;
+                try{
+                    mFileManager.save(fileName, "", false);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    if (((MyApp)getApplication()).apiVersion >=23) {
+                        requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                    }
+                }
+                break;
+            case 2:
+                if (!exporting) break;
+                exporting = false;
+                try{
+                    mFileManager.save(fileName, cache, true);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    if (((MyApp)getApplication()).apiVersion >=23) {
+                        requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                    }
+                }
+                cache = "";
+                break;
+            case 3:
+                String content = "";
+                try
+                {
+                    content = mFileManager.read(fileName);
+                    //Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
+                } catch(IOException e){
+                    e.printStackTrace();
+                    if (((MyApp)getApplication()).apiVersion >=23){
+                        requestPermissions(new String[]{Permission.allPermissions[Permission.CODE_WRITE_EXTERNAL_STORAGE]}, Permission.Codes[Permission.CODE_WRITE_EXTERNAL_STORAGE]);
+                    }
+                }
+                FileContent popupWindow = new FileContent(this, content);
+                popupWindow.show();
+                break;
+            default:
+                break;
+        }
+        //Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -414,11 +462,11 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
                             Accelerometer.z, Accelerometer.norm);
 
                     if (exporting && storageAllowed){
-                        cache += System.currentTimeMillis() + "," + Accelerometer.x + "," + Accelerometer.y + "," +
-                                Accelerometer.z + "\n";
+                        cache += formatter.format(new Date(System.currentTimeMillis())) + "," + Accelerometer.x + "," + Accelerometer.y + "," +
+                                Accelerometer.z + ","+ BDMapService.latitude + "," + BDMapService.longitude + "\n";
                         if (cache.length()>1024){
                             try {
-                                //mFileManager.save(fileName, cache, true);
+                                mFileManager.save(fileName, cache, true);
                             }catch (Exception e){
                                 e.printStackTrace();
                                 if (((MyApp) getApplication()).getApiVersion() >= 23) {
