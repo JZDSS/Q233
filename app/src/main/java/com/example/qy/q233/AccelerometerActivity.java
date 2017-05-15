@@ -1,27 +1,45 @@
 package com.example.qy.q233;
 
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.example.qy.q233.lib.ContextMenuDialogFragment;
+import com.example.qy.q233.lib.MenuObject;
+import com.example.qy.q233.lib.MenuParams;
+import com.example.qy.q233.lib.interfaces.OnMenuItemClickListener;
+import com.example.qy.q233.lib.interfaces.OnMenuItemLongClickListener;
 import com.example.qy.q233.service.Accelerometer;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 
 /**
  * Created by Xu Yining on 2017/4/1.
  */
 
-public class AccelerometerActivity extends AppCompatActivity{
+public class AccelerometerActivity extends AppCompatActivity implements OnMenuItemClickListener, OnMenuItemLongClickListener {
+    public FragmentManager fragmentManager;
+    public ContextMenuDialogFragment mMenuDialogFragment;
     private String fileName;
     private static final int UPDATE_BAR_AND_TEXTVIWE = 0;
     private static final int UPDATE_CHART = 1;
@@ -72,70 +90,72 @@ public class AccelerometerActivity extends AppCompatActivity{
         iFilter.addAction(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR);
         SDKReceiver mReceiver = new SDKReceiver();
         registerReceiver(mReceiver, iFilter);
-
+        fragmentManager = getSupportFragmentManager();
+        initToolbar();
+        initMenuFragment();
 
     }
 
-//    private void initToolbar() {
-//        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(mToolbar);
-//        if (getSupportActionBar() != null) {
-//            getSupportActionBar().setHomeButtonEnabled(true);
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//            getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        }
-//        mToolbar.setNavigationIcon(R.mipmap.btn_back);
+    private void initToolbar() {
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+        mToolbar.setNavigationIcon(R.mipmap.btn_back);
 //        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                onBackPressed();
 //            }
 //        });
-//    }
-//
-//    private void initMenuFragment() {
-//        MenuParams menuParams = new MenuParams();
-//        menuParams.setActionBarSize((int) getResources().getDimension(R.dimen.tool_bar_height));
-//        menuParams.setMenuObjects(getMenuObjects());
-//        menuParams.setClosableOutside(false);
-//        mMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams);
-//        mMenuDialogFragment.setItemClickListener(this);
-//        mMenuDialogFragment.setItemLongClickListener(this);
-//    }
-//
-//    private List<MenuObject> getMenuObjects() {
-//
-//        List<MenuObject> menuObjects = new ArrayList<>();
-//
-//        MenuObject close = new MenuObject();
-//        close.setResource(R.mipmap.icn_close);
-//
-//        MenuObject send = new MenuObject("Send message");
-//        send.setResource(R.mipmap.icn_1);
-//
-//        MenuObject like = new MenuObject("Like profile");
-//        Bitmap b = BitmapFactory.decodeResource(getResources(), R.mipmap.icn_2);
-//        like.setBitmap(b);
-//
-//        MenuObject addFr = new MenuObject("Add to friends");
-//        BitmapDrawable bd = new BitmapDrawable(getResources(),
-//                BitmapFactory.decodeResource(getResources(), R.mipmap.icn_3));
-//        addFr.setDrawable(bd);
-//
+    }
+
+    private void initMenuFragment() {
+        MenuParams menuParams = new MenuParams();
+        menuParams.setActionBarSize((int) getResources().getDimension(R.dimen.tool_bar_height));
+        menuParams.setMenuObjects(getMenuObjects());
+        menuParams.setClosableOutside(false);
+        mMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams);
+        mMenuDialogFragment.setItemClickListener(this);
+        mMenuDialogFragment.setItemLongClickListener(this);
+    }
+
+    private List<MenuObject> getMenuObjects() {
+
+        List<MenuObject> menuObjects = new ArrayList<>();
+
+        MenuObject close = new MenuObject();
+        close.setResource(R.mipmap.icn_close);
+
+        MenuObject send = new MenuObject("Start");
+        send.setResource(R.mipmap.icn_1);
+
+        MenuObject like = new MenuObject("Stop");
+        Bitmap b = BitmapFactory.decodeResource(getResources(), R.mipmap.icn_2);
+        like.setBitmap(b);
+
+        MenuObject addFr = new MenuObject("Read");
+        BitmapDrawable bd = new BitmapDrawable(getResources(),
+                BitmapFactory.decodeResource(getResources(), R.mipmap.icn_3));
+        addFr.setDrawable(bd);
+
 //        MenuObject addFav = new MenuObject("Add to favorites");
 //        addFav.setResource(R.mipmap.icn_4);
 //
 //        MenuObject block = new MenuObject("Block user");
 //        block.setResource(R.mipmap.icn_5);
-//
-//        menuObjects.add(close);
-//        menuObjects.add(send);
-//        menuObjects.add(like);
-//        menuObjects.add(addFr);
+
+        menuObjects.add(close);
+        menuObjects.add(send);
+        menuObjects.add(like);
+        menuObjects.add(addFr);
 //        menuObjects.add(addFav);
 //        menuObjects.add(block);
-//        return menuObjects;
-//    }
+        return menuObjects;
+    }
 
     @Override
     protected void onStart(){
@@ -259,43 +279,43 @@ public class AccelerometerActivity extends AppCompatActivity{
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(final Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.context_menu:
-//                if (fragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
-//                    mMenuDialogFragment.show(fragmentManager, ContextMenuDialogFragment.TAG);
-//                }
-//                break;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.context_menu:
+                if (fragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
+                    mMenuDialogFragment.show(fragmentManager, ContextMenuDialogFragment.TAG);
+                }
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-//    @Override
-//    public void onBackPressed() {
-//        if (mMenuDialogFragment != null && mMenuDialogFragment.isAdded()) {
-//            mMenuDialogFragment.dismiss();
-//        } else {
-//            finish();
-//        }
-//    }
+    @Override
+    public void onBackPressed() {
+        if (mMenuDialogFragment != null && mMenuDialogFragment.isAdded()) {
+            mMenuDialogFragment.dismiss();
+        } else {
+            finish();
+        }
+    }
 
-//    @Override
-//    public void onMenuItemClick(View clickedView, int position) {
-//        Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
-//    }
-//
-//    @Override
-//    public void onMenuItemLongClick(View clickedView, int position) {
-//        Toast.makeText(this, "Long clicked on position: " + position, Toast.LENGTH_SHORT).show();
-//    }
+    @Override
+    public void onMenuItemClick(View clickedView, int position) {
+        Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onMenuItemLongClick(View clickedView, int position) {
+        Toast.makeText(this, "Long clicked on position: " + position, Toast.LENGTH_SHORT).show();
+    }
 
 //    public void exportControl(View view) {
 //        if (!storageAllowed && SplashActivity.apiVersion >=23){
