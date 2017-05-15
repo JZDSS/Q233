@@ -9,7 +9,7 @@
     <!--android:paddingRight="16dp"-->
     <!--android:paddingTop="16dp"-->
 
-    <com.example.qy.q233.SoundView
+    <com.example.qy.q233.view.SoundView
         android:id="@+id/view_main"
 
         android:layout_width="300dp"

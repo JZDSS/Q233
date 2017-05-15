@@ -4,27 +4,12 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baidu.mapapi.SDKInitializer;
-import com.example.qy.q233.MessageToServer;
-import com.example.qy.q233.MyApp;
-import com.example.qy.q233.MyTimerTask;
-import com.example.qy.q233.Permission;
-import com.example.qy.q233.R;
-import com.example.qy.q233.SDKReceiver;
-import com.example.qy.q233.lib.ActivityRoot;
-import com.example.qy.q233.lib.BarView;
-import com.example.qy.q233.lib.ContextMenuDialogFragment;
-import com.example.qy.q233.lib.DrawLinechart;
-import com.example.qy.q233.lib.interfaces.OnMenuItemClickListener;
-import com.example.qy.q233.lib.interfaces.OnMenuItemLongClickListener;
 import com.example.qy.q233.service.Accelerometer;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -36,8 +21,7 @@ import java.util.Timer;
  * Created by Xu Yining on 2017/4/1.
  */
 
-public class AccelerometerActivity extends ActivityRoot implements OnMenuItemClickListener, OnMenuItemLongClickListener {
-
+public class AccelerometerActivity extends AppCompatActivity{
     private String fileName;
     private static final int UPDATE_BAR_AND_TEXTVIWE = 0;
     private static final int UPDATE_CHART = 1;
@@ -275,43 +259,43 @@ public class AccelerometerActivity extends ActivityRoot implements OnMenuItemCli
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(final Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.context_menu:
-                if (fragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
-                    mMenuDialogFragment.show(fragmentManager, ContextMenuDialogFragment.TAG);
-                }
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.context_menu:
+//                if (fragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
+//                    mMenuDialogFragment.show(fragmentManager, ContextMenuDialogFragment.TAG);
+//                }
+//                break;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
-    @Override
-    public void onBackPressed() {
-        if (mMenuDialogFragment != null && mMenuDialogFragment.isAdded()) {
-            mMenuDialogFragment.dismiss();
-        } else {
-            finish();
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if (mMenuDialogFragment != null && mMenuDialogFragment.isAdded()) {
+//            mMenuDialogFragment.dismiss();
+//        } else {
+//            finish();
+//        }
+//    }
 
-    @Override
-    public void onMenuItemClick(View clickedView, int position) {
-        Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onMenuItemLongClick(View clickedView, int position) {
-        Toast.makeText(this, "Long clicked on position: " + position, Toast.LENGTH_SHORT).show();
-    }
+//    @Override
+//    public void onMenuItemClick(View clickedView, int position) {
+//        Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
+//    }
+//
+//    @Override
+//    public void onMenuItemLongClick(View clickedView, int position) {
+//        Toast.makeText(this, "Long clicked on position: " + position, Toast.LENGTH_SHORT).show();
+//    }
 
 //    public void exportControl(View view) {
 //        if (!storageAllowed && SplashActivity.apiVersion >=23){

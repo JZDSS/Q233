@@ -1,4 +1,4 @@
-package com.example.qy.q233;
+package com.example.qy.q233.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,6 +8,9 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+
+import com.example.qy.q233.R;
+import com.example.qy.q233.SoundCalculator;
 
 /**
  * Created by Rita on 2017/4/14.

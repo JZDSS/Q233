@@ -1,4 +1,4 @@
-package com.example.qy.q233.lib;
+package com.example.qy.q233;
 
 import android.content.Context;
 import android.graphics.Canvas;

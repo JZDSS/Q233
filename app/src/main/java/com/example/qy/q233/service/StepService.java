@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.example.qy.q233.lib.Counter;
+import com.example.qy.q233.Counter;
 
 /**
  * Created by Xu Yining on 2017/5/2.

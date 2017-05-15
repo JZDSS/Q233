@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.Button;
 
 
-import com.example.qy.q233.R;
-import com.example.qy.q233.lib.Counter;
 import com.example.qy.q233.service.StepService;
 import com.example.qy.q233.view.ArcProgress;
 //import com.example.qy.q233.lib.OnTextCenter;
