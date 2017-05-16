@@ -33,7 +33,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_marginTop="30dp"
-                    android:src="@drawable/qy1" />
+                    android:src="@mipmap/qy1" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -133,7 +133,7 @@
                     android:layout_height="150dp"
                     android:layout_marginTop="30dp"
                     android:layout_toRightOf="@id/xyn1T1"
-                    android:src="@drawable/xyn1" />
+                    android:src="@mipmap/xyn1" />
 
 
             </LinearLayout>
@@ -147,7 +147,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_marginTop="30dp"
-                    android:src="@drawable/zxr1" />
+                    android:src="@mipmap/zxr1" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -189,20 +189,9 @@
                         android:textColor="@color/white"
                         android:text="个人标签：时时被“新手光环”照顾的菜鸟-_-"
                         android:textSize="18sp" />
-
-
                 </LinearLayout>
-
-
             </LinearLayout>
-
-
-
-
         </LinearLayout>
     </ScrollView>
-
-
-
 
 </LinearLayout>
