@@ -326,7 +326,7 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
 //                        requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
 //                    }
 //                }
-//                break;
+                break;
             case 2:
                 if (!exporting) break;
                 exporting = false;
