@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="#112433"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sound2_bk"
     xmlns:tools="http://schemas.android.com/tools"
-   >
+    >
     <!--android:paddingBottom="16dp"-->
     <!--android:paddingLeft="16dp"-->
     <!--android:paddingRight="16dp"-->
@@ -14,16 +15,21 @@
 
         android:layout_width="300dp"
         android:layout_height="320.93dp"
-        android:layout_centerInParent="true"
-        android:background="@drawable/noise_disc" />
+        android:background="@drawable/noise_disc"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/btn_ctl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="16dp"
-        android:text="Start" />
+        android:text="Start"
+        android:background="#12000000"
+        android:textColor="@color/white"
+        android:textSize="36dp"
+        android:layout_below="@+id/view_main"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp" />
 
 </RelativeLayout>
