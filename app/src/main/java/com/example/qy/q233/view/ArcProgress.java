@@ -49,7 +49,7 @@ public class ArcProgress extends View {
     private final float default_bottom_text_size;
     private final float default_stroke_width;
     private final String default_suffix_text;
-    private final int default_max = 100;
+    private final int default_max = 5000;
     private final float default_arc_angle = 360 * 0.8f;
     private float default_text_size;
     private final int min_size;
@@ -85,7 +85,7 @@ public class ArcProgress extends View {
         default_text_size = Utils.sp2px(getResources(), 50);
         default_suffix_text_size = Utils.sp2px(getResources(), 20);
         default_suffix_padding = Utils.dp2px(getResources(), 4);
-        default_suffix_text = "Step";
+        default_suffix_text = "Steps";
         default_bottom_text_size = Utils.sp2px(getResources(), 25);
         default_stroke_width = Utils.dp2px(getResources(), 4);
 
@@ -165,9 +165,9 @@ public class ArcProgress extends View {
 
     public void setProgress(int progress) {
         this.progress = progress;
-        if (this.progress > getMax()) {
-            this.progress %= getMax();
-        }
+//        if (this.progress > getMax()) {
+//            this.progress %= getMax();
+//        }
         invalidate();
     }
 
@@ -279,6 +279,7 @@ public class ArcProgress extends View {
         super.onDraw(canvas);
         float startAngle = 270 - arcAngle / 2f;
         float finishedSweepAngle = progress / (float) getMax() * arcAngle;
+        if(progress>max) finishedSweepAngle = arcAngle;
         float finishedStartAngle = startAngle;
         if(progress == 0) finishedStartAngle = 0.01f;
         paint.setColor(unfinishedStrokeColor);
