@@ -22,8 +22,8 @@ public class SplashActivity extends Activity {
 //        else
 //            mHandler.sendEmptyMessageDelayed(SWITCH_STARTACTIVITY,3000);
 //
-//        int apiVersion = android.os.Build.VERSION.SDK_INT;
-//        ((MyApp) getApplication()).setApiVersion(apiVersion);
+        int apiVersion = android.os.Build.VERSION.SDK_INT;
+        ((MyApp) getApplication()).setApiVersion(apiVersion);
 
         int SPLASH_DISPLAY_LENGHT = 1000;
         new Handler().postDelayed(new Runnable() {

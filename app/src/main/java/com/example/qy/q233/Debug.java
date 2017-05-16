@@ -5,5 +5,5 @@ package com.example.qy.q233;
  */
 
 public interface Debug {
-    public boolean ENABLE = false;
+    public boolean ENABLE = true;
 }
