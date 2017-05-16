@@ -147,8 +147,8 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
                 BitmapFactory.decodeResource(getResources(), R.mipmap.read_icon));
         addFr.setDrawable(bd);
 
-//        MenuObject addFav = new MenuObject("Add to favorites");
-//        addFav.setResource(R.mipmap.icn_4);
+        MenuObject addFav = new MenuObject("clear");
+        addFav.setResource(R.mipmap.icn_4);
 //
 //        MenuObject block = new MenuObject("Block user");
 //        block.setResource(R.mipmap.icn_5);
@@ -157,7 +157,7 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
         menuObjects.add(send);
         menuObjects.add(like);
         menuObjects.add(addFr);
-//        menuObjects.add(addFav);
+        menuObjects.add(addFav);
 //        menuObjects.add(block);
         return menuObjects;
     }
@@ -318,15 +318,15 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
             case 1:
                 if (exporting) break;
                 exporting = true;
-                try{
-                    mFileManager.save(fileName, "", false);
-                }catch (Exception e){
-                    e.printStackTrace();
-                    if (((MyApp)getApplication()).apiVersion >=23) {
-                        requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
-                    }
-                }
-                break;
+//                try{
+//                    mFileManager.save(fileName, "", false);
+//                }catch (Exception e){
+//                    e.printStackTrace();
+//                    if (((MyApp)getApplication()).apiVersion >=23) {
+//                        requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+//                    }
+//                }
+//                break;
             case 2:
                 if (!exporting) break;
                 exporting = false;
@@ -354,6 +354,16 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
                 }
                 FileContent popupWindow = new FileContent(this, content);
                 popupWindow.show();
+                break;
+            case 4:
+                try{
+                    mFileManager.save(fileName, "", false);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    if (((MyApp)getApplication()).apiVersion >=23) {
+                        requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
+                    }
+                }
                 break;
             default:
                 break;
