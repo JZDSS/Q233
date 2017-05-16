@@ -133,18 +133,18 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
         List<MenuObject> menuObjects = new ArrayList<>();
 
         MenuObject close = new MenuObject();
-        close.setResource(R.mipmap.icn_close);
+        close.setResource(R.mipmap.delet_icon);
 
         MenuObject send = new MenuObject("Start");
-        send.setResource(R.mipmap.icn_1);
+        send.setResource(R.mipmap.add_icon);
 
         MenuObject like = new MenuObject("Stop");
-        Bitmap b = BitmapFactory.decodeResource(getResources(), R.mipmap.icn_2);
+        Bitmap b = BitmapFactory.decodeResource(getResources(), R.mipmap.storage_icon);
         like.setBitmap(b);
 
         MenuObject addFr = new MenuObject("Read");
         BitmapDrawable bd = new BitmapDrawable(getResources(),
-                BitmapFactory.decodeResource(getResources(), R.mipmap.icn_3));
+                BitmapFactory.decodeResource(getResources(), R.mipmap.read_icon));
         addFr.setDrawable(bd);
 
 //        MenuObject addFav = new MenuObject("Add to favorites");

@@ -21,7 +21,7 @@
                 android:layout_height="300dp"
                 android:layout_gravity="center"
                 app:arc_progress="0"
-                app:arc_bottom_text="Aim:100"
+                app:arc_bottom_text="Aim:5000"
                 app:arc_stroke_width="15dp"
                 android:layout_centerInParent="true"/>
         </RelativeLayout>

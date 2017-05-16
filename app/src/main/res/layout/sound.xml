@@ -15,7 +15,7 @@
 
         android:layout_width="300dp"
         android:layout_height="320.93dp"
-        android:background="@drawable/noise_disc"
+        android:background="@drawable/noise_disc7"
         android:layout_marginTop="30dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
