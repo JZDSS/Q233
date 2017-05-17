@@ -148,7 +148,7 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
                 BitmapFactory.decodeResource(getResources(), R.mipmap.read_icon));
         addFr.setDrawable(bd);
 
-        MenuObject addFav = new MenuObject("clear");
+        MenuObject addFav = new MenuObject("Clear");
         addFav.setResource(R.mipmap.icn_4);
 //
 //        MenuObject block = new MenuObject("Block user");
