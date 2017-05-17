@@ -9,9 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5">
+        android:layout_weight="1.2">
         <RelativeLayout
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <com.example.qy.q233.view.ArcProgress
@@ -36,9 +36,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5">
-
-
+        android:layout_weight="0.8">
         <Button
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
@@ -50,7 +48,950 @@
             android:layout_gravity="center_horizontal"
             android:background="#12000000"
             android:textColor="@color/white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textSize="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:text="5000"
+            android:textColor="@color/gray"/>
     </RelativeLayout>
 
 
 </LinearLayout>
+
+
+
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+
+
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+
+
+
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+
+
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>        </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>        </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>        </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>        </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+    </RelativeLayout>
+    </LinearLayout>
+    <!--<com.example.qy.q233.lib.ArcProgress-->
+    <!--android:id="@+id/myProgress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_below="@id/myProgress"-->
+    <!--app:radius="80dp"-->
+    <!--app:tickDensity="3" />-->
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="0.8">
+<Button
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/button1"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:textSize="30sp"
+    android:text="@string/start"
+    android:layout_gravity="center_horizontal"
+    android:background="#12000000"
+    android:textColor="@color/white"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:textSize="40dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:text="5000"
+    android:textColor="@color/gray"/>
+</RelativeLayout>
+
+
+
+
+
