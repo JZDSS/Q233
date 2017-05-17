@@ -1,5 +1,6 @@
 package com.example.qy.q233;
 
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -27,15 +28,13 @@ import com.example.qy.q233.lib.MenuParams;
 import com.example.qy.q233.lib.interfaces.OnMenuItemClickListener;
 import com.example.qy.q233.lib.interfaces.OnMenuItemLongClickListener;
 import com.example.qy.q233.service.Accelerometer;
-import com.example.qy.q233.service.BDMapService;
+import com.example.qy.q233.service.Save;
 import com.example.qy.q233.view.BarView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 
@@ -48,19 +47,19 @@ import java.util.Timer;
 public class AccelerometerActivity extends AppCompatActivity implements OnMenuItemClickListener, OnMenuItemLongClickListener {
     public FragmentManager fragmentManager;
     public ContextMenuDialogFragment mMenuDialogFragment;
-    private String fileName;
+
     private static final int UPDATE_BAR_AND_TEXTVIWE = 0;
     private static final int UPDATE_CHART = 1;
     private boolean sensorOn;
     private boolean exporting;
-    //private Accelerometer mAccelerometer;
-    private FileManager mFileManager;
     private Timer barTimer = new Timer();
     private Timer chartTimer = new Timer();
     private String cache = "";
     private Handler mHandler = new MyHandler();
     private BarView xBarView, yBarView, zBarView;
     private boolean storageAllowed = true;
+    private String fileName;
+    private FileManager mFileManager;
     LineChart mLinechart;
     DrawLinechart mDrawLineChart;
     public boolean isChart = false;
@@ -68,12 +67,15 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
     ArrayList<Entry> yVals = new ArrayList<>();
     public Switch mSwitch;
     public MessageToServer messageToServer;
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd.HH:mm:ss");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acceleration);
         messageToServer = new MessageToServer();
+
+        mFileManager = new FileManager(getApplicationContext());
+        fileName = "1";
 
         xBarView = (BarView) findViewById(R.id.sv1);
         yBarView = (BarView) findViewById(R.id.sv2);
@@ -85,8 +87,7 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
             mDrawLineChart.initChart(mLinechart, yVals);
             isChart = true;
         }
-        mFileManager = new FileManager(getApplicationContext());
-        fileName = "1";
+
         mSwitch = (Switch) findViewById(R.id.sensor_switch);
         mSwitch.toggle();
 
@@ -316,29 +317,10 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
     public void onMenuItemClick(View clickedView, int position) {
         switch (position){
             case 1:
-                if (exporting) break;
-                exporting = true;
-//                try{
-//                    mFileManager.save(fileName, "", false);
-//                }catch (Exception e){
-//                    e.printStackTrace();
-//                    if (((MyApp)getApplication()).apiVersion >=23) {
-//                        requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
-//                    }
-//                }
+                startService(new Intent(this, Save.class));
                 break;
             case 2:
-                if (!exporting) break;
-                exporting = false;
-                try{
-                    mFileManager.save(fileName, cache, true);
-                }catch (Exception e){
-                    e.printStackTrace();
-                    if (((MyApp)getApplication()).apiVersion >=23) {
-                        requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
-                    }
-                }
-                cache = "";
+                stopService(new Intent(this, Save.class));
                 break;
             case 3:
                 String content = "";
@@ -472,22 +454,7 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
                     messageToServer.post(System.currentTimeMillis(), Accelerometer.x, Accelerometer.y,
                             Accelerometer.z, Accelerometer.norm);
 
-                    if (exporting && storageAllowed){
-                        cache += formatter.format(new Date(System.currentTimeMillis())) + "," + Accelerometer.x + "," + Accelerometer.y + "," +
-                                Accelerometer.z + ","+ BDMapService.latitude + "," + BDMapService.longitude + "\n";
-                        if (cache.length()>1024){
-                            try {
-                                mFileManager.save(fileName, cache, true);
-                            }catch (Exception e){
-                                e.printStackTrace();
-                                if (((MyApp) getApplication()).getApiVersion() >= 23) {
-                                    requestPermissions(new String[]{Permission.allPermissions[1]}, Permission.Codes[1]);
-                                }
-                                return;
-                            }
-                            cache = "";
-                        }
-                    }
+
                     break;
                 case UPDATE_CHART:
                     if (isChart) {

@@ -63,6 +63,7 @@
         <service android:name=".service.StepService" />
         <service android:name=".service.BDMapService"/>
         <service android:name=".service.Accelerometer"/>
+        <service android:name=".service.Save"/>
     </application>
 
 </manifest>

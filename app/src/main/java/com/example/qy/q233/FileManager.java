@@ -13,11 +13,11 @@ import java.io.IOException;
  * Created by Qi Yao on 17-3-17.
  */
 
-class FileManager {
+public class FileManager {
 
     private Context context;
 
-    FileManager(Context context) {
+    public FileManager(Context context) {
         super();
         this.context = context;
         File file = new File("/storage/0000-0000/com.example.qy.q233");
