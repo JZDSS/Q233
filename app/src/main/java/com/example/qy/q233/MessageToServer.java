@@ -26,33 +26,33 @@ public class MessageToServer {
     String url = "http://192.168.1.104/q233/rec.php";
     HttpPost httpPost = new HttpPost(url);
 
-    public MessageToServer(){
-        mThread = new MyThread(0);
+    public MessageToServer(String url){
+        this.url = url;
+        mThread = new MyThread();
         mThread.start();
     }
 
 
-    public void post(long time, float x, float y, float z, float norm) {
-        mThread.setVal(time, x, y, z, norm);
+    public void post(String time, float x, float y, float z, String user) {
+        mThread.setVal(time, x, y, z, user);
     }
 
     public class MyThread extends Thread{
-        long time;
+        String time;
         float x;
         float y;
         float z;
-        float norm;
+        String user;
         boolean on;
-        public MyThread(float norm){
-            this.norm = norm;
+        public MyThread(){
             this.on = false;
         }
-        void setVal(long time, float x, float y, float z, float norm){
+        void setVal(String time, float x, float y, float z, String user){
             this.time = time;
             this.x = x;
             this.y = y;
             this.z = z;
-            this.norm = norm;
+            this.user = user;
         }
         public void open(){
             this.on=true;
@@ -69,11 +69,11 @@ public class MessageToServer {
                 if(on){
                     pairs.clear();
                     //NameValuePair对象代表了一个需要发往服务器的键值对
-                    NameValuePair pair0= new BasicNameValuePair("t", String.format("%d", time));
+                    NameValuePair pair0= new BasicNameValuePair("t", time);
                     NameValuePair pair1 = new BasicNameValuePair("x", String.format("%f", x));
                     NameValuePair pair2 = new BasicNameValuePair("y", String.format("%f", y));
                     NameValuePair pair3 = new BasicNameValuePair("z", String.format("%f", z));
-                    NameValuePair pair4 = new BasicNameValuePair("n", String.format("%f", norm));
+                    NameValuePair pair4 = new BasicNameValuePair("u", user);
                     //将准备好的键值对对象放置在一个List当中
 
                     pairs.add(pair0);

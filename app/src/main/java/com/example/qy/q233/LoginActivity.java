@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                       @Override
                       public void onClick(View v) {
                           if(Debug.ENABLE) {
+                              ((MyApp)getApplication()).setUsername("Debug");
                               Intent intent=new Intent();
                               intent.setClass(LoginActivity.this, MainActivity.class);
                               startActivity(intent);
@@ -151,6 +152,7 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences sp = ((MyApp) getApplication()).sp;
                     sp.edit().putString("username", username).apply();
                     sp.edit().putString("password", password).apply();
+                    ((MyApp)getApplication()).setUsername(username);
                     jump2main();
                     break;
                 case FAILEDD:

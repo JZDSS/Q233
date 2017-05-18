@@ -34,7 +34,9 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 
@@ -67,12 +69,14 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
     ArrayList<Entry> yVals = new ArrayList<>();
     public Switch mSwitch;
     public MessageToServer messageToServer;
-
+    String user;
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmssSSS");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acceleration);
-        messageToServer = new MessageToServer();
+        user = ((MyApp)getApplication()).getUsername();
+        messageToServer = new MessageToServer(((MyApp)getApplication()).getUrl());
 
         mFileManager = new FileManager(getApplicationContext());
         fileName = "1";
@@ -451,8 +455,8 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
                         zBarView.value = Accelerometer.z;
                     }
 
-                    messageToServer.post(System.currentTimeMillis(), Accelerometer.x, Accelerometer.y,
-                            Accelerometer.z, Accelerometer.norm);
+                    messageToServer.post(formatter.format(new Date(System.currentTimeMillis())), Accelerometer.x, Accelerometer.y,
+                            Accelerometer.z, user);
 
 
                     break;

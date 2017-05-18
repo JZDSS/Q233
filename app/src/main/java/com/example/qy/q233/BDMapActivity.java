@@ -18,9 +18,6 @@ import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.model.LatLng;
-import com.example.qy.q233.MyApp;
-import com.example.qy.q233.Permission;
-import com.example.qy.q233.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -203,8 +200,8 @@ public class BDMapActivity extends AppCompatActivity {
                 // 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
 
                // LatLng a =  mBaiduMap.getProjection().fromScreenLocation(new Point(screenWidth/2, screenHeight/2));
-//                mBaiduMap.setMapStatus(MapStatusUpdateFactory
-//                        .newLatLng(new LatLng(currentLatitude, currentLongitude)));
+                mBaiduMap.setMapStatus(MapStatusUpdateFactory
+                        .newLatLng(new LatLng(currentLatitude, currentLongitude)));
 //                if(!moving){
 //                  new MoveMap().start();
 //                }
