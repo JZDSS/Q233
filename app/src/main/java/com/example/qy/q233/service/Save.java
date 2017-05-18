@@ -37,6 +37,11 @@ public class Save extends Service {
         super.onCreate();
         mFileManager = new FileManager(getApplicationContext());
         fileName = "1";
+        try {
+            mFileManager.save(fileName, "", true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         mHandler = new MyHandler();
         MyTimerTask mTimerTask = new MyTimerTask(mHandler);
         mTimerTask.setMsg(SAVE);

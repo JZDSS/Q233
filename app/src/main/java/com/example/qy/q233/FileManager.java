@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Environment;
 import android.widget.Toast;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,23 +19,23 @@ public class FileManager {
     public FileManager(Context context) {
         super();
         this.context = context;
-        File file = new File("/storage/0000-0000/com.example.qy.q233");
-        if (!file.exists())
-        {
-            try {
-                file.mkdirs();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-        }
+//        File file = new File("/storage/0000-0000/com.example.qy.q233");
+//        if (!file.exists())
+//        {
+//            try {
+//                file.mkdirs();
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
+//
+//        }
     }
 
     //往SD卡写入文件的方法
     public void save(String filename, String filecontent, boolean append) throws Exception {
         //如果手机已插入sd卡,且app具有读写sd卡的权限
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            filename =  "/storage/0000-0000/com.example.qy.q233/" + filename;
+            filename =  Environment.getExternalStorageDirectory().getCanonicalPath() + "/" + filename;
             //这里就不要用openFileOutput了,那个是往手机内存中写数据的
             FileOutputStream output = new FileOutputStream(filename,append);
             output.write(filecontent.getBytes());
@@ -51,7 +50,7 @@ public class FileManager {
     String read(String filename) throws IOException {
         StringBuilder sb = new StringBuilder("");
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            filename = "/storage/0000-0000/com.example.qy.q233/" + filename;
+            filename = Environment.getExternalStorageDirectory().getCanonicalPath() + "/" + filename;
             //打开文件输入流
             FileInputStream input = new FileInputStream(filename);
             byte[] temp = new byte[1024];
