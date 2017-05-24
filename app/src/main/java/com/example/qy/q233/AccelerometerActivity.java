@@ -321,9 +321,11 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
     public void onMenuItemClick(View clickedView, int position) {
         switch (position){
             case 1:
+                Save.perm = true;
                 startService(new Intent(this, Save.class));
                 break;
             case 2:
+                Save.perm =false;
                 stopService(new Intent(this, Save.class));
                 break;
             case 3:

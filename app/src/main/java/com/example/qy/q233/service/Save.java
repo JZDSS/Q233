@@ -19,6 +19,7 @@ import java.util.Timer;
  */
 
 public class Save extends Service {
+    public static boolean perm = true;
     static final int SAVE = 0;
     private String fileName;
     private FileManager mFileManager;
@@ -65,6 +66,9 @@ public class Save extends Service {
 
         @Override
         public void handleMessage(Message msg) {
+            if(perm == false){
+                return;
+            }
             switch (msg.what) {
                 case SAVE:
                     cache += formatter.format(new Date(System.currentTimeMillis())) + "," + Accelerometer.x + "," + Accelerometer.y + "," +
