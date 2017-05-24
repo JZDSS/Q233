@@ -79,7 +79,7 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
         messageToServer = new MessageToServer(((MyApp)getApplication()).getUrl());
 
         mFileManager = new FileManager(getApplicationContext());
-        fileName = "1";
+        fileName = "1.q233";
 
         xBarView = (BarView) findViewById(R.id.sv1);
         yBarView = (BarView) findViewById(R.id.sv2);

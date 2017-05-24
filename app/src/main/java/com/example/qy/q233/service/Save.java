@@ -37,7 +37,7 @@ public class Save extends Service {
     public void onCreate() {
         super.onCreate();
         mFileManager = new FileManager(getApplicationContext());
-        fileName = "1";
+        fileName = "1.q233";
         try {
             mFileManager.save(fileName, "", true);
         } catch (Exception e) {
