@@ -340,8 +340,12 @@ public class AccelerometerActivity extends AppCompatActivity implements OnMenuIt
                         requestPermissions(new String[]{Permission.allPermissions[Permission.CODE_WRITE_EXTERNAL_STORAGE]}, Permission.Codes[Permission.CODE_WRITE_EXTERNAL_STORAGE]);
                     }
                 }
-                FileContent popupWindow = new FileContent(this, content);
-                popupWindow.show();
+                if(((MyApp)getApplication()).apiVersion>23) {
+                    FileContent popupWindow = new FileContent(this, content);
+                    popupWindow.show();
+                }else {
+                    Toast.makeText(this, content, Toast.LENGTH_LONG).show();
+                }
                 break;
             case 4:
                 try{
